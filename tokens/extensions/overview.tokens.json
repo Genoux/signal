@@ -602,6 +602,369 @@
           },
           "$description": "Bench outline."
         }
+      },
+      "hood": {
+        "$description": "Neighborhood tints (v4). One low-chroma hue per machine, used ONLY for terrain, walls and roofs. Status colours stay the only saturated colours on the map (rule: Muted World, Loud Status).",
+        "slate": {
+          "ground": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.114,
+                0.125,
+                0.149
+              ],
+              "hex": "#1d2026"
+            },
+            "$description": "dusty blue: neighborhood ground."
+          },
+          "wall": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.231,
+                0.259,
+                0.314
+              ],
+              "hex": "#3b4250"
+            },
+            "$description": "dusty blue: lit wall face and room walls."
+          },
+          "wallShade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.173,
+                0.192,
+                0.231
+              ],
+              "hex": "#2c313b"
+            },
+            "$description": "dusty blue: shaded wall face."
+          },
+          "roof": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.29,
+                0.322,
+                0.384
+              ],
+              "hex": "#4a5262"
+            },
+            "$description": "dusty blue: roofs and wall tops."
+          }
+        },
+        "sage": {
+          "ground": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.118,
+                0.133,
+                0.118
+              ],
+              "hex": "#1e221e"
+            },
+            "$description": "sage: neighborhood ground."
+          },
+          "wall": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.243,
+                0.29,
+                0.251
+              ],
+              "hex": "#3e4a40"
+            },
+            "$description": "sage: lit wall face and room walls."
+          },
+          "wallShade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.18,
+                0.216,
+                0.188
+              ],
+              "hex": "#2e3730"
+            },
+            "$description": "sage: shaded wall face."
+          },
+          "roof": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.298,
+                0.353,
+                0.306
+              ],
+              "hex": "#4c5a4e"
+            },
+            "$description": "sage: roofs and wall tops."
+          }
+        },
+        "clay": {
+          "ground": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.141,
+                0.122,
+                0.114
+              ],
+              "hex": "#241f1d"
+            },
+            "$description": "clay: neighborhood ground."
+          },
+          "wall": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.302,
+                0.247,
+                0.22
+              ],
+              "hex": "#4d3f38"
+            },
+            "$description": "clay: lit wall face and room walls."
+          },
+          "wallShade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.227,
+                0.184,
+                0.165
+              ],
+              "hex": "#3a2f2a"
+            },
+            "$description": "clay: shaded wall face."
+          },
+          "roof": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.361,
+                0.294,
+                0.263
+              ],
+              "hex": "#5c4b43"
+            },
+            "$description": "clay: roofs and wall tops."
+          }
+        },
+        "plum": {
+          "ground": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.133,
+                0.122,
+                0.145
+              ],
+              "hex": "#221f25"
+            },
+            "$description": "plum: neighborhood ground."
+          },
+          "wall": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.275,
+                0.239,
+                0.306
+              ],
+              "hex": "#463d4e"
+            },
+            "$description": "plum: lit wall face and room walls."
+          },
+          "wallShade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.204,
+                0.176,
+                0.227
+              ],
+              "hex": "#342d3a"
+            },
+            "$description": "plum: shaded wall face."
+          },
+          "roof": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.333,
+                0.29,
+                0.369
+              ],
+              "hex": "#554a5e"
+            },
+            "$description": "plum: roofs and wall tops."
+          }
+        },
+        "sand": {
+          "ground": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.137,
+                0.133,
+                0.114
+              ],
+              "hex": "#23221d"
+            },
+            "$description": "sand: neighborhood ground."
+          },
+          "wall": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.29,
+                0.275,
+                0.216
+              ],
+              "hex": "#4a4637"
+            },
+            "$description": "sand: lit wall face and room walls."
+          },
+          "wallShade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.22,
+                0.208,
+                0.165
+              ],
+              "hex": "#38352a"
+            },
+            "$description": "sand: shaded wall face."
+          },
+          "roof": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.349,
+                0.329,
+                0.247
+              ],
+              "hex": "#59543f"
+            },
+            "$description": "sand: roofs and wall tops."
+          }
+        },
+        "shared": {
+          "windowDay": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.125,
+                0.141,
+                0.165
+              ],
+              "hex": "#20242a"
+            },
+            "$description": "Window glass by day."
+          },
+          "windowLit": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.725,
+                0.655,
+                0.478
+              ],
+              "hex": "#b9a77a"
+            },
+            "$description": "Lit window at night (drawn at 85%). The only warm light in the world; low chroma by design."
+          },
+          "park": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.122,
+                0.145,
+                0.125
+              ],
+              "hex": "#1f2520"
+            },
+            "$description": "Park ground."
+          },
+          "treeDark": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.184,
+                0.239,
+                0.2
+              ],
+              "hex": "#2f3d33"
+            },
+            "$description": "Tree canopy shade."
+          },
+          "treeLight": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.271,
+                0.353,
+                0.286
+              ],
+              "hex": "#455a49"
+            },
+            "$description": "Tree canopy light."
+          },
+          "trunk": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.227,
+                0.184,
+                0.157
+              ],
+              "hex": "#3a2f28"
+            },
+            "$description": "Tree trunk."
+          },
+          "furniture": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.204,
+                0.212,
+                0.227
+              ],
+              "hex": "#34363a"
+            },
+            "$description": "Tables, counters, desks."
+          },
+          "furnitureTop": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.267,
+                0.275,
+                0.294
+              ],
+              "hex": "#44464b"
+            },
+            "$description": "Furniture top face."
+          },
+          "night": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.051,
+                0.063,
+                0.094
+              ],
+              "hex": "#0d1018"
+            },
+            "$description": "Night shade that terrain and buildings mix toward after dark."
+          }
+        }
       }
     },
     "opacity": {
