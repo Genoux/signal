@@ -1,6 +1,6 @@
 {
   "name": "@barrymind/signal",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Signal: the shared design system for Overview, Hangar and related apps. DTCG tokens, CSS custom properties and plain-CSS components.",
   "type": "module",
   "style": "./css/signal.css",

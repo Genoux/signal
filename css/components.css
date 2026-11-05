@@ -1,4 +1,4 @@
-/* Signal 0.1.0: shared components. Load after signal.css.
+/* Signal 0.1.2: shared components. Load after signal.css.
    Plain classes, no framework. Every value is a --sg-* custom property; off-scale optical values
    from Overview's build are written as sums of tokens (for example 7px = space-6 + hairline).
    The keycap (kbd, .sg-kbd) lives in signal.css because it is a base element. */

@@ -1,4 +1,4 @@
-/* Signal 0.1.0: tokens and base styles.
+/* Signal 0.1.2: tokens and base styles.
    Dark theme "signal" is the default. Set data-theme="fog" on <html> (or any subtree) for the light theme.
    The block between the @sg-tokens markers is generated from tokens/signal.tokens.json by
    scripts/build.mjs; edit the JSON and rebuild, never the block. Everything after it is hand-written. */
