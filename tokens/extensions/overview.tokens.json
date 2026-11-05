@@ -1115,6 +1115,165 @@
           },
           "$description": "Magenta at night."
         }
+      },
+      "flora": {
+        "$description": "v6 tech-and-nature flora. Leaves stay muted graphite-greens; anything that glows uses neon cyan or magenta, never a status colour (plant buds use status colours only to mean status).",
+        "leafDark": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.184,
+              0.251,
+              0.204
+            ],
+            "hex": "#2f4034"
+          },
+          "$description": "Leaf shade."
+        },
+        "leaf": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.263,
+              0.349,
+              0.29
+            ],
+            "hex": "#43594a"
+          },
+          "$description": "Leaf base."
+        },
+        "leafLight": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.361,
+              0.463,
+              0.388
+            ],
+            "hex": "#5c7663"
+          },
+          "$description": "Leaf highlight."
+        },
+        "stem": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.227,
+              0.275,
+              0.239
+            ],
+            "hex": "#3a463d"
+          },
+          "$description": "Stems."
+        },
+        "soil": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.165,
+              0.141,
+              0.129
+            ],
+            "hex": "#2a2421"
+          },
+          "$description": "Bed soil."
+        },
+        "soilLight": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.227,
+              0.196,
+              0.176
+            ],
+            "hex": "#3a322d"
+          },
+          "$description": "Soil highlight."
+        },
+        "wilt": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.29,
+              0.275,
+              0.259
+            ],
+            "hex": "#4a4642"
+          },
+          "$description": "Wilted leaves (failed plant)."
+        },
+        "bark": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.231,
+              0.188,
+              0.165
+            ],
+            "hex": "#3b302a"
+          },
+          "$description": "Trunks."
+        },
+        "barkLight": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.302,
+              0.247,
+              0.212
+            ],
+            "hex": "#4d3f36"
+          },
+          "$description": "Trunk highlight."
+        },
+        "water": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.122,
+              0.227,
+              0.267
+            ],
+            "hex": "#1f3a44"
+          },
+          "$description": "Spring water."
+        },
+        "moss": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.239,
+              0.322,
+              0.259
+            ],
+            "hex": "#3d5242"
+          },
+          "$description": "Moss on stone."
+        },
+        "cap": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.294,
+              0.259,
+              0.337
+            ],
+            "hex": "#4b4256"
+          },
+          "$description": "Mushroom caps."
+        },
+        "glass": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.165,
+              0.227,
+              0.251
+            ],
+            "hex": "#2a3a40"
+          },
+          "$description": "Greenhouse glass."
+        }
       }
     },
     "opacity": {
