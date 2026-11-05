@@ -1,0 +1,23 @@
+<!-- @dsCard group="Map" height=140 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>MapLabel</title>
+<style>
+.ground { background: var(--sg-overview-ground); }
+[data-theme="fog"] .ground { background: var(--sg-surface-sunken); }
+.stage { display: grid; gap: var(--sg-space-16); justify-items: start; padding: var(--sg-space-16); }
+</style>
+</head>
+<body>
+<div class="ground">
+  <div class="stage">
+    <span class="sg-map-label sg-map-label--machine"><b>macbook</b>local · 5 agents <span class="sg-badge">1</span></span>
+    <span class="sg-map-label sg-map-label--plot"><b>gramly</b>02·08</span>
+    <span class="sg-map-label sg-map-label--plot is-dragging"><b>gramly</b>02·08</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!-- @dsCard group="Navigation" height=64 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>Tabs</title>
+<style>
+.raised { background: var(--sg-surface-raised); }
+</style>
+</head>
+<body>
+<div class="raised">
+  <div class="sg-tabs" role="tablist" id="tabs">
+    <button class="sg-tab" role="tab" type="button" aria-selected="true">now</button>
+    <button class="sg-tab" role="tab" type="button" aria-selected="false">morning brief</button>
+    <button class="sg-tab" role="tab" type="button" aria-selected="false">history</button>
+  </div>
+</div>
+<script>
+var tabs = document.querySelectorAll('#tabs .sg-tab');
+tabs.forEach(function (b) { b.addEventListener('click', function () { tabs.forEach(function (x) { x.setAttribute('aria-selected', x === b ? 'true' : 'false'); }); }); });
+</script>
+</body>
+</html>

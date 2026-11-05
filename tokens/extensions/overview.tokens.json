@@ -1,0 +1,896 @@
+{
+  "$description": "Overview map extension for Signal. Map-only tokens: the ground, plates, lattice, creatures, slabs, HUD backings and projection constants. Dark (signal) only; Overview has no Fog map yet. Requires signal.tokens.json for {color.base.*} references.",
+  "overview": {
+    "color": {
+      "$type": "color",
+      "ground": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.106,
+            0.11,
+            0.118
+          ],
+          "hex": "#1b1c1e"
+        },
+        "$description": "Stage floor, the darkest working surface."
+      },
+      "plate": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.137,
+            0.141,
+            0.149
+          ],
+          "hex": "#232426"
+        },
+        "$description": "Top face of a project plate.",
+        "$extensions": {
+          "dev.signal.derive": "mix(base.bg, base.panel, 0.5); same as Hangar color.floor.plate"
+        }
+      },
+      "plateFaceLeft": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.094,
+            0.098,
+            0.106
+          ],
+          "hex": "#18191b"
+        },
+        "$description": "Left extruded face of a plate."
+      },
+      "plateFaceRight": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.075,
+            0.078,
+            0.082
+          ],
+          "hex": "#131415"
+        },
+        "$description": "Right extruded face of a plate."
+      },
+      "minimapPlate": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.196,
+            0.2,
+            0.212
+          ],
+          "hex": "#323336"
+        },
+        "$description": "Plates in the minimap."
+      },
+      "waitWashHover": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.184,
+            0.173,
+            0.145
+          ],
+          "hex": "#2f2c25"
+        },
+        "$description": "Edge-marker hover fill."
+      },
+      "hud": {
+        "minimap": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.102,
+              0.106,
+              0.11
+            ],
+            "hex": "#1a1b1c",
+            "alpha": 0.9
+          },
+          "$description": "Minimap backing.",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.side, 0.9)"
+          }
+        },
+        "readout": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.102,
+              0.106,
+              0.11
+            ],
+            "hex": "#1a1b1c",
+            "alpha": 0.85
+          },
+          "$description": "Cursor readout backing.",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.side, 0.85)"
+          }
+        }
+      },
+      "lattice": {
+        "gridMinor": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.914,
+              0.914,
+              0.922
+            ],
+            "hex": "#e9e9eb",
+            "alpha": 0.035
+          },
+          "$description": "Minor grid lines (every 1 u).",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.fg, 0.035)"
+          }
+        },
+        "gridMajor": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.914,
+              0.914,
+              0.922
+            ],
+            "hex": "#e9e9eb",
+            "alpha": 0.085
+          },
+          "$description": "Major grid lines (every 8 u).",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.fg, 0.085)"
+          }
+        },
+        "surveyCross": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.914,
+              0.914,
+              0.922
+            ],
+            "hex": "#e9e9eb",
+            "alpha": 0.28
+          },
+          "$description": "Cross at each major intersection.",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.fg, 0.28)"
+          }
+        },
+        "graticuleTick": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.914,
+              0.914,
+              0.922
+            ],
+            "hex": "#e9e9eb",
+            "alpha": 0.25
+          },
+          "$description": "Graticule ticks at the stage edge.",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.fg, 0.25)"
+          }
+        },
+        "districtEdge": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.914,
+              0.914,
+              0.922
+            ],
+            "hex": "#e9e9eb",
+            "alpha": 0.16
+          },
+          "$description": "Dashed district outline.",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.fg, 0.16)"
+          }
+        },
+        "plateTick": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.914,
+              0.914,
+              0.922
+            ],
+            "hex": "#e9e9eb",
+            "alpha": 0.12
+          },
+          "$description": "Front ticks on a plate.",
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.fg, 0.12)"
+          }
+        }
+      },
+      "creature": {
+        "ink": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.055,
+              0.059,
+              0.063
+            ],
+            "hex": "#0e0f10"
+          },
+          "$description": "Sprite outline and eyes."
+        },
+        "shadow": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "hex": "#000000",
+            "alpha": 0.38
+          },
+          "$description": "Ground ellipse under every creature."
+        },
+        "lit": {
+          "shade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.337,
+                0.345,
+                0.365
+              ],
+              "hex": "#56585d"
+            }
+          },
+          "base": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.522,
+                0.529,
+                0.549
+              ],
+              "hex": "#85878c"
+            }
+          },
+          "light": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.663,
+                0.671,
+                0.686
+              ],
+              "hex": "#a9abaf"
+            }
+          },
+          "highlight": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.827,
+                0.831,
+                0.843
+              ],
+              "hex": "#d3d4d7"
+            }
+          }
+        },
+        "dim": {
+          "shade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.22,
+                0.224,
+                0.239
+              ],
+              "hex": "#38393d"
+            }
+          },
+          "base": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.318,
+                0.325,
+                0.341
+              ],
+              "hex": "#515357"
+            }
+          },
+          "light": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.384,
+                0.392,
+                0.408
+              ],
+              "hex": "#626468"
+            }
+          },
+          "highlight": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.459,
+                0.467,
+                0.482
+              ],
+              "hex": "#75777b"
+            }
+          }
+        },
+        "pale": {
+          "shade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.4,
+                0.408,
+                0.427
+              ],
+              "hex": "#66686d"
+            },
+            "$description": "Pale coat: shade."
+          },
+          "base": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.604,
+                0.612,
+                0.631
+              ],
+              "hex": "#9a9ca1"
+            },
+            "$description": "Pale coat: base."
+          },
+          "light": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.749,
+                0.757,
+                0.773
+              ],
+              "hex": "#bfc1c5"
+            },
+            "$description": "Pale coat: light."
+          },
+          "highlight": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.882,
+                0.886,
+                0.898
+              ],
+              "hex": "#e1e2e5"
+            },
+            "$description": "Pale coat: highlight."
+          }
+        },
+        "dusk": {
+          "shade": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.247,
+                0.255,
+                0.271
+              ],
+              "hex": "#3f4145"
+            },
+            "$description": "Dusk coat: shade."
+          },
+          "base": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.4,
+                0.408,
+                0.427
+              ],
+              "hex": "#66686d"
+            },
+            "$description": "Dusk coat: base."
+          },
+          "light": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.525,
+                0.533,
+                0.549
+              ],
+              "hex": "#86888c"
+            },
+            "$description": "Dusk coat: light."
+          },
+          "highlight": {
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.663,
+                0.671,
+                0.686
+              ],
+              "hex": "#a9abaf"
+            },
+            "$description": "Dusk coat: highlight."
+          }
+        }
+      },
+      "slab": {
+        "asleepRim": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.231,
+              0.235,
+              0.247
+            ],
+            "hex": "#3b3c3f"
+          },
+          "$description": "End pixels of an asleep slab."
+        },
+        "runCursor": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.353,
+              0.361,
+              0.376
+            ],
+            "hex": "#5a5c60"
+          },
+          "$description": "Moving pixel on a running slab."
+        },
+        "errCrack": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.361,
+              0.129,
+              0.102
+            ],
+            "hex": "#5c211a"
+          },
+          "$description": "Diagonal crack on a failed slab."
+        },
+        "doneMark": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.125,
+              0.227,
+              0.173
+            ],
+            "hex": "#203a2c"
+          },
+          "$description": "Check on a done slab."
+        }
+      },
+      "terrain": {
+        "islandTop": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.122,
+              0.125,
+              0.133
+            ],
+            "hex": "#1f2022"
+          },
+          "$description": "Top face of a machine island."
+        },
+        "islandFaceLeft": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.086,
+              0.09,
+              0.098
+            ],
+            "hex": "#161719"
+          },
+          "$description": "Left extruded face of an island or bridge."
+        },
+        "islandFaceRight": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.071,
+              0.075,
+              0.078
+            ],
+            "hex": "#121314"
+          },
+          "$description": "Right extruded face of an island or bridge."
+        },
+        "islandEdge": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.22,
+              0.224,
+              0.235
+            ],
+            "hex": "#38393c"
+          },
+          "$description": "Hairline outline of an island and a bridge."
+        },
+        "commons": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.141,
+              0.145,
+              0.153
+            ],
+            "hex": "#242527"
+          },
+          "$description": "The commons (plaza) on each island, a step lighter than the island."
+        },
+        "bridgeTop": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.125,
+              0.129,
+              0.137
+            ],
+            "hex": "#202123"
+          },
+          "$description": "Bridge deck between islands."
+        }
+      },
+      "prop": {
+        "benchTop": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.18,
+              0.184,
+              0.196
+            ],
+            "hex": "#2e2f32"
+          },
+          "$description": "Bench seat top."
+        },
+        "benchFaceLeft": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.165,
+              0.169,
+              0.18
+            ],
+            "hex": "#2a2b2e"
+          },
+          "$description": "Bench left face."
+        },
+        "benchFaceRight": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.137,
+              0.141,
+              0.153
+            ],
+            "hex": "#232427"
+          },
+          "$description": "Bench right face."
+        },
+        "benchEdge": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.275,
+              0.278,
+              0.29
+            ],
+            "hex": "#46474a"
+          },
+          "$description": "Bench outline."
+        }
+      }
+    },
+    "opacity": {
+      "$type": "number",
+      "$description": "Alpha applied to a status colour ({color.status.*.fg}).",
+      "slab": {
+        "run": {
+          "$value": 0.8
+        },
+        "wait": {
+          "$value": 0.95
+        },
+        "err": {
+          "$value": 0.95
+        },
+        "done": {
+          "$value": 0.55
+        }
+      },
+      "edgeMarkerBorder": {
+        "$value": 0.45,
+        "$description": "Wait colour on the edge-marker border."
+      },
+      "calloutBorder": {
+        "$value": 0.7,
+        "$description": "Status colour on a callout border."
+      },
+      "leaderLine": {
+        "$value": 0.6,
+        "$description": "Callout leader line."
+      },
+      "viewport": {
+        "$value": 0.7,
+        "$description": "Ink on the minimap viewport rectangle."
+      },
+      "texture": {
+        "$description": "Alpha of text.primary used for each machine island ground texture.",
+        "dots": {
+          "$value": 0.12
+        },
+        "hatch": {
+          "$value": 0.08
+        },
+        "grid": {
+          "$value": 0.07
+        }
+      },
+      "commonsEdge": {
+        "$value": 0.18,
+        "$description": "text.primary on the dashed commons outline."
+      }
+    },
+    "projection": {
+      "$description": "2:1 isometric. x = (u - v) * unitX * z, y = (u + v) * unitY * z (CSS px). Draw order ascending u + v.",
+      "unitX": {
+        "$type": "dimension",
+        "$value": {
+          "value": 16,
+          "unit": "px"
+        }
+      },
+      "unitY": {
+        "$type": "dimension",
+        "$value": {
+          "value": 8,
+          "unit": "px"
+        }
+      }
+    },
+    "lattice": {
+      "$type": "number",
+      "minorEvery": {
+        "$value": 1,
+        "$description": "Grid units; 2 below 1.5x zoom."
+      },
+      "majorEvery": {
+        "$value": 8,
+        "$description": "Grid units."
+      },
+      "surveyCrossArm": {
+        "$type": "dimension",
+        "$value": {
+          "value": 3,
+          "unit": "px"
+        }
+      },
+      "graticuleTickLength": {
+        "$type": "dimension",
+        "$value": {
+          "value": 6,
+          "unit": "px"
+        }
+      }
+    },
+    "zoom": {
+      "$type": "number",
+      "$description": "Levels are k / devicePixelRatio for k in {1,2,3,4,5,6,8}, clamped to min..max.",
+      "$extensions": {
+        "dev.signal.overview": {
+          "steps": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8
+          ]
+        }
+      },
+      "min": {
+        "$value": 0.3
+      },
+      "max": {
+        "$value": 4
+      },
+      "legibleFloor": {
+        "$value": 0.66,
+        "$description": "Below this, open on the most urgent waiting session instead of fitting."
+      },
+      "glideFloor": {
+        "$value": 1.5,
+        "$description": "Tab and locate raise zoom to 2x if below this."
+      },
+      "wheelDelta": {
+        "$value": 60,
+        "$description": "Wheel delta per zoom step."
+      }
+    },
+    "plate": {
+      "$type": "number",
+      "$description": "Width in grid units = max(4, ceil(2.5 n + 1.5)) for n sessions.",
+      "depth": {
+        "$value": 4,
+        "$description": "Grid units."
+      },
+      "sessionInset": {
+        "$value": 1.75,
+        "$description": "Grid units from the plate edge along u."
+      },
+      "sessionPitch": {
+        "$value": 2.5,
+        "$description": "Grid units between sessions along u."
+      }
+    },
+    "district": {
+      "padding": {
+        "$type": "number",
+        "$value": 1.5,
+        "$description": "Grid units outside the plates."
+      },
+      "dash": {
+        "$type": "dimension",
+        "$value": {
+          "value": 4,
+          "unit": "px"
+        },
+        "$description": "4px on, 4px off."
+      }
+    },
+    "layout": {
+      "$type": "dimension",
+      "hudInset": {
+        "$value": {
+          "value": 12,
+          "unit": "px"
+        },
+        "$description": "Stage overlays sit this far from the stage edges."
+      },
+      "minimapW": {
+        "$value": {
+          "value": 176,
+          "unit": "px"
+        }
+      },
+      "minimapH": {
+        "$value": {
+          "value": 108,
+          "unit": "px"
+        }
+      },
+      "minimapStackedW": {
+        "$value": {
+          "value": 132,
+          "unit": "px"
+        }
+      },
+      "minimapStackedH": {
+        "$value": {
+          "value": 81,
+          "unit": "px"
+        }
+      },
+      "edgeMarker": {
+        "$value": {
+          "value": 24,
+          "unit": "px"
+        },
+        "$description": "Edge marker height."
+      },
+      "edgeMarkerInset": {
+        "$value": {
+          "value": 26,
+          "unit": "px"
+        },
+        "$description": "Edge marker distance inside the stage edge (+50px horizontally)."
+      },
+      "labelGap": {
+        "$value": {
+          "value": 7,
+          "unit": "px"
+        },
+        "$description": "Minimum gap between map labels (device px)."
+      },
+      "labelScreenInset": {
+        "$value": {
+          "value": 2,
+          "unit": "px"
+        },
+        "$description": "Device px."
+      },
+      "stackedBreakpoint": {
+        "$value": {
+          "value": 860,
+          "unit": "px"
+        },
+        "$description": "Rail drops under a 64vh stage at or below this width."
+      }
+    },
+    "motion": {
+      "cameraRate": {
+        "$type": "number",
+        "$value": 10,
+        "$description": "Exponential camera ease, per second (step = min(1, dt * 10))."
+      },
+      "hopPeriod": {
+        "$type": "duration",
+        "$value": {
+          "value": 800,
+          "unit": "ms"
+        },
+        "$description": "Waiting creature hop, 4 sprite px."
+      },
+      "diamondFlicker": {
+        "$type": "duration",
+        "$value": {
+          "value": 500,
+          "unit": "ms"
+        },
+        "$description": "1 px flicker at 2Hz."
+      },
+      "bobStep": {
+        "$type": "duration",
+        "$value": {
+          "value": 333,
+          "unit": "ms"
+        },
+        "$description": "Running creature bob, 3 steps/s."
+      },
+      "blink": {
+        "$type": "duration",
+        "$value": {
+          "value": 120,
+          "unit": "ms"
+        },
+        "$description": "Eye blink, every 3800ms."
+      },
+      "blinkEvery": {
+        "$type": "duration",
+        "$value": {
+          "value": 3800,
+          "unit": "ms"
+        }
+      },
+      "reducedRedraw": {
+        "$type": "duration",
+        "$value": {
+          "value": 400,
+          "unit": "ms"
+        },
+        "$description": "Frame interval under reduced motion."
+      }
+    },
+    "limits": {
+      "$type": "number",
+      "calloutMaxChars": {
+        "$value": 20,
+        "$description": "A callout says why the hand is raised in 20 characters or fewer."
+      }
+    }
+  }
+}

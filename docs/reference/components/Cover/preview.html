@@ -1,0 +1,62 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>Signal</title>
+<style>
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--sg-surface-base); color: var(--sg-text-primary); font-family: var(--sg-font-sans); overflow: hidden; }
+  .cover { position: relative; width: 960px; height: 288px; overflow: hidden; }
+  /* the composition: a 480-wide box on the right half of the 960 layout, clear of the name */
+  .art { position: absolute; top: 0; left: 480px; width: 480px; height: 288px; overflow: hidden; }
+  .art svg { display: block; width: 480px; height: 288px; }
+  .graphite { fill: var(--sg-border-strong); }
+  .wait { fill: var(--sg-status-wait-fg); }
+  .you { fill: var(--sg-accent-solid); }
+  .run { fill: var(--sg-status-run-fg); }
+  .cut { fill: var(--sg-surface-base); }
+  .blk { rx: var(--sg-radius-lg); }
+  .chip { rx: var(--sg-radius-md); }
+  .words { position: absolute; left: var(--sg-space-24); bottom: var(--sg-space-24); max-width: 440px; }
+  .name { margin: 0; font-family: var(--sg-font-sans); font-size: 120px; line-height: .9; font-weight: var(--sg-font-weight-semibold); letter-spacing: -.02em; color: var(--sg-text-primary); }
+  .tag { margin: var(--sg-space-24) 0 0 var(--sg-space-4); font-family: var(--sg-font-sans); font-size: 14px; line-height: 20px; color: var(--sg-text-secondary); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      graphite slab sg-border-strong 192x280 bled off the top (grey first: the largest field) · needs-you sg-status-wait-fg 144x144 (the one loud colour) · you sg-accent-solid 112x48 bleeding off the right edge · run dots sg-status-run-fg (the faintest status, as pattern only) — about 26% of 960x288
+  arrangement one tall graphite slab with two satellites, bottoms on one line sg-space-24 above the edge, sg-space-16 gutters
+  pattern     dot grid in braille cells, from "Mono for machines" and the running glyph (six braille dots): six 2x3 cells cut out of the slab in sg-surface-base, two more in sg-status-run-fg on the ground; dots r=2 at an sg-space-8 pitch, cells sg-space-48 apart
+  scales      sides in sg-space-16 multiples; gutters sg-space-16; pitch sg-space-8; corners sg-radius-lg on blocks, sg-radius-md on the accent chip
+-->
+<rect class="graphite blk" x="16" y="-16" width="192" height="280" rx="6"/>
+<rect class="wait blk" x="224" y="120" width="144" height="144" rx="6"/>
+<rect class="you chip" x="384" y="216" width="112" height="48" rx="5"/>
+<!-- braille cells cut out of the slab: columns at x 56, 104, 152; rows at y 40, 88 -->
+<g class="cut">
+<circle cx="56" cy="40" r="2"/><circle cx="64" cy="40" r="2"/><circle cx="56" cy="48" r="2"/><circle cx="64" cy="48" r="2"/><circle cx="56" cy="56" r="2"/><circle cx="64" cy="56" r="2"/>
+<circle cx="104" cy="40" r="2"/><circle cx="112" cy="40" r="2"/><circle cx="104" cy="48" r="2"/><circle cx="112" cy="48" r="2"/><circle cx="104" cy="56" r="2"/><circle cx="112" cy="56" r="2"/>
+<circle cx="152" cy="40" r="2"/><circle cx="160" cy="40" r="2"/><circle cx="152" cy="48" r="2"/><circle cx="160" cy="48" r="2"/><circle cx="152" cy="56" r="2"/><circle cx="160" cy="56" r="2"/>
+<circle cx="56" cy="88" r="2"/><circle cx="64" cy="88" r="2"/><circle cx="56" cy="96" r="2"/><circle cx="64" cy="96" r="2"/><circle cx="56" cy="104" r="2"/><circle cx="64" cy="104" r="2"/>
+<circle cx="104" cy="88" r="2"/><circle cx="112" cy="88" r="2"/><circle cx="104" cy="96" r="2"/><circle cx="112" cy="96" r="2"/><circle cx="104" cy="104" r="2"/><circle cx="112" cy="104" r="2"/>
+<circle cx="152" cy="88" r="2"/><circle cx="160" cy="88" r="2"/><circle cx="152" cy="96" r="2"/><circle cx="160" cy="96" r="2"/><circle cx="152" cy="104" r="2"/><circle cx="160" cy="104" r="2"/>
+</g>
+<!-- two running cells on the ground above the needs-you block -->
+<g class="run">
+<circle cx="264" cy="64" r="2"/><circle cx="272" cy="64" r="2"/><circle cx="264" cy="72" r="2"/><circle cx="272" cy="72" r="2"/><circle cx="264" cy="80" r="2"/><circle cx="272" cy="80" r="2"/>
+<circle cx="312" cy="64" r="2"/><circle cx="320" cy="64" r="2"/><circle cx="312" cy="72" r="2"/><circle cx="320" cy="72" r="2"/><circle cx="312" cy="80" r="2"/><circle cx="320" cy="80" r="2"/>
+</g>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Signal</h1>
+<p class="tag">A calm instrument panel: grey first, one loud colour.</p>
+</div>
+</div>
+</body>
+</html>

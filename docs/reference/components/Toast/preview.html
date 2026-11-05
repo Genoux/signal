@@ -1,0 +1,28 @@
+<!-- @dsCard group="Overlays" height=120 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>Toast</title>
+<style>
+.stage { display: grid; gap: var(--sg-space-12); padding: var(--sg-space-16); justify-items: start; }
+.row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sg-space-12); }
+.note { margin: 0; font: var(--sg-type-meta); color: var(--sg-text-subtle); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="sg-toast" id="toast" role="status" aria-live="polite">flow · codex finished keyboard map</div>
+  <div class="row"><button class="sg-btn" id="replay" type="button"><kbd>n</kbd>replay toast</button><p class="note">220ms in and out · stays 3200ms</p></div>
+</div>
+<script>
+var toast = document.getElementById('toast'), tt;
+var stay = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--sg-duration-toast-min')) || 3200;
+document.getElementById('replay').addEventListener('click', function () {
+  toast.classList.add('is-hidden'); clearTimeout(tt);
+  tt = setTimeout(function () { toast.classList.remove('is-hidden'); tt = setTimeout(function () { toast.classList.add('is-hidden'); }, stay); }, 260);
+});
+</script>
+</body>
+</html>

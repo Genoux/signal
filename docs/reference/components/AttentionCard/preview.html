@@ -1,0 +1,32 @@
+<!-- @dsCard group="Cards" height=340 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>AttentionCard</title>
+<style>
+.rail { background: var(--sg-surface-raised); padding: var(--sg-space-4) var(--sg-space-12) var(--sg-space-16); }
+.rail > .sg-attn { margin-bottom: var(--sg-space-8); }
+</style>
+</head>
+<body>
+<div class="rail">
+  <div class="sg-section-head"><span>needs you · 2</span></div>
+  <div class="sg-attn" tabindex="0">
+    <div class="sg-attn__title">Fix sync conflict on reconnect</div>
+    <div class="sg-attn__meta">claude · macbook:gramly</div>
+    <div class="sg-attn__status"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg><span>wants to run a command</span><em class="sg-attn__age">waiting 18m</em></div>
+    <div class="sg-attn__cmd"><i class="sg-prompt">$</i> pnpm db:migrate</div>
+    <div class="sg-attn__actions"><button class="sg-btn sg-btn--primary" type="button"><kbd>Enter</kbd>open in orca</button><button class="sg-btn" type="button"><kbd>l</kbd>locate</button></div>
+  </div>
+  <div class="sg-attn is-selected" tabindex="0">
+    <div class="sg-attn__title">Pick the app shell</div>
+    <div class="sg-attn__meta">claude · arch-workstation:hangar-roadmap</div>
+    <div class="sg-attn__status"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg><span>is asking a question</span><em class="sg-attn__age">waiting 4m</em></div>
+    <div class="sg-attn__question">Electron or Tauri for P0? Comparison is in the session.</div>
+    <div class="sg-attn__actions"><button class="sg-btn sg-btn--primary" type="button"><kbd>Enter</kbd>open in orca</button><button class="sg-btn" type="button"><kbd>l</kbd>locate</button></div>
+  </div>
+</div>
+</body>
+</html>

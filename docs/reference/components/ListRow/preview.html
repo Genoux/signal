@@ -1,0 +1,41 @@
+<!-- @dsCard group="Navigation" height=260 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>ListRow</title>
+<style>
+.rail { background: var(--sg-surface-raised); padding: var(--sg-space-4) var(--sg-space-12) var(--sg-space-16); }
+</style>
+</head>
+<body>
+<div class="rail">
+  <div class="sg-row sg-row--err" tabindex="0">
+    <svg class="sg-icon sg-tone-err" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.5"/></svg>
+    <span class="sg-row__title">Timeline view tests</span><span class="sg-row__age">9m</span>
+    <span class="sg-row__meta">flow · pnpm test · exit 1 · 3 failing in Timeline.spec</span>
+  </div>
+  <div class="sg-row" tabindex="0">
+    <svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg>
+    <span class="sg-row__title">Rewrite suggestion ranking</span><span class="sg-row__age">12m</span>
+    <span class="sg-row__meta">gramly · 4 of 7 call sites moved to rank()</span>
+  </div>
+  <div class="sg-row is-selected" tabindex="0">
+    <svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg>
+    <span class="sg-row__title">Isometric map prototype</span><span class="sg-row__age">6m</span>
+    <span class="sg-row__meta">overview · drawing the plane and the rail</span>
+  </div>
+  <div class="sg-row" tabindex="0">
+    <svg class="sg-icon sg-tone-done" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+    <span class="sg-row__title">Landing page copy pass</span><span class="sg-row__age">41m</span>
+    <span class="sg-row__meta">culture · ready to review · 3 files</span>
+  </div>
+  <div class="sg-row" tabindex="0">
+    <svg class="sg-icon sg-tone-idle" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="3.6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+    <span class="sg-row__title">Resume or archive</span><span class="sg-row__age">2d</span>
+    <span class="sg-row__meta">live-cam · quiet since tuesday</span>
+  </div>
+</div>
+</body>
+</html>

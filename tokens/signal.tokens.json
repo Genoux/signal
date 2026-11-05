@@ -1,0 +1,2345 @@
+{
+  "$description": "Signal: the shared design system. Dark theme \"signal\" is the default; light theme \"fog\" is carried per token in $extensions[\"dev.signal.modes\"].fog. Aliases resolve within the same mode.",
+  "$extensions": {
+    "dev.signal.themes": {
+      "default": "signal",
+      "modes": {
+        "signal": {
+          "colorScheme": "dark"
+        },
+        "fog": {
+          "colorScheme": "light",
+          "status": "pending owner approval (Hangar roadmap open question 7)"
+        }
+      }
+    }
+  },
+  "color": {
+    "$type": "color",
+    "base": {
+      "bg": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.125,
+            0.129,
+            0.137
+          ],
+          "hex": "#202123"
+        },
+        "$description": "Page, title bar, status bar.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.925,
+                0.929,
+                0.937
+              ],
+              "hex": "#ecedef"
+            }
+          }
+        }
+      },
+      "panel": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.149,
+            0.153,
+            0.161
+          ],
+          "hex": "#262729"
+        },
+        "$description": "Rails, panels, tooltips, toasts.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.953,
+                0.957,
+                0.965
+              ],
+              "hex": "#f3f4f6"
+            }
+          }
+        }
+      },
+      "side": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.106,
+            0.11
+          ],
+          "hex": "#1a1b1c"
+        },
+        "$description": "Wells: inset controls, keycaps, sidebar.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.886,
+                0.894,
+                0.902
+              ],
+              "hex": "#e2e4e6"
+            }
+          }
+        }
+      },
+      "line": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.188,
+            0.192,
+            0.2
+          ],
+          "hex": "#303133"
+        },
+        "$description": "Hairline dividers.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.839,
+                0.847,
+                0.855
+              ],
+              "hex": "#d6d8da"
+            }
+          }
+        }
+      },
+      "line2": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.259,
+            0.263,
+            0.271
+          ],
+          "hex": "#424345"
+        },
+        "$description": "Control borders.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.733,
+                0.745,
+                0.757
+              ],
+              "hex": "#bbbec1"
+            }
+          }
+        }
+      },
+      "sel": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.18,
+            0.18,
+            0.188
+          ],
+          "hex": "#2e2e30"
+        },
+        "$description": "Selected row fill.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.851,
+                0.863,
+                0.875
+              ],
+              "hex": "#d9dcdf"
+            }
+          }
+        }
+      },
+      "fg": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.914,
+            0.914,
+            0.922
+          ],
+          "hex": "#e9e9eb"
+        },
+        "$description": "Ink: primary text.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.11,
+                0.122
+              ],
+              "hex": "#1a1c1f"
+            }
+          }
+        }
+      },
+      "dim": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.671,
+            0.675,
+            0.682
+          ],
+          "hex": "#abacae"
+        },
+        "$description": "Secondary text.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.357,
+                0.369,
+                0.384
+              ],
+              "hex": "#5b5e62"
+            }
+          }
+        }
+      },
+      "faint": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.447,
+            0.451,
+            0.459
+          ],
+          "hex": "#727375"
+        },
+        "$description": "Decorative glyphs only; never readable text.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.533,
+                0.545,
+                0.557
+              ],
+              "hex": "#888b8e"
+            }
+          }
+        }
+      },
+      "accent": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.533,
+            0.561,
+            0.969
+          ],
+          "hex": "#888ff7"
+        },
+        "$description": "Periwinkle (Signal) / iris (Fog): the owner's hand.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.118,
+                0.247,
+                0.71
+              ],
+              "hex": "#1e3fb5"
+            }
+          }
+        }
+      },
+      "green": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.525,
+            0.761,
+            0.635
+          ],
+          "hex": "#86c2a2"
+        },
+        "$description": "Done.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.004,
+                0.427,
+                0.322
+              ],
+              "hex": "#016d52"
+            }
+          }
+        }
+      },
+      "yellow": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.996,
+            0.753,
+            0.29
+          ],
+          "hex": "#fec04a"
+        },
+        "$description": "Needs you. The loudest colour.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.58,
+                0.302,
+                0.004
+              ],
+              "hex": "#944d01"
+            }
+          }
+        }
+      },
+      "red": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.949,
+            0.42,
+            0.349
+          ],
+          "hex": "#f26b59"
+        },
+        "$description": "Failed.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.596,
+                0.094,
+                0.129
+              ],
+              "hex": "#981821"
+            }
+          }
+        }
+      },
+      "blue": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.792,
+            0.816,
+            0.843
+          ],
+          "hex": "#cad0d7"
+        },
+        "$description": "Running. The faintest status.",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.051,
+                0.396,
+                0.576
+              ],
+              "hex": "#0d6593"
+            }
+          }
+        }
+      }
+    },
+    "surface": {
+      "base": {
+        "$value": "{color.base.bg}",
+        "$description": "Content and page background."
+      },
+      "raised": {
+        "$value": "{color.base.panel}",
+        "$description": "Rails, panels."
+      },
+      "sunken": {
+        "$value": "{color.base.side}",
+        "$description": "Wells and inset controls."
+      },
+      "overlay": {
+        "$value": "{color.base.panel}",
+        "$description": "Tooltips, toasts, menus, callouts."
+      },
+      "selected": {
+        "$value": "{color.base.sel}",
+        "$description": "Selected row."
+      }
+    },
+    "state": {
+      "hover": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.914,
+            0.914,
+            0.922
+          ],
+          "hex": "#e9e9eb",
+          "alpha": 0.04
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.fg, 0.04)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.11,
+                0.122
+              ],
+              "hex": "#1a1c1f",
+              "alpha": 0.04
+            }
+          }
+        },
+        "$description": "Row hover wash."
+      },
+      "hoverControl": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.914,
+            0.914,
+            0.922
+          ],
+          "hex": "#e9e9eb",
+          "alpha": 0.06
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.fg, 0.06)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.11,
+                0.122
+              ],
+              "hex": "#1a1c1f",
+              "alpha": 0.06
+            }
+          },
+          "dev.signal.source": "Overview build; Hangar used state.hover (4%) here."
+        },
+        "$description": "Hover wash on borderless controls (title-bar button, segmented cells)."
+      },
+      "pressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.914,
+            0.914,
+            0.922
+          ],
+          "hex": "#e9e9eb",
+          "alpha": 0.06
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.fg, 0.06)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.11,
+                0.122
+              ],
+              "hex": "#1a1c1f",
+              "alpha": 0.06
+            }
+          }
+        },
+        "$description": "Pressed wash."
+      }
+    },
+    "text": {
+      "primary": {
+        "$value": "{color.base.fg}",
+        "$description": "Body text."
+      },
+      "secondary": {
+        "$value": "{color.base.dim}",
+        "$description": "Metadata, control labels."
+      },
+      "subtle": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.608,
+            0.612,
+            0.62
+          ],
+          "hex": "#9b9c9e"
+        },
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.357,
+                0.369,
+                0.384
+              ],
+              "hex": "#5b5e62"
+            }
+          },
+          "dev.signal.derive": "mix(faint, dim, 0.72)"
+        },
+        "$description": "Section heads, ages, paths, placeholders (>= 4.55:1 on every surface)."
+      },
+      "disabled": {
+        "$value": "{color.base.faint}",
+        "$description": "Disabled controls, the \"$\" prompt, ambient marks."
+      },
+      "link": {
+        "$value": "{color.base.accent}"
+      },
+      "onAccent": {
+        "$value": "{color.base.side}",
+        "$description": "Text on a solid status or accent fill (count badge).",
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": "{color.base.panel}"
+          }
+        }
+      }
+    },
+    "border": {
+      "subtle": {
+        "$value": "{color.base.line}",
+        "$description": "Hairline dividers, tags."
+      },
+      "default": {
+        "$value": "{color.base.line2}",
+        "$description": "Control borders, keycaps."
+      },
+      "strong": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.467,
+            0.471,
+            0.478
+          ],
+          "hex": "#77787a"
+        },
+        "$extensions": {
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.471,
+                0.482,
+                0.498
+              ],
+              "hex": "#787b7f"
+            }
+          },
+          "dev.signal.derive": "mix(faint, dim, 0.08)"
+        },
+        "$description": "Control border on hover."
+      },
+      "focus": {
+        "$value": "{color.base.accent}",
+        "$description": "Focus ring."
+      },
+      "control": {
+        "$type": "color",
+        "$value": "{color.border.strong}",
+        "$description": "Outline of inputs and other controls whose edge identifies them. Meets 3:1 against every surface in both themes (WCAG 1.4.11). Buttons keep border.default because their label identifies them."
+      }
+    },
+    "accent": {
+      "fg": {
+        "$value": "{color.base.accent}",
+        "$description": "Accent text and marks."
+      },
+      "solid": {
+        "$value": "{color.base.accent}",
+        "$description": "Accent fills (checked controls, caret)."
+      },
+      "bg": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.533,
+            0.561,
+            0.969
+          ],
+          "hex": "#888ff7",
+          "alpha": 0.12
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.accent, 0.12)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.118,
+                0.247,
+                0.71
+              ],
+              "hex": "#1e3fb5",
+              "alpha": 0.12
+            }
+          }
+        },
+        "$description": "Primary button fill."
+      },
+      "bgHover": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.533,
+            0.561,
+            0.969
+          ],
+          "hex": "#888ff7",
+          "alpha": 0.2
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.accent, 0.2)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.118,
+                0.247,
+                0.71
+              ],
+              "hex": "#1e3fb5",
+              "alpha": 0.2
+            }
+          },
+          "dev.signal.source": "Overview 20%; Hangar 18%."
+        },
+        "$description": "Primary button fill on hover."
+      },
+      "bgPressed": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.533,
+            0.561,
+            0.969
+          ],
+          "hex": "#888ff7",
+          "alpha": 0.24
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.accent, 0.24)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.118,
+                0.247,
+                0.71
+              ],
+              "hex": "#1e3fb5",
+              "alpha": 0.24
+            }
+          }
+        },
+        "$description": "Primary button fill when pressed."
+      },
+      "border": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.533,
+            0.561,
+            0.969
+          ],
+          "hex": "#888ff7",
+          "alpha": 0.6
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.accent, 0.6)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.118,
+                0.247,
+                0.71
+              ],
+              "hex": "#1e3fb5",
+              "alpha": 0.6
+            }
+          },
+          "dev.signal.source": "Overview 60%; Hangar 55%."
+        },
+        "$description": "Primary button border; selected row inset ring."
+      }
+    },
+    "selection": {
+      "bg": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.533,
+            0.561,
+            0.969
+          ],
+          "hex": "#888ff7",
+          "alpha": 0.3
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.accent, 0.3)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.118,
+                0.247,
+                0.71
+              ],
+              "hex": "#1e3fb5",
+              "alpha": 0.3
+            }
+          }
+        },
+        "$description": "Text selection."
+      },
+      "bgInactive": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.914,
+            0.914,
+            0.922
+          ],
+          "hex": "#e9e9eb",
+          "alpha": 0.14
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.fg, 0.14)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.11,
+                0.122
+              ],
+              "hex": "#1a1c1f",
+              "alpha": 0.14
+            }
+          }
+        },
+        "$description": "Text selection in an unfocused region."
+      }
+    },
+    "status": {
+      "run": {
+        "fg": {
+          "$value": "{color.base.blue}",
+          "$description": "Running. Glyph and label."
+        },
+        "bg": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.792,
+              0.816,
+              0.843
+            ],
+            "hex": "#cad0d7",
+            "alpha": 0.06
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.blue, 0.06)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.051,
+                  0.396,
+                  0.576
+                ],
+                "hex": "#0d6593",
+                "alpha": 0.06
+              }
+            },
+            "dev.signal.source": "Overview 6%; Hangar 8%."
+          },
+          "$description": "Tinted container fill (attention card)."
+        },
+        "border": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.792,
+              0.816,
+              0.843
+            ],
+            "hex": "#cad0d7",
+            "alpha": 0.4
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.blue, 0.4)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.051,
+                  0.396,
+                  0.576
+                ],
+                "hex": "#0d6593",
+                "alpha": 0.4
+              }
+            }
+          },
+          "$description": "Tinted container border."
+        }
+      },
+      "wait": {
+        "fg": {
+          "$value": "{color.base.yellow}",
+          "$description": "Needs you. Glyph and label."
+        },
+        "bg": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.996,
+              0.753,
+              0.29
+            ],
+            "hex": "#fec04a",
+            "alpha": 0.06
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.yellow, 0.06)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.58,
+                  0.302,
+                  0.004
+                ],
+                "hex": "#944d01",
+                "alpha": 0.06
+              }
+            },
+            "dev.signal.source": "Overview 6%; Hangar 8%."
+          },
+          "$description": "Tinted container fill (attention card)."
+        },
+        "border": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.996,
+              0.753,
+              0.29
+            ],
+            "hex": "#fec04a",
+            "alpha": 0.4
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.yellow, 0.4)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.58,
+                  0.302,
+                  0.004
+                ],
+                "hex": "#944d01",
+                "alpha": 0.4
+              }
+            }
+          },
+          "$description": "Tinted container border."
+        }
+      },
+      "done": {
+        "fg": {
+          "$value": "{color.base.green}",
+          "$description": "Done. Glyph and label."
+        },
+        "bg": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.525,
+              0.761,
+              0.635
+            ],
+            "hex": "#86c2a2",
+            "alpha": 0.06
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.green, 0.06)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.004,
+                  0.427,
+                  0.322
+                ],
+                "hex": "#016d52",
+                "alpha": 0.06
+              }
+            },
+            "dev.signal.source": "Overview 6%; Hangar 8%."
+          },
+          "$description": "Tinted container fill (attention card)."
+        },
+        "border": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.525,
+              0.761,
+              0.635
+            ],
+            "hex": "#86c2a2",
+            "alpha": 0.4
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.green, 0.4)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.004,
+                  0.427,
+                  0.322
+                ],
+                "hex": "#016d52",
+                "alpha": 0.4
+              }
+            }
+          },
+          "$description": "Tinted container border."
+        }
+      },
+      "err": {
+        "fg": {
+          "$value": "{color.base.red}",
+          "$description": "Failed. Glyph and label."
+        },
+        "bg": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.949,
+              0.42,
+              0.349
+            ],
+            "hex": "#f26b59",
+            "alpha": 0.06
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.red, 0.06)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.596,
+                  0.094,
+                  0.129
+                ],
+                "hex": "#981821",
+                "alpha": 0.06
+              }
+            },
+            "dev.signal.source": "Overview 6%; Hangar 8%."
+          },
+          "$description": "Tinted container fill (attention card)."
+        },
+        "border": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.949,
+              0.42,
+              0.349
+            ],
+            "hex": "#f26b59",
+            "alpha": 0.4
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.red, 0.4)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.596,
+                  0.094,
+                  0.129
+                ],
+                "hex": "#981821",
+                "alpha": 0.4
+              }
+            }
+          },
+          "$description": "Tinted container border."
+        }
+      },
+      "idle": {
+        "fg": {
+          "$value": "{color.text.subtle}",
+          "$description": "Idle, asleep, stopped, offline."
+        }
+      }
+    },
+    "diff": {
+      "add": {
+        "fg": {
+          "$value": "{color.base.green}"
+        },
+        "bg": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.525,
+              0.761,
+              0.635
+            ],
+            "hex": "#86c2a2",
+            "alpha": 0.06
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.green, 0.06)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.004,
+                  0.427,
+                  0.322
+                ],
+                "hex": "#016d52",
+                "alpha": 0.06
+              }
+            }
+          }
+        },
+        "emph": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.525,
+              0.761,
+              0.635
+            ],
+            "hex": "#86c2a2",
+            "alpha": 0.12
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.green, 0.12)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.004,
+                  0.427,
+                  0.322
+                ],
+                "hex": "#016d52",
+                "alpha": 0.12
+              }
+            }
+          }
+        }
+      },
+      "del": {
+        "fg": {
+          "$value": "{color.base.red}"
+        },
+        "bg": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.949,
+              0.42,
+              0.349
+            ],
+            "hex": "#f26b59",
+            "alpha": 0.06
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.red, 0.06)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.596,
+                  0.094,
+                  0.129
+                ],
+                "hex": "#981821",
+                "alpha": 0.06
+              }
+            }
+          }
+        },
+        "emph": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.949,
+              0.42,
+              0.349
+            ],
+            "hex": "#f26b59",
+            "alpha": 0.12
+          },
+          "$extensions": {
+            "dev.signal.derive": "alpha(base.red, 0.12)",
+            "dev.signal.modes": {
+              "fog": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.596,
+                  0.094,
+                  0.129
+                ],
+                "hex": "#981821",
+                "alpha": 0.12
+              }
+            }
+          }
+        }
+      },
+      "gutter": {
+        "$value": "{color.text.subtle}"
+      }
+    },
+    "overlay": {
+      "scrim": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.106,
+            0.11
+          ],
+          "hex": "#1a1b1c",
+          "alpha": 0.72
+        },
+        "$description": "Behind dialogs.",
+        "$extensions": {
+          "dev.signal.derive": "Signal: alpha(base.side, 0.72); Fog: alpha(base.fg, 0.28)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.102,
+                0.11,
+                0.122
+              ],
+              "hex": "#1a1c1f",
+              "alpha": 0.28
+            }
+          }
+        }
+      },
+      "label": {
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.106,
+            0.11
+          ],
+          "hex": "#1a1b1c",
+          "alpha": 0.86
+        },
+        "$extensions": {
+          "dev.signal.derive": "alpha(base.side, 0.86)",
+          "dev.signal.modes": {
+            "fog": {
+              "colorSpace": "srgb",
+              "components": [
+                0.886,
+                0.894,
+                0.902
+              ],
+              "hex": "#e2e4e6",
+              "alpha": 0.86
+            }
+          },
+          "dev.signal.source": "Overview label-scrim 86%; Hangar floor.labelBg 80%."
+        },
+        "$description": "Backing of labels drawn over content (map labels)."
+      }
+    },
+    "scrollbar": {
+      "thumb": {
+        "$value": "{color.base.line2}"
+      },
+      "thumbHover": {
+        "$value": "{color.base.faint}"
+      }
+    }
+  },
+  "font": {
+    "family": {
+      "$type": "fontFamily",
+      "mono": {
+        "$value": [
+          "JetBrains Mono",
+          "ui-monospace",
+          "SF Mono",
+          "Menlo",
+          "DejaVu Sans Mono",
+          "monospace"
+        ],
+        "$description": "Everything a machine says: names, paths, numbers, commands, controls."
+      },
+      "sans": {
+        "$value": [
+          "Instrument Sans",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Cantarell",
+          "sans-serif"
+        ],
+        "$description": "Sentences a person reads."
+      }
+    },
+    "weight": {
+      "$type": "fontWeight",
+      "regular": {
+        "$value": 400
+      },
+      "medium": {
+        "$value": 500
+      },
+      "semibold": {
+        "$value": 600
+      }
+    }
+  },
+  "type": {
+    "$type": "typography",
+    "display": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 20,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.semibold}",
+        "letterSpacing": {
+          "value": -0.2,
+          "unit": "px"
+        },
+        "lineHeight": 1.4
+      },
+      "$description": "Onboarding headline. Rare.",
+      "$extensions": {
+        "dev.signal.source": "Hangar type.sansLg; Overview has no display role."
+      }
+    },
+    "headline": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 15,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.medium}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Largest type in an app view (brief title, dialog title).",
+      "$extensions": {
+        "dev.signal.source": "Overview headline; Hangar type.sansMd was 600 / 22px."
+      }
+    },
+    "title": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 14,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.medium}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Card title."
+    },
+    "body": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 13,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Row titles, questions, toasts.",
+      "$extensions": {
+        "dev.signal.source": "Overview body; Hangar type.sansSm was 13/20."
+      }
+    },
+    "bodyStrong": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 13,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.medium}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Tooltip and item titles."
+    },
+    "bodySmall": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 12.5,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Explanations under a title."
+    },
+    "terminal": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 13,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.5385
+      },
+      "$description": "Terminal, palette input.",
+      "$extensions": {
+        "dev.signal.source": "Hangar type.monoMd."
+      }
+    },
+    "code": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 12.5,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "A command shown for approval."
+    },
+    "control": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 12,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Buttons, tabs, breadcrumbs, segmented controls.",
+      "$extensions": {
+        "dev.signal.source": "Overview control; Hangar type.monoSm was 12/18."
+      }
+    },
+    "status": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 11.5,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Status bar.",
+      "$extensions": {
+        "dev.signal.fontVariantNumeric": "tabular-nums"
+      }
+    },
+    "mapLabel": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 11.5,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.medium}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Labels drawn over content: map labels."
+    },
+    "meta": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 11,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Ages, agent and host lines, row summaries, keycaps, tags.",
+      "$extensions": {
+        "dev.signal.fontVariantNumeric": "tabular-nums",
+        "dev.signal.source": "Overview meta; Hangar type.monoXs."
+      }
+    },
+    "section": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 11,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0.66,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "List section heads, always with a count.",
+      "$extensions": {
+        "dev.signal.textTransform": "uppercase",
+        "dev.signal.letterSpacingEm": 0.06,
+        "dev.signal.source": "Overview section (400); Hangar type.label was 500."
+      }
+    },
+    "badge": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 10.5,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.medium}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1
+      },
+      "$description": "Count badge.",
+      "$extensions": {
+        "dev.signal.fontVariantNumeric": "tabular-nums"
+      }
+    }
+  },
+  "space": {
+    "0": {
+      "$value": {
+        "value": 0,
+        "unit": "px"
+      }
+    },
+    "2": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      }
+    },
+    "4": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      }
+    },
+    "6": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Gaps between related items."
+    },
+    "8": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Between siblings."
+    },
+    "10": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$description": "Card padding (block)."
+    },
+    "12": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Card padding (inline), bar insets."
+    },
+    "16": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Between list sections."
+    },
+    "24": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "32": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "48": {
+      "$value": {
+        "value": 48,
+        "unit": "px"
+      }
+    },
+    "$type": "dimension",
+    "$description": "4px base. 6 and 10 come from Overview; the rest from Hangar."
+  },
+  "radius": {
+    "$type": "dimension",
+    "$description": "Small, consistent corners.",
+    "hair": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Count badge."
+    },
+    "sm": {
+      "$value": {
+        "value": 3,
+        "unit": "px"
+      },
+      "$description": "Tags, keycaps, map labels."
+    },
+    "md": {
+      "$value": {
+        "value": 5,
+        "unit": "px"
+      },
+      "$description": "Controls, rows, tooltips, callouts."
+    },
+    "lg": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Cards, toasts."
+    },
+    "window": {
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      },
+      "$description": "Window corners."
+    },
+    "full": {
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      },
+      "$description": "Pills (switch track)."
+    }
+  },
+  "borderWidth": {
+    "$type": "dimension",
+    "hairline": {
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$description": "Every border."
+    },
+    "thick": {
+      "$value": {
+        "value": 2,
+        "unit": "px"
+      },
+      "$description": "Focus ring, keycap bottom, tab underline."
+    }
+  },
+  "size": {
+    "$type": "dimension",
+    "iconSm": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Status glyphs."
+    },
+    "iconMd": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$description": "Row icon column."
+    },
+    "iconLg": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "controlSm": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      },
+      "$description": "Borderless title-bar button, edge chips."
+    },
+    "button": {
+      "$value": {
+        "value": 26,
+        "unit": "px"
+      },
+      "$description": "Bordered button."
+    },
+    "controlMd": {
+      "$value": {
+        "value": 28,
+        "unit": "px"
+      },
+      "$description": "Segmented cell."
+    },
+    "controlLg": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "kbd": {
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      },
+      "$description": "Keycap minimum width."
+    },
+    "kbdLine": {
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      },
+      "$description": "Keycap line height."
+    },
+    "badgeW": {
+      "$value": {
+        "value": 15,
+        "unit": "px"
+      }
+    },
+    "badgeH": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "mapLabel": {
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      },
+      "$description": "Map label height."
+    },
+    "callout": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Callout height."
+    },
+    "dot": {
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      },
+      "$description": "Connected-host dot."
+    },
+    "focusOffset": {
+      "$value": {
+        "value": 1,
+        "unit": "px"
+      },
+      "$description": "Focus ring offset."
+    },
+    "row": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "rowTable": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "titleBar": {
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      }
+    },
+    "statusBar": {
+      "$value": {
+        "value": 24,
+        "unit": "px"
+      }
+    },
+    "tabBar": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "paneHeader": {
+      "$value": {
+        "value": 32,
+        "unit": "px"
+      }
+    },
+    "rail": {
+      "$value": {
+        "value": 340,
+        "unit": "px"
+      },
+      "$description": "Right rail. Overview 340; Hangar 280."
+    },
+    "railMin": {
+      "$value": {
+        "value": 240,
+        "unit": "px"
+      }
+    },
+    "railMax": {
+      "$value": {
+        "value": 400,
+        "unit": "px"
+      }
+    },
+    "sidebar": {
+      "$value": {
+        "value": 248,
+        "unit": "px"
+      }
+    },
+    "sidebarMin": {
+      "$value": {
+        "value": 200,
+        "unit": "px"
+      }
+    },
+    "sidebarMax": {
+      "$value": {
+        "value": 360,
+        "unit": "px"
+      }
+    },
+    "tooltipMaxW": {
+      "$value": {
+        "value": 280,
+        "unit": "px"
+      }
+    },
+    "toastW": {
+      "$value": {
+        "value": 360,
+        "unit": "px"
+      }
+    },
+    "paletteW": {
+      "$value": {
+        "value": 640,
+        "unit": "px"
+      }
+    },
+    "dialogSm": {
+      "$value": {
+        "value": 400,
+        "unit": "px"
+      }
+    },
+    "dialogMd": {
+      "$value": {
+        "value": 560,
+        "unit": "px"
+      }
+    },
+    "dialogLg": {
+      "$value": {
+        "value": 720,
+        "unit": "px"
+      }
+    }
+  },
+  "duration": {
+    "$type": "duration",
+    "instant": {
+      "$value": {
+        "value": 0,
+        "unit": "ms"
+      },
+      "$description": "Selection, focus, status and theme changes."
+    },
+    "fast": {
+      "$value": {
+        "value": 80,
+        "unit": "ms"
+      },
+      "$description": "Hover and press colour changes."
+    },
+    "base": {
+      "$value": {
+        "value": 140,
+        "unit": "ms"
+      },
+      "$description": "Switches, tab underline, popovers in."
+    },
+    "slow": {
+      "$value": {
+        "value": 220,
+        "unit": "ms"
+      },
+      "$description": "Toasts and dialogs in and out."
+    },
+    "spinnerFrame": {
+      "$value": {
+        "value": 80,
+        "unit": "ms"
+      },
+      "$description": "Braille spinner frame."
+    },
+    "tooltipDelay": {
+      "$value": {
+        "value": 500,
+        "unit": "ms"
+      }
+    },
+    "caretBlink": {
+      "$value": {
+        "value": 1100,
+        "unit": "ms"
+      }
+    },
+    "toastMin": {
+      "$value": {
+        "value": 3200,
+        "unit": "ms"
+      },
+      "$description": "How long a toast stays. Overview 3200; Hangar 5000."
+    }
+  },
+  "easing": {
+    "$type": "cubicBezier",
+    "standard": {
+      "$value": [
+        0.2,
+        0,
+        0,
+        1
+      ],
+      "$description": "Enter."
+    },
+    "exit": {
+      "$value": [
+        0.4,
+        0,
+        1,
+        1
+      ],
+      "$description": "Exit."
+    },
+    "linear": {
+      "$value": [
+        0,
+        0,
+        1,
+        1
+      ]
+    }
+  },
+  "shadow": {
+    "$type": "shadow",
+    "$description": "Only floating overlays carry a shadow. Bars, cards, rows and buttons are flat.",
+    "tooltip": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000",
+          "alpha": 0.5
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 6,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 18,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "$description": "Tooltip.",
+      "$extensions": {
+        "dev.signal.modes": {
+          "fog": [
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.18
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 8,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 24,
+                "unit": "px"
+              },
+              "spread": {
+                "value": -8,
+                "unit": "px"
+              }
+            },
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.06
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 1,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 2,
+                "unit": "px"
+              },
+              "spread": {
+                "value": 0,
+                "unit": "px"
+              }
+            }
+          ]
+        },
+        "dev.signal.source": "Overview. Fog has no tooltip shadow; uses Fog popover."
+      }
+    },
+    "toast": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000",
+          "alpha": 0.5
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 8,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 24,
+          "unit": "px"
+        },
+        "spread": {
+          "value": 0,
+          "unit": "px"
+        }
+      },
+      "$description": "Toast.",
+      "$extensions": {
+        "dev.signal.modes": {
+          "fog": [
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.18
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 8,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 24,
+                "unit": "px"
+              },
+              "spread": {
+                "value": -8,
+                "unit": "px"
+              }
+            },
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.06
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 1,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 2,
+                "unit": "px"
+              },
+              "spread": {
+                "value": 0,
+                "unit": "px"
+              }
+            }
+          ]
+        },
+        "dev.signal.source": "Overview. Fog has no toast shadow; uses Fog popover."
+      }
+    },
+    "popover": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000",
+          "alpha": 0.5
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 8,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 24,
+          "unit": "px"
+        },
+        "spread": {
+          "value": -8,
+          "unit": "px"
+        }
+      },
+      "$description": "Menus, popovers.",
+      "$extensions": {
+        "dev.signal.modes": {
+          "fog": [
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.18
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 8,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 24,
+                "unit": "px"
+              },
+              "spread": {
+                "value": -8,
+                "unit": "px"
+              }
+            },
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.06
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 1,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 2,
+                "unit": "px"
+              },
+              "spread": {
+                "value": 0,
+                "unit": "px"
+              }
+            }
+          ]
+        }
+      }
+    },
+    "dialog": {
+      "$value": {
+        "color": {
+          "colorSpace": "srgb",
+          "components": [
+            0,
+            0,
+            0
+          ],
+          "hex": "#000000",
+          "alpha": 0.5
+        },
+        "offsetX": {
+          "value": 0,
+          "unit": "px"
+        },
+        "offsetY": {
+          "value": 24,
+          "unit": "px"
+        },
+        "blur": {
+          "value": 60,
+          "unit": "px"
+        },
+        "spread": {
+          "value": -24,
+          "unit": "px"
+        }
+      },
+      "$description": "Dialogs.",
+      "$extensions": {
+        "dev.signal.modes": {
+          "fog": [
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.3
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 24,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 60,
+                "unit": "px"
+              },
+              "spread": {
+                "value": -24,
+                "unit": "px"
+              }
+            },
+            {
+              "color": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.094,
+                  0.11,
+                  0.141
+                ],
+                "hex": "#181c24",
+                "alpha": 0.06
+              },
+              "offsetX": {
+                "value": 0,
+                "unit": "px"
+              },
+              "offsetY": {
+                "value": 1,
+                "unit": "px"
+              },
+              "blur": {
+                "value": 2,
+                "unit": "px"
+              },
+              "spread": {
+                "value": 0,
+                "unit": "px"
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "z": {
+    "$type": "number",
+    "base": {
+      "$value": 0
+    },
+    "sticky": {
+      "$value": 10
+    },
+    "scrim": {
+      "$value": 100
+    },
+    "dialog": {
+      "$value": 110
+    },
+    "popover": {
+      "$value": 200
+    },
+    "toast": {
+      "$value": 300
+    },
+    "tooltip": {
+      "$value": 400
+    }
+  }
+}

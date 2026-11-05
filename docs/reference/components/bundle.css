@@ -1,0 +1,555 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* Signal 0.1.0 (@barrymind/signal): base styles and shared components.
+   Every colour, space, radius, size, weight, duration, easing, z-index and shadow comes from tokens.json
+   (compiled to tokens.css, loaded before this file). This file adds only what tokens.json cannot hold:
+   the --sg-font-* aliases of the two type families, and the --sg-type-* font shorthands, copied from
+   css/signal.css. The fonts are hosted by Google Fonts; the package does not ship them. */
+
+/* ------------------------------------------------------------------ bridge */
+:root {
+  --sg-font-mono: var(--font-mono, "JetBrains Mono", ui-monospace, "SF Mono", Menlo, "DejaVu Sans Mono", monospace);
+  --sg-font-sans: var(--font-sans, "Instrument Sans", system-ui, -apple-system, "Segoe UI", Cantarell, sans-serif);
+  --sg-type-display: 600 20px/1.4 var(--sg-font-sans);
+  --sg-type-display-size: 20px;
+  --sg-type-display-weight: 600;
+  --sg-type-display-line-height: 1.4;
+  --sg-type-display-tracking: -0.2px;
+  --sg-type-headline: 500 15px/1.45 var(--sg-font-sans);
+  --sg-type-headline-size: 15px;
+  --sg-type-headline-weight: 500;
+  --sg-type-headline-line-height: 1.45;
+  --sg-type-title: 500 14px/1.45 var(--sg-font-sans);
+  --sg-type-title-size: 14px;
+  --sg-type-title-weight: 500;
+  --sg-type-title-line-height: 1.45;
+  --sg-type-body: 400 13px/1.45 var(--sg-font-sans);
+  --sg-type-body-size: 13px;
+  --sg-type-body-weight: 400;
+  --sg-type-body-line-height: 1.45;
+  --sg-type-body-strong: 500 13px/1.45 var(--sg-font-sans);
+  --sg-type-body-strong-size: 13px;
+  --sg-type-body-strong-weight: 500;
+  --sg-type-body-strong-line-height: 1.45;
+  --sg-type-body-small: 400 12.5px/1.45 var(--sg-font-sans);
+  --sg-type-body-small-size: 12.5px;
+  --sg-type-body-small-weight: 400;
+  --sg-type-body-small-line-height: 1.45;
+  --sg-type-terminal: 400 13px/1.5385 var(--sg-font-mono);
+  --sg-type-terminal-size: 13px;
+  --sg-type-terminal-weight: 400;
+  --sg-type-terminal-line-height: 1.5385;
+  --sg-type-code: 400 12.5px/1.45 var(--sg-font-mono);
+  --sg-type-code-size: 12.5px;
+  --sg-type-code-weight: 400;
+  --sg-type-code-line-height: 1.45;
+  --sg-type-control: 400 12px/1.45 var(--sg-font-mono);
+  --sg-type-control-size: 12px;
+  --sg-type-control-weight: 400;
+  --sg-type-control-line-height: 1.45;
+  --sg-type-status: 400 11.5px/1.45 var(--sg-font-mono);
+  --sg-type-status-size: 11.5px;
+  --sg-type-status-weight: 400;
+  --sg-type-status-line-height: 1.45;
+  --sg-type-map-label: 500 11.5px/1.45 var(--sg-font-mono);
+  --sg-type-map-label-size: 11.5px;
+  --sg-type-map-label-weight: 500;
+  --sg-type-map-label-line-height: 1.45;
+  --sg-type-meta: 400 11px/1.45 var(--sg-font-mono);
+  --sg-type-meta-size: 11px;
+  --sg-type-meta-weight: 400;
+  --sg-type-meta-line-height: 1.45;
+  --sg-type-section: 400 11px/1.45 var(--sg-font-mono);
+  --sg-type-section-size: 11px;
+  --sg-type-section-weight: 400;
+  --sg-type-section-line-height: 1.45;
+  --sg-type-section-tracking: 0.06em;
+  --sg-type-badge: 500 10.5px/1 var(--sg-font-mono);
+  --sg-type-badge-size: 10.5px;
+  --sg-type-badge-weight: 500;
+  --sg-type-badge-line-height: 1;
+}
+
+/* ------------------------------------------------------------------ base (css/signal.css, hand-written part) */
+/* ------------------------------------------------------------------ base */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { background: var(--sg-surface-base); }
+body {
+  margin: 0;
+  background: var(--sg-surface-base);
+  color: var(--sg-text-primary);
+  font: var(--sg-type-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection: accent at 30%; selected text stays primary. */
+::selection { background: var(--sg-selection-bg); color: var(--sg-text-primary); }
+
+/* Scrollbars: thin, line2 thumb on a transparent track, faint on hover. */
+* { scrollbar-width: thin; scrollbar-color: var(--sg-scrollbar-thumb) transparent; }
+::-webkit-scrollbar { width: var(--sg-space-8); height: var(--sg-space-8); }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--sg-scrollbar-thumb); border-radius: var(--sg-radius-full); }
+::-webkit-scrollbar-thumb:hover { background: var(--sg-scrollbar-thumb-hover); }
+
+/* Focus ring: 2px accent outline, 1px offset. Only for keyboard focus. */
+:focus { outline: none; }
+:focus-visible {
+  outline: var(--sg-border-width-thick) solid var(--sg-border-focus);
+  outline-offset: var(--sg-size-focus-offset);
+}
+
+/* Keycap: 11px mono, line2 border with a 2px bottom, sunken fill. */
+kbd, .sg-kbd {
+  display: inline-block;
+  min-width: var(--sg-size-kbd);
+  padding: 0 var(--sg-space-4);
+  font: var(--sg-type-meta);
+  line-height: var(--sg-size-kbd-line);
+  text-align: center;
+  color: var(--sg-text-secondary);
+  background: var(--sg-surface-sunken);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-bottom-width: var(--sg-border-width-thick);
+  border-radius: var(--sg-radius-sm);
+}
+
+/* Tabular numerals for every number that updates (ages, counts, zoom, coordinates). */
+.sg-num, output, time { font-variant-numeric: tabular-nums; }
+
+/* Families and type roles as classes. Mono for machines, sans for prose. */
+.sg-mono { font-family: var(--sg-font-mono); }
+.sg-sans { font-family: var(--sg-font-sans); }
+.sg-type-display { font: var(--sg-type-display); letter-spacing: var(--sg-type-display-tracking); }
+.sg-type-headline { font: var(--sg-type-headline); text-wrap: balance; }
+.sg-type-title { font: var(--sg-type-title); text-wrap: balance; }
+.sg-type-body { font: var(--sg-type-body); }
+.sg-type-body-strong { font: var(--sg-type-body-strong); }
+.sg-type-body-small { font: var(--sg-type-body-small); }
+.sg-type-terminal { font: var(--sg-type-terminal); }
+.sg-type-code { font: var(--sg-type-code); }
+.sg-type-control { font: var(--sg-type-control); }
+.sg-type-status { font: var(--sg-type-status); font-variant-numeric: tabular-nums; }
+.sg-type-map-label { font: var(--sg-type-map-label); }
+.sg-type-meta { font: var(--sg-type-meta); font-variant-numeric: tabular-nums; }
+.sg-type-section { font: var(--sg-type-section); letter-spacing: var(--sg-type-section-tracking); text-transform: uppercase; }
+.sg-type-badge { font: var(--sg-type-badge); font-variant-numeric: tabular-nums; }
+
+/* Reduced motion: from the OS, or forced with data-motion="reduce" on <html>. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) *, :root:not([data-motion="full"]) *::before, :root:not([data-motion="full"]) *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+[data-motion="reduce"] *, [data-motion="reduce"] *::before, [data-motion="reduce"] *::after {
+  transition: none !important;
+  animation: none !important;
+}
+
+/* ------------------------------------------------------------------ components (css/components.css) */
+/* Signal 0.1.0: shared components. Load after signal.css.
+   Plain classes, no framework. Every value is a --sg-* custom property; off-scale optical values
+   from Overview's build are written as sums of tokens (for example 7px = space-6 + hairline).
+   The keycap (kbd, .sg-kbd) lives in signal.css because it is a base element. */
+
+/* ------------------------------------------------------------------ button
+   26px, keycapped, quiet. One primary per container. */
+.sg-btn {
+  appearance: none;
+  margin: 0;
+  height: var(--sg-size-button);
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--sg-space-6) + var(--sg-border-width-hairline));
+  padding: 0 var(--sg-space-8) 0 var(--sg-space-4);
+  font: var(--sg-type-control);
+  color: var(--sg-text-primary);
+  white-space: nowrap;
+  background: var(--sg-surface-sunken);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-md);
+  cursor: pointer;
+  transition: background-color var(--sg-duration-fast), border-color var(--sg-duration-fast), color var(--sg-duration-fast);
+}
+.sg-btn:not(:has(kbd, .sg-kbd)) { padding-inline: var(--sg-space-8); }
+.sg-btn:hover { border-color: var(--sg-border-strong); }
+.sg-btn--primary { background: var(--sg-accent-bg); border-color: var(--sg-accent-border); }
+.sg-btn--primary:hover { background: var(--sg-accent-bg-hover); border-color: var(--sg-accent-border); }
+.sg-btn--primary:active { background: var(--sg-accent-bg-pressed); }
+/* Ghost: the borderless title-bar button. */
+.sg-btn--ghost {
+  height: var(--sg-size-control-sm);
+  gap: var(--sg-space-6);
+  padding: 0 var(--sg-space-8);
+  color: var(--sg-text-secondary);
+  background: none;
+  border-color: transparent;
+}
+.sg-btn--ghost:hover { color: var(--sg-text-primary); background: var(--sg-state-hover-control); border-color: transparent; }
+.sg-btn:disabled, .sg-btn[aria-disabled="true"] {
+  color: var(--sg-text-disabled);
+  background: var(--sg-surface-sunken);
+  border-color: var(--sg-border-subtle);
+  cursor: default;
+}
+
+/* ------------------------------------------------------------------ tag
+   Quiet mono chip, hairline border. Prototypes carry "sample data". */
+.sg-tag {
+  display: inline-block;
+  padding: var(--sg-border-width-hairline) var(--sg-space-6);
+  font: var(--sg-type-meta);
+  color: var(--sg-text-subtle);
+  white-space: nowrap;
+  border: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+  border-radius: var(--sg-radius-sm);
+}
+
+/* ------------------------------------------------------------------ count badge
+   Solid needs-you fill with the waiting count. */
+.sg-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--sg-size-badge-w);
+  height: var(--sg-size-badge-h);
+  padding: 0 var(--sg-space-2);
+  font: var(--sg-type-badge);
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  color: var(--sg-text-on-accent);
+  background: var(--sg-status-wait-fg);
+  border-radius: var(--sg-radius-hair);
+}
+
+/* ------------------------------------------------------------------ tabs (underline)
+   Mono 12px, subtle; hover and selected go to ink; selected gets a 2px ink underline on the divider. */
+.sg-tabs {
+  display: flex;
+  gap: var(--sg-space-16);
+  height: var(--sg-size-tab-bar);
+  padding: 0 var(--sg-space-16);
+  border-bottom: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+}
+.sg-tab {
+  appearance: none;
+  position: relative;
+  height: var(--sg-size-tab-bar);
+  margin: 0;
+  padding: 0;
+  font: var(--sg-type-control);
+  color: var(--sg-text-subtle);
+  white-space: nowrap;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  transition: color var(--sg-duration-fast);
+}
+.sg-tab:hover, .sg-tab[aria-selected="true"] { color: var(--sg-text-primary); }
+.sg-tab[aria-selected="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(-1 * var(--sg-border-width-hairline));
+  height: var(--sg-border-width-thick);
+  background: var(--sg-text-primary);
+}
+
+/* ------------------------------------------------------------------ section head
+   Uppercase mono 11px, always with the list's count ("needs you · 2"). */
+.sg-section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sg-space-8);
+  margin: var(--sg-space-16) var(--sg-space-4) var(--sg-space-8);
+  font: var(--sg-type-section);
+  letter-spacing: var(--sg-type-section-tracking);
+  text-transform: uppercase;
+  color: var(--sg-text-subtle);
+}
+.sg-section-head > :last-child:not(:first-child) { text-transform: none; letter-spacing: 0; }
+
+/* ------------------------------------------------------------------ attention card
+   Needs-you only: the one tinted container. Title, agent line, yellow status line with diamond
+   and age, the command or question, then actions. */
+.sg-attn {
+  display: grid;
+  gap: var(--sg-space-6);
+  padding: var(--sg-space-10) var(--sg-space-12);
+  color: var(--sg-text-primary);
+  background: var(--sg-status-wait-bg);
+  border: var(--sg-border-width-hairline) solid var(--sg-status-wait-border);
+  border-radius: var(--sg-radius-lg);
+}
+.sg-attn:is(a, button, [tabindex]) { cursor: pointer; }
+.sg-attn.is-selected, .sg-attn[aria-selected="true"], .sg-attn:focus-visible {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 var(--sg-border-width-thick) var(--sg-border-focus);
+}
+.sg-attn__title { font: var(--sg-type-title); text-wrap: balance; }
+.sg-attn__meta { font: var(--sg-type-meta); color: var(--sg-text-subtle); }
+.sg-attn__status {
+  display: flex;
+  align-items: baseline;
+  gap: var(--sg-space-6);
+  font: var(--sg-type-control);
+  color: var(--sg-status-wait-fg);
+}
+.sg-attn__status > svg { align-self: center; }
+.sg-attn__status > span { flex: 1; min-width: 0; }
+.sg-attn__age {
+  font: var(--sg-type-meta);
+  font-style: normal;
+  font-variant-numeric: tabular-nums;
+  color: var(--sg-text-subtle);
+  white-space: nowrap;
+}
+.sg-attn__cmd { font: var(--sg-type-code); color: var(--sg-text-primary); overflow-wrap: anywhere; }
+.sg-attn__question { font: var(--sg-type-body); }
+.sg-attn__actions { display: flex; flex-wrap: wrap; gap: var(--sg-space-6); margin-top: var(--sg-space-2); }
+/* The "$" before a command: the one place faint text is allowed. */
+.sg-prompt { font-style: normal; color: var(--sg-text-disabled); }
+
+/* ------------------------------------------------------------------ list row
+   14px status glyph, title, right-aligned age, a meta line beneath. */
+.sg-row {
+  display: grid;
+  grid-template-columns: var(--sg-size-icon-md) minmax(0, 1fr) auto;
+  column-gap: var(--sg-space-8);
+  row-gap: var(--sg-border-width-hairline);
+  align-items: baseline;
+  padding: var(--sg-space-6) var(--sg-space-4);
+  color: var(--sg-text-primary);
+  border-radius: var(--sg-radius-md);
+}
+.sg-row:is(a, button, [tabindex]) { cursor: pointer; }
+.sg-row:hover { background: var(--sg-state-hover); }
+/* Hover never stacks on selected. */
+.sg-row.is-selected, .sg-row[aria-selected="true"], .sg-row:focus-visible {
+  outline: none;
+  background: var(--sg-surface-selected);
+  box-shadow: inset 0 0 0 var(--sg-border-width-hairline) var(--sg-accent-border);
+}
+.sg-row > svg { align-self: center; }
+.sg-row__title { font: var(--sg-type-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sg-row__age { font: var(--sg-type-meta); font-variant-numeric: tabular-nums; color: var(--sg-text-subtle); white-space: nowrap; }
+.sg-row__meta {
+  grid-column: 2 / 4;
+  font: var(--sg-type-meta);
+  color: var(--sg-text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sg-row--err .sg-row__meta { color: var(--sg-status-err-fg); }
+
+/* ------------------------------------------------------------------ status bar and its items
+   Counts per status, each in its status colour with its glyph (running stays secondary and lets its
+   glyph carry the colour), key hints centred in subtle, hosts at the right led by a done dot. */
+.sg-statusbar {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--sg-space-12) + var(--sg-space-2));
+  height: var(--sg-size-status-bar);
+  padding: 0 var(--sg-space-12);
+  font: var(--sg-type-status);
+  color: var(--sg-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  background: var(--sg-surface-base);
+  border-top: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+}
+.sg-statusbar__keys { margin-inline: auto; overflow: hidden; text-overflow: ellipsis; color: var(--sg-text-subtle); }
+.sg-status-item {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(var(--sg-space-4) + var(--sg-border-width-hairline));
+  font-variant-numeric: tabular-nums;
+}
+.sg-status-item--wait { color: var(--sg-status-wait-fg); }
+.sg-status-item--done { color: var(--sg-status-done-fg); }
+.sg-status-item--err { color: var(--sg-status-err-fg); }
+.sg-status-item--idle { color: var(--sg-status-idle-fg); }
+.sg-status-host { display: inline-flex; align-items: center; gap: calc(var(--sg-space-4) + var(--sg-border-width-hairline)); }
+.sg-status-host::before {
+  content: "";
+  width: var(--sg-size-dot);
+  height: var(--sg-size-dot);
+  border-radius: var(--sg-radius-full);
+  background: var(--sg-status-done-fg);
+}
+
+/* ------------------------------------------------------------------ tooltip
+   Floats, so it may cast a shadow. Positioning is the app's job. */
+.sg-tooltip {
+  width: max-content;
+  max-width: var(--sg-size-tooltip-max-w);
+  padding: calc(var(--sg-space-6) + var(--sg-border-width-hairline)) calc(var(--sg-space-8) + var(--sg-border-width-hairline));
+  color: var(--sg-text-primary);
+  background: var(--sg-surface-overlay);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-md);
+  box-shadow: var(--sg-shadow-tooltip);
+  z-index: var(--sg-z-tooltip);
+}
+.sg-tooltip__title { font: var(--sg-type-body-strong); }
+.sg-tooltip__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--sg-space-6);
+  margin-top: var(--sg-space-2);
+  font: var(--sg-type-meta);
+  color: var(--sg-text-secondary);
+}
+.sg-tooltip__code { margin-top: calc(var(--sg-space-4) + var(--sg-border-width-hairline)); font: var(--sg-type-control); color: var(--sg-text-primary); }
+
+/* ------------------------------------------------------------------ toast
+   Confirms what you just did. 220ms in and out; the app hides it after duration.toastMin. */
+.sg-toast {
+  display: flex;
+  align-items: center;
+  gap: var(--sg-space-8);
+  max-width: min(var(--sg-size-toast-w), calc(100% - var(--sg-space-24)));
+  padding: calc(var(--sg-space-8) + var(--sg-border-width-hairline)) var(--sg-space-12);
+  font: var(--sg-type-body);
+  color: var(--sg-text-primary);
+  background: var(--sg-surface-overlay);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-lg);
+  box-shadow: var(--sg-shadow-toast);
+  z-index: var(--sg-z-toast);
+  transition: opacity var(--sg-duration-slow) var(--sg-easing-standard), transform var(--sg-duration-slow) var(--sg-easing-standard);
+}
+.sg-toast.is-hidden {
+  opacity: 0;
+  transform: translateY(var(--sg-space-8));
+  pointer-events: none;
+  transition-timing-function: var(--sg-easing-exit);
+}
+
+/* ------------------------------------------------------------------ segmented group (zoom control)
+   One panel of 28px cells divided by hairlines: buttons and an <output> for the current value. */
+.sg-segmented {
+  display: inline-flex;
+  overflow: hidden;
+  background: var(--sg-surface-raised);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-md);
+}
+.sg-segmented > button, .sg-segmented > output {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: var(--sg-size-control-md);
+  min-width: var(--sg-size-control-md);
+  margin: 0;
+  padding: 0 var(--sg-space-8);
+  font: var(--sg-type-control);
+  color: var(--sg-text-secondary);
+  background: none;
+  border: 0;
+  transition: background-color var(--sg-duration-fast), color var(--sg-duration-fast);
+}
+.sg-segmented > button { cursor: pointer; }
+.sg-segmented > * + * { border-left: var(--sg-border-width-hairline) solid var(--sg-border-subtle); }
+.sg-segmented > output { min-width: calc(var(--sg-space-48) - var(--sg-space-2)); color: var(--sg-text-primary); font-variant-numeric: tabular-nums; }
+.sg-segmented > button:hover { color: var(--sg-text-primary); background: var(--sg-state-hover-control); }
+.sg-segmented > button:focus-visible { outline-offset: calc(-1 * var(--sg-border-width-thick)); }
+.sg-segmented svg { width: var(--sg-size-icon-sm); height: var(--sg-size-icon-sm); }
+
+/* ------------------------------------------------------------------ map label
+   18px on the label scrim: name in ink 500, sub-text in subtle. Machine labels add a border and a
+   count badge; a dragged plate label gets an accent border. */
+.sg-map-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sg-space-6);
+  height: var(--sg-size-map-label);
+  padding: 0 calc(var(--sg-space-4) + var(--sg-border-width-hairline));
+  font: var(--sg-type-map-label);
+  font-weight: var(--sg-font-weight-regular);
+  color: var(--sg-text-subtle);
+  white-space: nowrap;
+  background: var(--sg-overlay-label);
+  border: var(--sg-border-width-hairline) solid transparent;
+  border-radius: var(--sg-radius-sm);
+}
+.sg-map-label > b, .sg-map-label__name { font-weight: var(--sg-font-weight-medium); color: var(--sg-text-primary); }
+.sg-map-label--machine { border-color: var(--sg-border-default); }
+.sg-map-label--plot { font-size: var(--sg-type-meta-size); }
+.sg-map-label--plot:hover { border-color: var(--sg-border-default); }
+.sg-map-label.is-dragging { border-color: var(--sg-border-focus); }
+
+/* ------------------------------------------------------------------ callout
+   20px, panel fill, 1px border in the status colour at 70%, meta text in ink, 20 characters or fewer.
+   Add --pointer when it sits above its subject. */
+.sg-callout {
+  --sg-callout-tone: var(--sg-status-wait-fg);
+  --sg-callout-edge: color-mix(in srgb, var(--sg-callout-tone) 70%, transparent);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: var(--sg-size-callout);
+  padding: 0 calc(var(--sg-space-6) + var(--sg-border-width-hairline));
+  font: var(--sg-type-meta);
+  color: var(--sg-text-primary);
+  white-space: nowrap;
+  background: var(--sg-surface-overlay);
+  border: var(--sg-border-width-hairline) solid var(--sg-callout-edge);
+  border-radius: var(--sg-radius-md);
+}
+.sg-callout--err { --sg-callout-tone: var(--sg-status-err-fg); }
+.sg-callout--run { --sg-callout-tone: var(--sg-status-run-fg); }
+.sg-callout--done { --sg-callout-tone: var(--sg-status-done-fg); }
+.sg-callout--pointer::before, .sg-callout--pointer::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: var(--sg-space-4) solid transparent;
+  border-bottom: 0;
+}
+.sg-callout--pointer::before { top: calc(100% + var(--sg-border-width-hairline)); border-top-color: var(--sg-callout-edge); }
+.sg-callout--pointer::after { top: 100%; border-top-color: var(--sg-surface-overlay); }
+
+/* ------------------------------------------------------------------ status glyphs
+   Inline SVG, 12px, drawn in currentColor; the tone class sets the colour. Always pair with a word
+   (visible, in the group head, or in the accessible name): status is glyph + colour + word.
+     run   six braille dots   <svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg>
+     wait  diamond            <svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>
+     done  check              <svg class="sg-icon sg-tone-done" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+     err   cross              <svg class="sg-icon sg-tone-err" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.5"/></svg>
+     idle  ring               <svg class="sg-icon sg-tone-idle" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="3.6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg> */
+.sg-icon {
+  display: inline-block;
+  flex: none;
+  width: var(--sg-size-icon-sm);
+  height: var(--sg-size-icon-sm);
+  vertical-align: calc(-1 * var(--sg-border-width-hairline));
+}
+.sg-tone-run { color: var(--sg-status-run-fg); }
+.sg-tone-wait { color: var(--sg-status-wait-fg); }
+.sg-tone-done { color: var(--sg-status-done-fg); }
+.sg-tone-err { color: var(--sg-status-err-fg); }
+.sg-tone-idle { color: var(--sg-status-idle-fg); }
+.sg-tone-you { color: var(--sg-accent-fg); }
+
+/* Input: single-line text field. The outline uses border.control so the field's edge reaches 3:1. */
+.sg-input {
+  height: var(--sg-size-control-md);
+  min-width: 0;
+  padding: 0 var(--sg-space-10);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-control);
+  border-radius: var(--sg-radius-md);
+  background: var(--sg-surface-sunken);
+  color: var(--sg-text-primary);
+  font: var(--sg-type-body);
+}
+.sg-input::placeholder { color: var(--sg-text-subtle); }
+.sg-input:focus { outline: none; border-color: var(--sg-accent-border); }

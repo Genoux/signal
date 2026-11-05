@@ -1,0 +1,25 @@
+<!-- @dsCard group="Status" height=160 -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<title>StatusIcons</title>
+<style>
+.stage { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sg-space-10); padding: var(--sg-space-16); }
+.glyphs { display: grid; grid-template-columns: auto auto minmax(0, 1fr); gap: var(--sg-space-6) var(--sg-space-12); align-items: center; font: var(--sg-type-meta); color: var(--sg-text-subtle); }
+.glyphs b { font: var(--sg-type-control); color: var(--sg-text-primary); }
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="glyphs">
+    <svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg><b>needs you</b><span>diamond · sg-status-wait-fg</span>
+    <svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg><b>running</b><span>braille dots · sg-status-run-fg</span>
+    <svg class="sg-icon sg-tone-done" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><b>done</b><span>check · sg-status-done-fg</span>
+    <svg class="sg-icon sg-tone-err" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.5"/></svg><b>failed</b><span>cross · sg-status-err-fg</span>
+    <svg class="sg-icon sg-tone-idle" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="3.6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg><b>asleep</b><span>ring · sg-status-idle-fg</span>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+{
+  "name": "@barrymind/signal",
+  "version": "0.1.1",
+  "description": "Signal: the shared design system for Overview, Hangar and related apps. DTCG tokens, CSS custom properties and plain-CSS components.",
+  "type": "module",
+  "style": "./css/signal.css",
+  "files": [
+    "css/",
+    "tokens/",
+    "scripts/build.mjs",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./css/signal.css",
+    "./signal.css": "./css/signal.css",
+    "./components.css": "./css/components.css",
+    "./tokens.json": "./tokens/signal.tokens.json",
+    "./extensions/overview.css": "./css/extensions/overview.css",
+    "./extensions/overview.tokens.json": "./tokens/extensions/overview.tokens.json",
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "sideEffects": [
+    "*.css"
+  ]
+}
