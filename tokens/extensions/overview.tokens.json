@@ -872,13 +872,13 @@
             "$value": {
               "colorSpace": "srgb",
               "components": [
-                0.725,
-                0.655,
-                0.478
+                0.557,
+                0.529,
+                0.455
               ],
-              "hex": "#b9a77a"
+              "hex": "#8e8774"
             },
-            "$description": "Lit window at night (drawn at 85%). The only warm light in the world; low chroma by design."
+            "$description": "Lit window at night, drawn at 50% on about 1 in 5 windows. Dim and nearly neutral so the yellow needs-you diamond stays the only warm point near an agent."
           },
           "park": {
             "$value": {
