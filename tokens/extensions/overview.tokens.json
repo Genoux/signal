@@ -965,6 +965,156 @@
             "$description": "Night shade that terrain and buildings mix toward after dark."
           }
         }
+      },
+      "landmark": {
+        "$description": "Graphite bodies for landmark sprites (v5): hub, restaurant, café, garden. Drawn pixel by pixel, three tones plus outline.",
+        "top": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.353,
+              0.357,
+              0.376
+            ],
+            "hex": "#5a5b60"
+          },
+          "$description": "Lit top faces."
+        },
+        "left": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.243,
+              0.247,
+              0.263
+            ],
+            "hex": "#3e3f43"
+          },
+          "$description": "Left (+v) faces."
+        },
+        "right": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.173,
+              0.176,
+              0.188
+            ],
+            "hex": "#2c2d30"
+          },
+          "$description": "Right (+u) faces, the shade side."
+        },
+        "roof": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.278,
+              0.282,
+              0.298
+            ],
+            "hex": "#47484c"
+          },
+          "$description": "Roof insets and rims."
+        },
+        "door": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.094,
+              0.098,
+              0.106
+            ],
+            "hex": "#18191b"
+          },
+          "$description": "Doors and openings."
+        },
+        "glass": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.125,
+              0.141,
+              0.165
+            ],
+            "hex": "#20242a"
+          },
+          "$description": "Window glass by day."
+        },
+        "grass": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.165,
+              0.227,
+              0.188
+            ],
+            "hex": "#2a3a30"
+          },
+          "$description": "Garden ground."
+        },
+        "grassLight": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.212,
+              0.286,
+              0.235
+            ],
+            "hex": "#36493c"
+          },
+          "$description": "Garden ground highlight."
+        }
+      },
+      "neon": {
+        "$description": "Neon signage on landmarks and the waypoint network. Never yellow, red or green, so status stays the loudest colour. Dim by day, bright at night.",
+        "cyan": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.443,
+              0.788,
+              0.784
+            ],
+            "hex": "#71c9c8"
+          },
+          "$description": "Café sign, hub bands, waypoint lights."
+        },
+        "cyanBright": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.584,
+              0.867,
+              0.863
+            ],
+            "hex": "#95dddc"
+          },
+          "$description": "Cyan at night."
+        },
+        "magenta": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.835,
+              0.604,
+              0.812
+            ],
+            "hex": "#d59acf"
+          },
+          "$description": "Restaurant sign, hub beacon."
+        },
+        "magentaBright": {
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.906,
+              0.706,
+              0.882
+            ],
+            "hex": "#e7b4e1"
+          },
+          "$description": "Magenta at night."
+        }
       }
     },
     "opacity": {

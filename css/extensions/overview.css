@@ -77,6 +77,18 @@
   --sg-overview-hood-shared-furniture: #34363a;
   --sg-overview-hood-shared-furniture-top: #44464b;
   --sg-overview-hood-shared-night: #0d1018;
+  --sg-overview-landmark-top: #5a5b60;
+  --sg-overview-landmark-left: #3e3f43;
+  --sg-overview-landmark-right: #2c2d30;
+  --sg-overview-landmark-roof: #47484c;
+  --sg-overview-landmark-door: #18191b;
+  --sg-overview-landmark-glass: #20242a;
+  --sg-overview-landmark-grass: #2a3a30;
+  --sg-overview-landmark-grass-light: #36493c;
+  --sg-overview-neon-cyan: #71c9c8;
+  --sg-overview-neon-cyan-bright: #95dddc;
+  --sg-overview-neon-magenta: #d59acf;
+  --sg-overview-neon-magenta-bright: #e7b4e1;
   --sg-overview-opacity-slab-run: 0.8;
   --sg-overview-opacity-slab-wait: 0.95;
   --sg-overview-opacity-slab-err: 0.95;
