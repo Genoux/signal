@@ -1,0 +1,60 @@
+# Created by jb-toolkit; owned by the project. Tag-driven (R4.3): push vX.Y.Z
+# and this verifies, checks, builds and drafts a release. Publishing the draft
+# is the owner's decision.
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # A release whose manifest disagrees with its tag reports a version
+      # nobody built.
+      - name: Version matches the tag
+        run: |
+          expected="${GITHUB_REF_NAME#v}"
+          found=$(.toolkit/version)
+          if [ "$found" != "$expected" ]; then
+            echo "manifest says $found, tag says $expected" >&2
+            exit 1
+          fi
+
+      - if: hashFiles('Cargo.toml') != ''
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy, rustfmt
+      - if: hashFiles('bun.lock', 'bun.lockb') != ''
+        uses: oven-sh/setup-bun@v2
+      - if: hashFiles('package.json') != '' && hashFiles('bun.lock', 'bun.lockb') == ''
+        uses: actions/setup-node@v4
+        with:
+          node-version: lts/*
+      - if: hashFiles('pnpm-lock.yaml') != ''
+        run: corepack enable
+
+      # A tag can point at a commit CI never saw.
+      - name: Check
+        run: scripts/check
+
+      - name: Build
+        run: |
+          mkdir -p dist
+          if [ -x scripts/build ]; then scripts/build; fi
+
+      - name: Draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          flags="--draft --generate-notes --verify-tag"
+          case "$GITHUB_REF_NAME" in *-*) flags="$flags --prerelease" ;; esac
+          files=$(find dist -maxdepth 1 -type f)
+          # shellcheck disable=SC2086
+          gh release create "$GITHUB_REF_NAME" $flags --title "$GITHUB_REF_NAME" $files
