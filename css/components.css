@@ -1,4 +1,4 @@
-/* Signal 0.1.2: shared components. Load after signal.css.
+/* Signal: shared components. Load after signal.css.
    Plain classes, no framework. Every value is a --sg-* custom property; off-scale optical values
    from Overview's build are written as sums of tokens (for example 7px = space-6 + hairline).
    The keycap (kbd, .sg-kbd) lives in signal.css because it is a base element. */
@@ -34,9 +34,12 @@
   padding: 0 var(--sg-space-8);
   color: var(--sg-text-secondary);
   background: none;
-  border-color: transparent;
+  border-width: 0;
 }
-.sg-btn--ghost:hover { color: var(--sg-text-primary); background: var(--sg-state-hover-control); border-color: transparent; }
+.sg-btn--ghost:hover { color: var(--sg-text-primary); background: var(--sg-state-hover-control); }
+.sg-btn.sg-btn--lg { height: var(--sg-size-control-lg); padding-inline: var(--sg-space-12); }
+.sg-btn.sg-btn--icon { width: var(--sg-size-control-md); padding: 0; justify-content: center; }
+.sg-btn.is-armed { color: var(--sg-status-err-fg); border-color: var(--sg-status-err-border); }
 .sg-btn:disabled, .sg-btn[aria-disabled="true"] {
   color: var(--sg-text-disabled);
   background: var(--sg-surface-sunken);
@@ -56,6 +59,124 @@
   border-radius: var(--sg-radius-sm);
 }
 
+/* Button variant: a tag that acts, such as "esc". */
+.sg-tag--button {
+  appearance: none;
+  margin: 0;
+  padding: calc(var(--sg-space-2) + var(--sg-border-width-hairline)) calc(var(--sg-space-6) + var(--sg-border-width-hairline));
+  background: none;
+  border-radius: var(--sg-radius-box);
+  cursor: pointer;
+  transition: color var(--sg-duration-fast), border-color var(--sg-duration-fast);
+}
+.sg-tag--button:hover { color: var(--sg-text-primary); border-color: var(--sg-border-default); }
+
+/* ------------------------------------------------------------------ icon button
+   24px square, borderless; --bordered is the 22px bordered variant that appears on a row. */
+.sg-icon-btn {
+  appearance: none;
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: var(--sg-size-control-sm);
+  height: var(--sg-size-control-sm);
+  margin: 0;
+  padding: 0;
+  color: var(--sg-text-secondary);
+  background: none;
+  border: 0;
+  border-radius: var(--sg-radius-sm);
+  cursor: pointer;
+  transition: background-color var(--sg-duration-fast), border-color var(--sg-duration-fast), color var(--sg-duration-fast);
+}
+.sg-icon-btn:hover { color: var(--sg-text-primary); background: var(--sg-state-hover-control); }
+.sg-icon-btn--bordered {
+  width: var(--sg-size-control-xs);
+  height: var(--sg-size-control-xs);
+  background: var(--sg-surface-raised);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-md);
+}
+.sg-icon-btn--bordered:hover { background: var(--sg-surface-raised); border-color: var(--sg-border-strong); }
+.sg-icon-btn--bordered > svg { width: var(--sg-size-icon-xs); height: var(--sg-size-icon-xs); }
+
+/* ------------------------------------------------------------------ switch
+   A track and knob drawn inside the control that owns the state: set aria-pressed or aria-checked on
+   the parent, or .is-on on the switch. */
+.sg-switch {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  width: var(--sg-size-switch-w);
+  height: var(--sg-size-switch-h);
+  background: var(--sg-border-default);
+  border-radius: var(--sg-radius-full);
+  transition: background-color var(--sg-duration-base);
+}
+.sg-switch::after {
+  content: "";
+  position: absolute;
+  top: var(--sg-space-2);
+  left: var(--sg-space-2);
+  width: var(--sg-size-switch-knob);
+  height: var(--sg-size-switch-knob);
+  background: var(--sg-text-secondary);
+  border-radius: var(--sg-radius-full);
+  transition: transform var(--sg-duration-base);
+}
+.sg-switch.is-on, [aria-pressed="true"] > .sg-switch, [aria-checked="true"] > .sg-switch { background: var(--sg-accent-border); }
+.sg-switch.is-on::after, [aria-pressed="true"] > .sg-switch::after, [aria-checked="true"] > .sg-switch::after {
+  background: var(--sg-text-primary);
+  transform: translateX(calc(var(--sg-size-switch-w) - var(--sg-size-switch-knob) - 2 * var(--sg-space-2)));
+}
+
+/* ------------------------------------------------------------------ checkbox
+   16px box with a check inside. Done state: aria-checked, .is-checked, or a .is-done row. */
+.sg-checkbox {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  align-self: start;
+  width: var(--sg-size-icon-lg);
+  height: var(--sg-size-icon-lg);
+  margin-top: var(--sg-border-width-hairline);
+  border: var(--sg-border-width-control) solid var(--sg-border-strong);
+  border-radius: var(--sg-radius-box);
+  transition: background-color var(--sg-duration-fast), border-color var(--sg-duration-fast);
+}
+.sg-checkbox:hover { border-color: var(--sg-text-primary); }
+.sg-checkbox > svg { width: var(--sg-space-10); height: var(--sg-space-10); opacity: 0; }
+.sg-checkbox.is-checked, .sg-checkbox[aria-checked="true"], .is-done .sg-checkbox {
+  background: var(--sg-status-done-fg);
+  border-color: var(--sg-status-done-fg);
+}
+.sg-checkbox.is-checked > svg, .sg-checkbox[aria-checked="true"] > svg, .is-done .sg-checkbox > svg { opacity: 1; }
+
+/* ------------------------------------------------------------------ filter chip
+   26px mono toggle with a count; pressed gets the accent fill. */
+.sg-chip {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sg-space-6);
+  height: var(--sg-size-button);
+  margin: 0;
+  padding: 0 calc(var(--sg-space-8) + var(--sg-border-width-hairline)) 0 calc(var(--sg-space-6) + var(--sg-border-width-hairline));
+  font: var(--sg-type-control);
+  font-variant-numeric: tabular-nums;
+  color: var(--sg-text-secondary);
+  background: none;
+  border: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+  border-radius: var(--sg-radius-lg);
+  cursor: pointer;
+  transition: border-color var(--sg-duration-fast), background-color var(--sg-duration-fast);
+}
+.sg-chip:hover { color: var(--sg-text-primary); border-color: var(--sg-border-default); }
+.sg-chip > b { font-weight: var(--sg-font-weight-medium); color: var(--sg-text-primary); }
+.sg-chip[aria-pressed="true"] { color: var(--sg-text-primary); background: var(--sg-accent-bg); border-color: var(--sg-accent-border); }
+.sg-chip.is-zero, .sg-chip.is-zero > b { color: var(--sg-text-subtle); }
+
 /* ------------------------------------------------------------------ count badge
    Solid needs-you fill with the waiting count. */
 .sg-badge {
@@ -74,17 +195,21 @@
 }
 
 /* ------------------------------------------------------------------ tabs (underline)
-   Mono 12px, subtle; hover and selected go to ink; selected gets a 2px ink underline on the divider. */
+   Equal cells across the bar. Mono 12px, subtle; hover and selected go to ink; selected gets a 2px ink
+   underline on the divider. */
 .sg-tabs {
   display: flex;
-  gap: var(--sg-space-16);
   height: var(--sg-size-tab-bar);
-  padding: 0 var(--sg-space-16);
   border-bottom: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
 }
 .sg-tab {
   appearance: none;
   position: relative;
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sg-space-6);
   height: var(--sg-size-tab-bar);
   margin: 0;
   padding: 0;
@@ -97,6 +222,7 @@
   transition: color var(--sg-duration-fast);
 }
 .sg-tab:hover, .sg-tab[aria-selected="true"] { color: var(--sg-text-primary); }
+.sg-tab__count { font: var(--sg-type-meta); font-variant-numeric: tabular-nums; color: var(--sg-text-subtle); }
 .sg-tab[aria-selected="true"]::after {
   content: "";
   position: absolute;
@@ -108,18 +234,22 @@
 }
 
 /* ------------------------------------------------------------------ section head
-   Uppercase mono 11px, always with the list's count ("needs you · 2"). */
+   Uppercase mono 11px, always with the list's count ("needs you · 2"). --wait, --err and --done tint
+   the label; the count stays ink. */
 .sg-section-head {
   display: flex;
-  justify-content: space-between;
-  gap: var(--sg-space-8);
-  margin: var(--sg-space-16) var(--sg-space-4) var(--sg-space-8);
+  align-items: center;
+  gap: calc(var(--sg-space-6) + var(--sg-border-width-hairline));
+  margin: var(--sg-space-16) var(--sg-space-10) var(--sg-space-8);
   font: var(--sg-type-section);
   letter-spacing: var(--sg-type-section-tracking);
   text-transform: uppercase;
   color: var(--sg-text-subtle);
 }
-.sg-section-head > :last-child:not(:first-child) { text-transform: none; letter-spacing: 0; }
+.sg-section-head__count { color: var(--sg-text-primary); letter-spacing: 0; }
+.sg-section-head--wait { color: var(--sg-status-wait-fg); }
+.sg-section-head--err { color: var(--sg-status-err-fg); }
+.sg-section-head--done { color: var(--sg-status-done-fg); }
 
 /* ------------------------------------------------------------------ attention card
    Needs-you only: the one tinted container. Title, agent line, yellow status line with diamond
@@ -139,6 +269,8 @@
   border-color: transparent;
   box-shadow: 0 0 0 var(--sg-border-width-thick) var(--sg-border-focus);
 }
+.sg-attn--err { background: var(--sg-status-err-bg); border-color: var(--sg-status-err-border); }
+.sg-attn--err .sg-attn__status { color: var(--sg-status-err-fg); }
 .sg-attn__title { font: var(--sg-type-title); text-wrap: balance; }
 .sg-attn__meta { font: var(--sg-type-meta); color: var(--sg-text-subtle); }
 .sg-attn__status {
@@ -159,24 +291,29 @@
 }
 .sg-attn__cmd { font: var(--sg-type-code); color: var(--sg-text-primary); overflow-wrap: anywhere; }
 .sg-attn__question { font: var(--sg-type-body); }
-.sg-attn__actions { display: flex; flex-wrap: wrap; gap: var(--sg-space-6); margin-top: var(--sg-space-2); }
+.sg-attn__where { margin-top: var(--sg-space-2); font: var(--sg-type-meta); color: var(--sg-text-subtle); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sg-attn__actions { display: flex; flex-wrap: wrap; gap: var(--sg-space-6); margin-top: var(--sg-space-10); }
 /* The "$" before a command: the one place faint text is allowed. */
 .sg-prompt { font-style: normal; color: var(--sg-text-disabled); }
 
 /* ------------------------------------------------------------------ list row
-   14px status glyph, title, right-aligned age, a meta line beneath. */
+   Status glyph, title, right-aligned age, a meta line beneath. The lead column, insets and row gap come
+   from --sg-row-* properties, which .sg-group overrides for the roomier grouped list. */
 .sg-row {
   display: grid;
-  grid-template-columns: var(--sg-size-icon-md) minmax(0, 1fr) auto;
-  column-gap: var(--sg-space-8);
-  row-gap: var(--sg-border-width-hairline);
+  grid-template-columns: var(--sg-row-lead, var(--sg-size-icon-md)) minmax(0, 1fr) auto;
+  column-gap: var(--sg-row-lead-gap, var(--sg-space-8));
+  row-gap: var(--sg-row-gap, var(--sg-border-width-hairline));
   align-items: baseline;
-  padding: var(--sg-space-6) var(--sg-space-4);
+  padding: var(--sg-row-pad-y, var(--sg-space-8)) var(--sg-row-pad-x, var(--sg-space-10));
   color: var(--sg-text-primary);
   border-radius: var(--sg-radius-md);
+  transition: background-color var(--sg-duration-fast);
 }
+:where(button).sg-row { appearance: none; width: 100%; font: inherit; text-align: left; background: none; border: 0; }
 .sg-row:is(a, button, [tabindex]) { cursor: pointer; }
 .sg-row:hover { background: var(--sg-state-hover); }
+.sg-row.is-open { background: var(--sg-surface-sunken); }
 /* Hover never stacks on selected. */
 .sg-row.is-selected, .sg-row[aria-selected="true"], .sg-row:focus-visible {
   outline: none;
@@ -185,9 +322,20 @@
 }
 .sg-row > svg { align-self: center; }
 .sg-row__title { font: var(--sg-type-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.sg-row__age { font: var(--sg-type-meta); font-variant-numeric: tabular-nums; color: var(--sg-text-subtle); white-space: nowrap; }
+.sg-row__title--mono { font-family: var(--sg-font-mono); font-size: var(--sg-type-body-size); }
+.sg-row__age {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sg-space-8);
+  font: var(--sg-type-meta);
+  font-variant-numeric: tabular-nums;
+  color: var(--sg-text-subtle);
+  white-space: nowrap;
+  text-align: right;
+}
 .sg-row__meta {
-  grid-column: 2 / 4;
+  grid-column: 2 / -1;
   font: var(--sg-type-meta);
   color: var(--sg-text-subtle);
   white-space: nowrap;
@@ -195,16 +343,231 @@
   text-overflow: ellipsis;
 }
 .sg-row--err .sg-row__meta { color: var(--sg-status-err-fg); }
+.sg-row__summary { grid-column: 2 / -1; font: var(--sg-type-body-small); color: var(--sg-text-secondary); }
+.sg-row__summary > b { margin-right: var(--sg-space-6); font-weight: var(--sg-font-weight-medium); color: var(--sg-text-primary); }
+.sg-row--blocked .sg-row__summary > b { color: var(--sg-status-wait-fg); }
+.sg-row__where {
+  grid-column: 2 / -1;
+  margin-top: var(--sg-space-4);
+  font: var(--sg-type-meta);
+  color: var(--sg-text-subtle);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.sg-row__actions { grid-column: 2 / -1; display: flex; flex-wrap: wrap; gap: var(--sg-space-6); margin-top: var(--sg-space-8); }
+.sg-row__hint {
+  grid-column: 2 / -1;
+  display: flex;
+  align-items: center;
+  gap: var(--sg-space-6);
+  font: var(--sg-type-meta);
+  color: var(--sg-status-done-fg);
+}
+
+/* The opened row: where it runs and what you can do, under a hairline. */
+.sg-row__details {
+  grid-column: 2 / -1;
+  display: grid;
+  gap: calc(var(--sg-space-4) + var(--sg-border-width-hairline));
+  margin-top: var(--sg-space-10);
+  padding-top: var(--sg-space-10);
+  border-top: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+}
+.sg-row__details > .sg-row__actions { margin-top: var(--sg-space-6); }
+.sg-detail {
+  display: grid;
+  grid-template-columns: var(--sg-size-label-sm) minmax(0, 1fr);
+  font: var(--sg-type-body-small);
+  color: var(--sg-text-secondary);
+}
+.sg-detail__label { padding-top: var(--sg-border-width-hairline); font: var(--sg-type-meta); color: var(--sg-text-subtle); }
+
+/* The age and a control share one spot: the age by default, the control while the row is hovered or
+   focused. On touch both stay visible. */
+.sg-row__age:has(> .sg-row__reveal) { min-width: var(--sg-size-control-xs); justify-content: flex-end; }
+.sg-row__reveal {
+  position: absolute;
+  right: var(--sg-reveal-inset, calc(-1 * (var(--sg-space-2) + var(--sg-border-width-hairline))));
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--sg-duration-fast), background-color var(--sg-duration-fast), border-color var(--sg-duration-fast), color var(--sg-duration-fast);
+}
+.sg-row:is(:hover, :focus-within, .is-hovered) > .sg-row__age > .sg-row__reveal { opacity: 1; pointer-events: auto; }
+.sg-row:is(:hover, :focus-within, .is-hovered) > .sg-row__age > .sg-row__age-value { opacity: 0; }
+@media (hover: none) {
+  .sg-row__reveal { position: static; transform: none; opacity: 1; pointer-events: auto; margin-left: var(--sg-space-6); }
+  .sg-row__age > .sg-row__age-value { opacity: 1 !important; }
+}
+
+/* ------------------------------------------------------------------ grouped list
+   One bordered container: a head with a toggle, then rows on a roomier grid (12 x 14 inset, 10 from lead
+   to text), separated by hairlines. Never cards inside it. Add --wait for the needs-you group and
+   .is-collapsed to fold the body. */
+.sg-group {
+  --sg-row-pad-y: var(--sg-space-12);
+  --sg-row-pad-x: var(--sg-space-14);
+  --sg-row-lead-gap: var(--sg-space-10);
+  --sg-row-gap: calc(var(--sg-space-2) + var(--sg-border-width-hairline));
+  margin-top: var(--sg-space-12);
+  scroll-margin-top: calc(var(--sg-space-48) + var(--sg-space-32) + var(--sg-space-4));
+  background: var(--sg-surface-base);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-lg);
+  overflow: hidden;
+}
+.sg-group__head { display: flex; align-items: center; gap: var(--sg-space-8); min-height: var(--sg-size-group-head); padding: 0 var(--sg-space-8) 0 var(--sg-row-pad-x); }
+.sg-group:not(.is-collapsed) > .sg-group__head { border-bottom: var(--sg-border-width-hairline) solid var(--sg-border-subtle); }
+.sg-group--wait > .sg-group__head { background: var(--sg-status-wait-bg); }
+.sg-group__toggle {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sg-row-lead-gap);
+  flex: 1;
+  min-width: 0;
+  height: var(--sg-size-group-head);
+  margin: 0;
+  padding: 0;
+  font: var(--sg-type-section);
+  letter-spacing: var(--sg-type-section-tracking);
+  text-transform: uppercase;
+  text-align: left;
+  color: var(--sg-text-secondary);
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.sg-group__toggle:hover { color: var(--sg-text-primary); }
+.sg-group--wait > .sg-group__head .sg-group__toggle { color: var(--sg-status-wait-fg); }
+.sg-group__toggle > .sg-icon { width: var(--sg-row-lead, var(--sg-size-icon-md)); }
+.sg-group__toggle > span:not(.sg-group__count) { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sg-group__count { color: var(--sg-text-primary); letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.sg-group__chevron {
+  flex: none;
+  width: var(--sg-size-icon-sm);
+  height: var(--sg-size-icon-sm);
+  color: var(--sg-text-subtle);
+  transition: transform var(--sg-duration-disclosure);
+}
+.sg-group.is-collapsed .sg-group__chevron { transform: rotate(-90deg); }
+.sg-group.is-collapsed > .sg-group__body { display: none; }
+.sg-group__action {
+  appearance: none;
+  height: var(--sg-size-control-sm);
+  margin: 0;
+  padding: 0 var(--sg-space-8);
+  font: var(--sg-type-meta);
+  color: var(--sg-text-secondary);
+  background: var(--sg-surface-raised);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-md);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--sg-duration-fast), color var(--sg-duration-fast), border-color var(--sg-duration-fast);
+}
+.sg-group__head:is(:hover, :focus-within, .is-hovered) .sg-group__action { opacity: 1; }
+.sg-group__action:hover { color: var(--sg-text-primary); border-color: var(--sg-border-strong); }
+.sg-group__action.is-armed { opacity: 1; color: var(--sg-status-err-fg); border-color: var(--sg-status-err-border); }
+@media (hover: none) { .sg-group__action { opacity: 1; } }
+
+.sg-group .sg-row { border-radius: 0; }
+.sg-group .sg-row + .sg-row { border-top: var(--sg-border-width-hairline) solid var(--sg-border-subtle); }
+.sg-group .sg-row > svg { align-self: start; margin-top: calc(var(--sg-space-2) + var(--sg-border-width-hairline)); }
+.sg-group .sg-row:focus-visible {
+  background: none;
+  box-shadow: none;
+  outline: var(--sg-border-width-thick) solid var(--sg-border-focus);
+  outline-offset: calc(-1 * var(--sg-border-width-thick));
+}
+.sg-group .sg-row__title { font: var(--sg-type-item-title); text-wrap: balance; white-space: normal; overflow: visible; text-overflow: clip; }
+.sg-group .sg-row__title--mono { font-family: var(--sg-font-mono); font-size: var(--sg-type-body-size); }
+.sg-group .sg-row__title--clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.sg-group--wait .sg-icon-btn--bordered {
+  color: var(--sg-text-primary);
+  background: color-mix(in srgb, var(--sg-accent-fg) 14%, var(--sg-surface-base));
+  border-color: var(--sg-accent-border);
+}
+.sg-group--wait .sg-icon-btn--bordered:hover { background: color-mix(in srgb, var(--sg-accent-fg) 22%, var(--sg-surface-base)); }
+
+/* Task row: a checkbox leads, the remove button takes the age's place on hover. */
+.sg-row--task { --sg-row-lead: var(--sg-size-icon-lg); --sg-reveal-inset: calc(-1 * var(--sg-space-6)); cursor: default; }
+.sg-row--task.is-linked { cursor: pointer; }
+.sg-group .sg-row--task .sg-row__title { font-weight: var(--sg-font-weight-regular); cursor: pointer; }
+.sg-row--task.is-done .sg-row__title { color: var(--sg-text-subtle); text-decoration: line-through; text-decoration-color: var(--sg-text-disabled); }
+.sg-row--task .sg-row__meta { display: flex; align-items: center; gap: var(--sg-space-6); }
+.sg-row--task .sg-row__meta .sg-icon { width: var(--sg-size-icon-xs); height: var(--sg-size-icon-xs); }
+.sg-row--task .sg-row__reveal.sg-icon-btn { border-radius: var(--sg-radius-box); background: var(--sg-surface-base); }
+.sg-row--task:hover .sg-row__reveal.sg-icon-btn { background: var(--sg-state-hover); }
+.sg-row--task .sg-row__reveal.sg-icon-btn:hover { background: var(--sg-state-hover-control); color: var(--sg-text-primary); }
+
+/* A session list nested in an opened row: compact two-line items, no separators. Every part is placed
+   explicitly, so a two-row icon or age never pushes the title out of its column. */
+.sg-row__children { grid-column: 2 / -1; display: grid; gap: var(--sg-space-2); margin: var(--sg-space-8) calc(-1 * var(--sg-space-8)) 0; }
+.sg-group .sg-row__children > .sg-row,
+.sg-group .sg-row__children > .sg-row + .sg-row {
+  padding: var(--sg-space-8) var(--sg-space-12) var(--sg-space-8) var(--sg-space-8);
+  border-top: 0;
+  border-radius: var(--sg-radius-md);
+}
+.sg-row__children > .sg-row > svg { grid-column: 1; grid-row: 1 / span 2; align-self: center; margin-top: 0; }
+.sg-row__children > .sg-row > .sg-row__title { grid-column: 2; grid-row: 1; }
+.sg-row__children > .sg-row > .sg-row__age { grid-column: 3; grid-row: 1 / span 2; align-self: center; }
+.sg-row__children > .sg-row > .sg-row__meta { grid-column: 2; grid-row: 2; }
+.sg-row__children > .sg-row > .sg-row__details { grid-column: 2 / -1; grid-row: 3; }
+
+/* Menu row: the compact row inside a popover. */
+.sg-row--menu { padding: var(--sg-space-8) var(--sg-space-10); border-radius: var(--sg-radius-md); }
+.sg-row--menu:hover { background: var(--sg-state-hover-control); }
+
+/* ------------------------------------------------------------------ stat strip
+   Cells with a count over a label; each jumps to a group. --wait tints the needs-you cell. */
+.sg-stats { display: flex; gap: var(--sg-space-6); }
+.sg-stat {
+  appearance: none;
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--sg-space-2);
+  margin: 0;
+  padding: calc(var(--sg-space-6) + var(--sg-border-width-hairline)) var(--sg-space-8) var(--sg-space-8);
+  text-align: left;
+  color: var(--sg-text-primary);
+  background: none;
+  border: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+  border-radius: var(--sg-radius-lg);
+  cursor: pointer;
+  transition: border-color var(--sg-duration-fast), background-color var(--sg-duration-fast);
+}
+.sg-stat:hover { border-color: var(--sg-border-default); background: var(--sg-state-hover); }
+.sg-stat__value { font: var(--sg-type-figure); font-variant-numeric: tabular-nums; }
+.sg-stat__label { max-width: 100%; font: var(--sg-type-meta); color: var(--sg-text-subtle); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.sg-stat.sg-stat--wait { background: var(--sg-status-wait-bg); border-color: var(--sg-status-wait-border); }
+.sg-stat--wait .sg-stat__value, .sg-stat--wait .sg-stat__label { color: var(--sg-status-wait-fg); }
+.sg-stat.is-zero .sg-stat__value { color: var(--sg-text-subtle); }
+
+/* ------------------------------------------------------------------ summary
+   Labelled lines, what it needs from you first. */
+.sg-row > .sg-summary { grid-column: 2 / -1; }
+.sg-summary { display: grid; gap: calc(var(--sg-space-2) + var(--sg-border-width-hairline)); margin-top: var(--sg-space-6); }
+.sg-summary__line { font: var(--sg-type-body-small); color: var(--sg-text-secondary); }
+.sg-summary__line > b { margin-right: var(--sg-space-8); font: var(--sg-type-meta); font-weight: var(--sg-font-weight-medium); color: var(--sg-text-subtle); }
+.sg-summary__line.is-need { color: var(--sg-text-primary); }
+.sg-summary__line.is-need > b { color: var(--sg-status-wait-fg); }
 
 /* ------------------------------------------------------------------ status bar and its items
    Counts per status, each in its status colour with its glyph (running stays secondary and lets its
-   glyph carry the colour), key hints centred in subtle, hosts at the right led by a done dot. */
+   glyph carry the colour), hosts led by a done dot. Items are 22px buttons that open a popover. */
 .sg-statusbar {
   display: flex;
   align-items: center;
-  gap: calc(var(--sg-space-12) + var(--sg-space-2));
+  gap: var(--sg-space-2);
   height: var(--sg-size-status-bar);
-  padding: 0 var(--sg-space-12);
+  padding: 0 var(--sg-space-6);
   font: var(--sg-type-status);
   color: var(--sg-text-secondary);
   white-space: nowrap;
@@ -213,16 +576,26 @@
   border-top: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
 }
 .sg-statusbar__keys { margin-inline: auto; overflow: hidden; text-overflow: ellipsis; color: var(--sg-text-subtle); }
+.sg-statusbar__spacer { flex: 1; }
 .sg-status-item {
   display: inline-flex;
   align-items: center;
   gap: calc(var(--sg-space-4) + var(--sg-border-width-hairline));
+  height: var(--sg-size-control-xs);
+  padding: 0 calc(var(--sg-space-6) + var(--sg-border-width-hairline));
   font-variant-numeric: tabular-nums;
+  border-radius: var(--sg-radius-sm);
+  transition: background-color var(--sg-duration-fast), color var(--sg-duration-fast);
 }
+:where(button).sg-status-item { appearance: none; margin: 0; font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+.sg-status-item:is(button, a, [tabindex]):hover, .sg-status-item[aria-expanded="true"] { background: var(--sg-state-hover-control); }
+.sg-status-item--brand { color: var(--sg-text-primary); }
 .sg-status-item--wait { color: var(--sg-status-wait-fg); }
 .sg-status-item--done { color: var(--sg-status-done-fg); }
 .sg-status-item--err { color: var(--sg-status-err-fg); }
 .sg-status-item--idle { color: var(--sg-status-idle-fg); }
+.sg-status-item:is(button, a, [tabindex]):hover:not(.sg-status-item--wait, .sg-status-item--done, .sg-status-item--err, .sg-status-item--idle),
+.sg-status-item[aria-expanded="true"]:not(.sg-status-item--wait, .sg-status-item--done, .sg-status-item--err, .sg-status-item--idle) { color: var(--sg-text-primary); }
 .sg-status-host { display: inline-flex; align-items: center; gap: calc(var(--sg-space-4) + var(--sg-border-width-hairline)); }
 .sg-status-host::before {
   content: "";
@@ -237,7 +610,7 @@
 .sg-tooltip {
   width: max-content;
   max-width: var(--sg-size-tooltip-max-w);
-  padding: calc(var(--sg-space-6) + var(--sg-border-width-hairline)) calc(var(--sg-space-8) + var(--sg-border-width-hairline));
+  padding: var(--sg-space-8) var(--sg-space-12);
   color: var(--sg-text-primary);
   background: var(--sg-surface-overlay);
   border: var(--sg-border-width-hairline) solid var(--sg-border-default);
@@ -245,16 +618,18 @@
   box-shadow: var(--sg-shadow-tooltip);
   z-index: var(--sg-z-tooltip);
 }
+.sg-tooltip__kicker { font: var(--sg-type-meta); color: var(--sg-text-subtle); }
 .sg-tooltip__title { font: var(--sg-type-body-strong); }
+.sg-tooltip__kicker + .sg-tooltip__title { margin-top: var(--sg-space-2); }
 .sg-tooltip__meta {
   display: flex;
   align-items: center;
   gap: var(--sg-space-6);
-  margin-top: var(--sg-space-2);
+  margin-top: var(--sg-space-4);
   font: var(--sg-type-meta);
   color: var(--sg-text-secondary);
 }
-.sg-tooltip__code { margin-top: calc(var(--sg-space-4) + var(--sg-border-width-hairline)); font: var(--sg-type-control); color: var(--sg-text-primary); }
+.sg-tooltip__code { margin-top: var(--sg-space-8); font: var(--sg-type-control); color: var(--sg-text-primary); }
 
 /* ------------------------------------------------------------------ toast
    Confirms what you just did. 220ms in and out; the app hides it after duration.toastMin. */
@@ -305,28 +680,28 @@
   transition: background-color var(--sg-duration-fast), color var(--sg-duration-fast);
 }
 .sg-segmented > button { cursor: pointer; }
-.sg-segmented > * + * { border-left: var(--sg-border-width-hairline) solid var(--sg-border-subtle); }
+.sg-segmented > :is(button, output) + :is(button, output) { border-left: var(--sg-border-width-hairline) solid var(--sg-border-subtle); }
 .sg-segmented > output { min-width: calc(var(--sg-space-48) - var(--sg-space-2)); color: var(--sg-text-primary); font-variant-numeric: tabular-nums; }
-.sg-segmented > button:hover { color: var(--sg-text-primary); background: var(--sg-state-hover-control); }
+.sg-segmented > button:hover, .sg-segmented > button[aria-expanded="true"] { color: var(--sg-text-primary); background: var(--sg-state-hover-control); }
 .sg-segmented > button:focus-visible { outline-offset: calc(-1 * var(--sg-border-width-thick)); }
 .sg-segmented svg { width: var(--sg-size-icon-sm); height: var(--sg-size-icon-sm); }
 
 /* ------------------------------------------------------------------ map label
-   18px on the label scrim: name in ink 500, sub-text in subtle. Machine labels add a border and a
+   Even padding on the label scrim: name in ink 500, sub-text in subtle. Machine labels add a border and a
    count badge; a dragged plate label gets an accent border. */
 .sg-map-label {
   display: inline-flex;
   align-items: center;
   gap: var(--sg-space-6);
-  height: var(--sg-size-map-label);
-  padding: 0 calc(var(--sg-space-4) + var(--sg-border-width-hairline));
+  padding: var(--sg-space-4);
   font: var(--sg-type-map-label);
+  line-height: 1;
   font-weight: var(--sg-font-weight-regular);
   color: var(--sg-text-subtle);
   white-space: nowrap;
   background: var(--sg-overlay-label);
   border: var(--sg-border-width-hairline) solid transparent;
-  border-radius: var(--sg-radius-sm);
+  border-radius: var(--sg-radius-md);
 }
 .sg-map-label > b, .sg-map-label__name { font-weight: var(--sg-font-weight-medium); color: var(--sg-text-primary); }
 .sg-map-label--machine { border-color: var(--sg-border-default); }
@@ -381,6 +756,7 @@
   height: var(--sg-size-icon-sm);
   vertical-align: calc(-1 * var(--sg-border-width-hairline));
 }
+.sg-icon--xs { width: var(--sg-size-icon-xs); height: var(--sg-size-icon-xs); }
 .sg-tone-run { color: var(--sg-status-run-fg); }
 .sg-tone-wait { color: var(--sg-status-wait-fg); }
 .sg-tone-done { color: var(--sg-status-done-fg); }
@@ -388,9 +764,11 @@
 .sg-tone-idle { color: var(--sg-status-idle-fg); }
 .sg-tone-you { color: var(--sg-accent-fg); }
 
-/* Input: single-line text field. The outline uses border.control so the field's edge reaches 3:1. */
+/* ------------------------------------------------------------------ input
+   Single-line text field, 30px. The outline uses border.control so the field's edge reaches 3:1.
+   --edit is the inline rename field: 28px with the accent border always on. */
 .sg-input {
-  height: var(--sg-size-control-md);
+  height: var(--sg-size-control-lg);
   min-width: 0;
   padding: 0 var(--sg-space-10);
   border: var(--sg-border-width-hairline) solid var(--sg-border-control);
@@ -401,3 +779,220 @@
 }
 .sg-input::placeholder { color: var(--sg-text-subtle); }
 .sg-input:focus { outline: none; border-color: var(--sg-accent-border); }
+.sg-input--edit {
+  height: var(--sg-size-control-md);
+  padding: 0 var(--sg-space-8);
+  font: var(--sg-type-title);
+  font-weight: var(--sg-font-weight-regular);
+  border-color: var(--sg-accent-border);
+}
+.sg-input--edit:focus-visible { outline: var(--sg-border-width-thick) solid var(--sg-border-focus); outline-offset: var(--sg-size-focus-offset); }
+
+/* ------------------------------------------------------------------ running glyph
+   The six dots light one after another, clockwise, each fading behind the next. Set --sg-run-phase on
+   an icon to desynchronise several. Static under reduced motion. */
+@keyframes sg-run-dot { 0% { opacity: 1; } 30% { opacity: 0.55; } 50%, 100% { opacity: 0.25; } }
+.sg-icon.sg-tone-run circle { opacity: 0.25; animation: sg-run-dot var(--sg-duration-pulse) linear infinite; }
+.sg-icon.sg-tone-run circle:nth-child(1) { animation-delay: var(--sg-run-phase, 0s); }
+.sg-icon.sg-tone-run circle:nth-child(2) { animation-delay: calc(var(--sg-run-phase, 0s) + var(--sg-duration-pulse) / 6); }
+.sg-icon.sg-tone-run circle:nth-child(4) { animation-delay: calc(var(--sg-run-phase, 0s) + var(--sg-duration-pulse) / 6 * 2); }
+.sg-icon.sg-tone-run circle:nth-child(6) { animation-delay: calc(var(--sg-run-phase, 0s) + var(--sg-duration-pulse) / 6 * 3); }
+.sg-icon.sg-tone-run circle:nth-child(5) { animation-delay: calc(var(--sg-run-phase, 0s) + var(--sg-duration-pulse) / 6 * 4); }
+.sg-icon.sg-tone-run circle:nth-child(3) { animation-delay: calc(var(--sg-run-phase, 0s) + var(--sg-duration-pulse) / 6 * 5); }
+@media (prefers-reduced-motion: reduce) { :root:not([data-motion="full"]) .sg-icon.sg-tone-run circle { opacity: 1; } }
+[data-motion="reduce"] .sg-icon.sg-tone-run circle { opacity: 1; }
+
+/* ------------------------------------------------------------------ flash
+   A short accent wash that marks where a click landed, then settles. */
+@keyframes sg-flash { from { box-shadow: inset 0 0 0 var(--sg-border-width-hairline) var(--sg-accent-border); background-color: var(--sg-accent-bg); } }
+.sg-flash { animation: sg-flash var(--sg-duration-flash) var(--sg-easing-settle); }
+
+/* ------------------------------------------------------------------ connection dot
+   8px: done is connected, err is offline, --pulse is connecting. */
+@keyframes sg-pulse { 50% { opacity: 0.35; } }
+.sg-dot {
+  display: inline-block;
+  flex: none;
+  width: var(--sg-size-dot-lg);
+  height: var(--sg-size-dot-lg);
+  background: var(--sg-text-subtle);
+  border-radius: var(--sg-radius-full);
+}
+.sg-dot--done { background: var(--sg-status-done-fg); }
+.sg-dot--err { background: var(--sg-status-err-fg); }
+.sg-dot--pulse { animation: sg-pulse var(--sg-duration-pulse) ease-in-out infinite; }
+
+/* ------------------------------------------------------------------ link button
+   Inherits the surrounding type; underlines on hover. --underlined keeps a faint underline at rest. */
+.sg-link {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  font: inherit;
+  text-align: left;
+  color: var(--sg-text-secondary);
+  background: none;
+  border: 0;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: calc(var(--sg-space-2) + var(--sg-border-width-hairline));
+  cursor: pointer;
+  transition: text-decoration-color var(--sg-duration-fast), color var(--sg-duration-fast);
+}
+.sg-link:hover { color: var(--sg-text-primary); text-decoration-color: var(--sg-border-strong); }
+.sg-link--subtle { color: var(--sg-text-subtle); }
+.sg-link--underlined { text-decoration-color: var(--sg-text-disabled); text-underline-offset: var(--sg-space-2); }
+.sg-link.is-armed { color: var(--sg-status-err-fg); text-decoration-color: var(--sg-status-err-fg); }
+
+/* ------------------------------------------------------------------ empty state
+   The message centred in a quiet dashed frame. --fill stretches it to its container. */
+.sg-empty {
+  display: grid;
+  place-items: center;
+  min-height: var(--sg-size-empty-min-h);
+  margin: var(--sg-space-4) 0 var(--sg-space-10);
+  padding: var(--sg-space-16);
+  font: var(--sg-type-body-small);
+  line-height: 1.6;
+  text-align: center;
+  color: var(--sg-text-subtle);
+  border: var(--sg-border-width-hairline) dashed var(--sg-border-default);
+  border-radius: var(--sg-radius-lg);
+}
+.sg-empty--fill { min-height: 0; height: calc(100% - var(--sg-space-24)); margin: var(--sg-space-12) 0; }
+
+/* ------------------------------------------------------------------ lead and key-value
+   Intro sentence under a heading, and a label/value list. */
+.sg-lead { max-width: 60ch; margin: 0 0 var(--sg-space-14); font: var(--sg-type-body); color: var(--sg-text-secondary); }
+.sg-kv { display: grid; grid-template-columns: var(--sg-size-label-md) minmax(0, 1fr); gap: var(--sg-space-10) var(--sg-space-16); font: var(--sg-type-body); }
+.sg-kv__label { padding-top: var(--sg-space-2); font: var(--sg-type-meta); color: var(--sg-text-subtle); }
+.sg-kv__value { font-weight: var(--sg-font-weight-regular); color: var(--sg-text-secondary); }
+
+/* ------------------------------------------------------------------ card
+   Quiet bordered block with a lead column: an index, a title, a body, then actions. */
+.sg-card {
+  display: grid;
+  grid-template-columns: var(--sg-size-icon-lg) minmax(0, 1fr);
+  gap: var(--sg-space-4) var(--sg-space-10);
+  padding: var(--sg-space-12) var(--sg-space-14);
+  background: var(--sg-surface-sunken);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+  border-radius: var(--sg-radius-lg);
+}
+.sg-card__index { font: var(--sg-type-control); color: var(--sg-status-wait-fg); }
+.sg-card__title { font: var(--sg-type-body-strong); }
+.sg-card__body { grid-column: 2; font: var(--sg-type-body-small); color: var(--sg-text-secondary); }
+.sg-card__label { margin-right: var(--sg-space-4); font: var(--sg-type-meta); color: var(--sg-text-subtle); }
+.sg-card__actions { grid-column: 2; display: flex; flex-wrap: wrap; gap: var(--sg-space-6); margin-top: var(--sg-space-10); }
+
+/* ------------------------------------------------------------------ popover
+   Menus and legends. Floats, so it casts a shadow. Positioning is the app's job. */
+.sg-popover {
+  min-width: var(--sg-size-popover-min-w);
+  max-width: var(--sg-size-popover-max-w);
+  padding: var(--sg-space-8);
+  background: var(--sg-surface-overlay);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-lg);
+  box-shadow: var(--sg-shadow-popover);
+  z-index: var(--sg-z-popover);
+}
+.sg-popover__title {
+  margin: var(--sg-space-6) var(--sg-space-10) var(--sg-space-8);
+  font: var(--sg-type-section);
+  letter-spacing: var(--sg-type-section-tracking);
+  text-transform: uppercase;
+  color: var(--sg-text-subtle);
+}
+.sg-popover__legend {
+  display: flex;
+  align-items: center;
+  gap: var(--sg-space-8);
+  padding: var(--sg-space-4) var(--sg-space-10);
+  font: var(--sg-type-status);
+  color: var(--sg-text-secondary);
+}
+.sg-popover__keys {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--sg-space-6) var(--sg-space-12);
+  align-items: center;
+  padding: var(--sg-space-6) var(--sg-space-10) var(--sg-space-8);
+  font: var(--sg-type-caption);
+  color: var(--sg-text-secondary);
+}
+.sg-popover__rule { height: var(--sg-border-width-hairline); margin: var(--sg-space-8) 0; background: var(--sg-border-subtle); }
+
+/* ------------------------------------------------------------------ dialog and backdrop
+   Centred under the title bar. The app mounts .sg-backdrop and .sg-dialog together. */
+.sg-backdrop { position: fixed; inset: 0; background: var(--sg-overlay-scrim); z-index: var(--sg-z-scrim); }
+.sg-dialog {
+  --sg-dialog-top: calc(var(--sg-size-title-bar) + var(--sg-space-32));
+  position: fixed;
+  top: var(--sg-dialog-top);
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(var(--sg-size-dialog-md), calc(100vw - 2 * var(--sg-space-16)));
+  max-height: calc(100vh - 2 * var(--sg-dialog-top) + var(--sg-space-4));
+  overflow-y: auto;
+  padding: calc(var(--sg-space-16) + var(--sg-space-2)) var(--sg-space-20) var(--sg-space-20);
+  background: var(--sg-surface-overlay);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-dialog);
+  box-shadow: var(--sg-shadow-dialog);
+  z-index: var(--sg-z-dialog);
+}
+.sg-dialog__title {
+  margin: var(--sg-space-16) 0 var(--sg-space-6);
+  font: var(--sg-type-section);
+  letter-spacing: var(--sg-type-section-tracking);
+  text-transform: uppercase;
+  color: var(--sg-text-subtle);
+}
+.sg-dialog > .sg-lead { margin-top: var(--sg-space-8); }
+
+/* ------------------------------------------------------------------ Overview map HUD
+   Needs signal.css and extensions/overview.css. Other apps leave these classes out. */
+.sg-minimap {
+  width: var(--sg-overview-layout-minimap-w);
+  overflow: hidden;
+  background: var(--sg-overview-hud-minimap);
+  border: var(--sg-border-width-hairline) solid var(--sg-border-default);
+  border-radius: var(--sg-radius-md);
+}
+.sg-minimap > canvas { display: block; width: var(--sg-overview-layout-minimap-w); height: var(--sg-overview-layout-minimap-h); cursor: crosshair; }
+.sg-minimap__head {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sg-space-8);
+  padding: calc(var(--sg-space-2) + var(--sg-border-width-hairline)) var(--sg-space-8);
+  font: var(--sg-type-meta);
+  color: var(--sg-text-subtle);
+  border-bottom: var(--sg-border-width-hairline) solid var(--sg-border-subtle);
+}
+.sg-minimap__head > span { white-space: nowrap; }
+@media (max-width: 860px) {
+  .sg-minimap { width: var(--sg-overview-layout-minimap-stacked-w); }
+  .sg-minimap > canvas { width: var(--sg-overview-layout-minimap-stacked-w); height: var(--sg-overview-layout-minimap-stacked-h); }
+  .sg-minimap__head > span:first-child { display: none; }
+}
+.sg-edge-marker {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sg-space-6);
+  height: var(--sg-overview-layout-edge-marker);
+  padding: 0 var(--sg-space-8) 0 var(--sg-space-6);
+  font: var(--sg-type-meta);
+  white-space: nowrap;
+  background: var(--sg-surface-raised);
+  border: var(--sg-border-width-hairline) solid var(--sg-status-wait-border);
+  border-radius: var(--sg-radius-md);
+  transform: translate(-50%, -50%);
+}
+.sg-edge-marker:hover { background: var(--sg-overview-wait-wash-hover); }
+.sg-edge-marker > span { color: var(--sg-status-wait-fg); }
+.sg-edge-marker > svg { width: var(--sg-space-10); height: var(--sg-space-10); }
+.sg-edge-marker--err { border-color: var(--sg-status-err-border); }
+.sg-edge-marker--err > span { color: var(--sg-status-err-fg); }
+.sg-edge-marker--err:hover { background: var(--sg-status-err-bg); }

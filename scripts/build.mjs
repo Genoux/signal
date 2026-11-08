@@ -166,7 +166,7 @@ for (const file of existsSync(join(ROOT, extDir)) ? readdirSync(join(ROOT, extDi
 }
 
 // ---------------------------------------------------------------- manifest for index.html
-const manifest = { colors: [], type: [], space: [], radius: [], shadow: [], duration: [] };
+const manifest = { colors: [], type: [], space: [], radius: [], size: [], shadow: [], duration: [] };
 for (const e of coreTokens.values()) {
   const item = { name: varName(e.path), path: e.path.join('.'), desc: e.token.$description ?? '' };
   const raw = e.token.$value;
@@ -179,6 +179,7 @@ for (const e of coreTokens.values()) {
     manifest.type.push({ ...item, spec: [`${fam} ${v.fontWeight}`, `${num(v.fontSize.value)}/${num(v.lineHeight)}`, ...extra].join(' · '), upper: ext['dev.signal.textTransform'] === 'uppercase', tnum: !!ext['dev.signal.fontVariantNumeric'] });
   } else if (e.path[0] === 'space') manifest.space.push(item);
   else if (e.path[0] === 'radius') manifest.radius.push(item);
+  else if (e.path[0] === 'size') manifest.size.push(item);
   else if (e.type === 'shadow') manifest.shadow.push(item);
   else if (e.path[0] === 'duration' || e.path[0] === 'easing') manifest.duration.push(item);
 }

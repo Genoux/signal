@@ -12,9 +12,9 @@ Open `index.html` in a browser to see every token and component live. Press `t` 
 2. **Grey first.** Surfaces, borders, labels and text are graphite, one or two tonal steps apart.
 3. **Colour only for status and for "you".** Hue means one of four statuses (run, wait, done, err) or the owner's own hand: focus, selection, the primary action, and anything being dragged. If an element is neither, it is grey.
 4. **Mono for machines, sans for prose.** Names, paths, numbers, commands, controls and labels use JetBrains Mono. Sentences a person reads use Instrument Sans. Numbers that update use tabular figures.
-5. **Hairlines and small radii.** Every border is 1px. Corners are 2 to 6px. Bars, cards, rows and buttons are flat. Only floating overlays (tooltip, toast, popover, dialog) cast a shadow. State is shown with rings and borders, never with lift.
+5. **Hairlines and small radii.** Every border is 1px. Corners are 2 to 6px; a dialog takes 8px. Bars, cards, rows and buttons are flat. Only floating overlays (tooltip, toast, popover, dialog) cast a shadow. State is shown with rings and borders, never with lift.
 6. **Status is glyph plus colour plus word.** run uses braille dots, wait a diamond, done a check, err a cross, and idle a ring. A glyph is never the only signal. The word appears beside it, in the group head, or in the accessible name.
-7. **Motion confirms cause and effect.** Hover is 80ms, switches 140ms, toasts and dialogs 220ms. Only opacity, transform and hover colour animate. Reduced motion removes all of it.
+7. **Motion confirms cause and effect.** Hover is 80ms, switches 140ms, toasts and dialogs 220ms. Only opacity, transform and hover colour animate. Two loops are allowed because they carry state: the running dots (1200ms per cycle) and a connecting dot. A map click leaves one 900ms accent wash. Reduced motion removes all of it.
 
 Voice: plain, specific and short. Mono labels are lowercase (`open in orca`); sans prose is sentence case. No exclamation marks, "please", "oops", "successfully" or "simply".
 
@@ -69,16 +69,33 @@ Canvas code that cannot read CSS should take colours from the JSON, or read `--s
 
 | Class | What it is |
 |---|---|
-| `.sg-btn`, `--primary`, `--ghost` | 26px keycapped button. Use one primary per container. Ghost is the borderless title-bar button. |
+| `.sg-btn`, `--primary`, `--ghost`, `--lg`, `--icon`, `.is-armed` | 26px keycapped button. Use one primary per container. Ghost is the borderless title-bar button (24px). `--lg` is 30px, `--icon` a 28px-wide icon-only button, `.is-armed` the confirm-destructive state. |
+| `.sg-icon-btn`, `--bordered` | 24px borderless icon button; `--bordered` is the 22px bordered one. |
+| `.sg-switch` | Track and knob, driven by `aria-pressed` or `aria-checked` on its parent, or `.is-on`. |
+| `.sg-checkbox` | 16px box; `.is-checked`, `aria-checked`, or inside `.is-done`. |
+| `.sg-chip` | 26px filter toggle with a count; `aria-pressed`, `.is-zero`. |
+| `.sg-input`, `--edit` | 30px field; `--edit` is the 28px inline rename. |
+| `.sg-link`, `--subtle`, `--underlined`, `.is-armed` | Inline link button. |
+| `.sg-dot`, `--done`, `--err`, `--pulse` | 8px connection dot. |
 | `kbd`, `.sg-kbd` | Keycap (in `signal.css`). |
-| `.sg-tag` | Hairline mono chip (`sample data`). |
+| `.sg-tag`, `--button` | Hairline mono chip (`sample data`). `--button` makes it act (`esc`). |
 | `.sg-badge` | Yellow count badge. |
-| `.sg-tabs` / `.sg-tab[aria-selected]` | Underline tabs. |
-| `.sg-section-head` | Uppercase mono list head, always with a count (`needs you · 2`). |
-| `.sg-attn` and `__title`, `__meta`, `__status`, `__age`, `__cmd`, `__question`, `__actions`; `.sg-prompt` | Attention card: the yellow "needs you" card. Add `.is-selected` for the 2px accent ring. |
-| `.sg-row` and `__title`, `__age`, `__meta`; `--err`, `.is-selected` | List row: glyph, title, age, meta line. |
-| `.sg-statusbar`, `__keys`, `.sg-status-item--{wait,done,err,idle}`, `.sg-status-host` | Status bar and its items. |
-| `.sg-tooltip` and `__title`, `__meta`, `__code` | Tooltip (the app positions it). |
+| `.sg-tabs` / `.sg-tab[aria-selected]`, `.sg-tab__count` | Underline tabs in equal cells across the bar. |
+| `.sg-section-head`, `__count`, `--wait/--err/--done` | Uppercase mono list head, always with a count (`needs you` `2`). |
+| `.sg-attn`, `--err` and `__title`, `__meta`, `__status`, `__age`, `__cmd`, `__question`, `__where`, `__actions`; `.sg-prompt` | Attention card: the yellow "needs you" card. Add `.is-selected` for the 2px accent ring. |
+| `.sg-row` and `__title`, `__age`, `__meta`; `--err`, `--menu`, `--task`, `--blocked`, `.is-selected`, `.is-open` | List row: glyph, title, age, meta line. More parts: `__summary`, `__where`, `__actions`, `__hint`, `__details`, `__children`, `__age-value`, `__reveal`. Insets come from `--sg-row-*` properties. |
+| `.sg-group`, `--wait`, `.is-collapsed`; `__head`, `__toggle`, `__count`, `__chevron`, `__action`, `__body` | Grouped list: one bordered container with a head and roomier rows (12 x 14 inset). |
+| `.sg-stats`, `.sg-stat`, `--wait`, `.is-zero` | Stat strip: count over label, each cell jumps to a group. |
+| `.sg-summary`, `__line`, `.is-need` | Labelled summary lines inside a row. |
+| `.sg-detail`, `__label`; `.sg-kv`, `__label`, `__value` | Label/value lines. |
+| `.sg-card`, `__index`, `__title`, `__body`, `__label`, `__actions` | Quiet bordered block with a lead column. |
+| `.sg-empty`, `--fill`; `.sg-lead` | Empty-state frame; intro sentence. |
+| `.sg-popover`, `__title`, `__legend`, `__keys`, `__rule` | Menu and legend panel. |
+| `.sg-dialog`, `__title`; `.sg-backdrop` | Dialog and its scrim. |
+| `.sg-flash` | Accent wash for where a click landed. |
+| `.sg-minimap`, `.sg-edge-marker` | Overview map HUD. Need `extensions/overview.css`. |
+| `.sg-statusbar`, `__keys`, `__spacer`, `.sg-status-item--{brand,wait,done,err,idle}`, `.sg-status-host` | Status bar; items are 22px buttons that open a popover. |
+| `.sg-tooltip` and `__kicker`, `__title`, `__meta`, `__code` | Tooltip (the app positions it). |
 | `.sg-toast`, `.is-hidden` | Toast. The app removes it after `--sg-duration-toast-min`. |
 | `.sg-segmented` | Zoom/segmented group: `<button>` and `<output>` cells. |
 | `.sg-map-label`, `--machine`, `--plot`, `.is-dragging` | Label drawn over content. |
@@ -141,9 +158,25 @@ The two sources are Overview (`DESIGN.md` and `.impeccable/design.json`, recorde
 | Shadows | popover, dialog | adds `tooltip` (0 6 18) and `toast` (0 8 24, no spread); keeps popover and dialog |
 | Spacing | 0, 2, 4, 8, 12, 16, 24, 32, 48 | adds 6 and 10 |
 | Radius | sm, md, lg, window, full | adds `hair` (2px) |
-| Size | control 24 and 28 | adds `button` (26px), `kbd`, `mapLabel`, `callout`, `badgeW/H`, `dot`, `focusOffset` |
+| Size | control 24 and 28 | adds `button` (26px), `kbd`, `callout`, `badgeW/H`, `dot`, `focusOffset` |
 
 Hangar type names map as follows: `label` → `section`, `monoXs` → `meta`, `monoSm` → `control`, `monoMd` → `terminal`, `sansSm` → `body`, `sansMd` → `headline`, `sansLg` → `display`. Overview adds `title`, `bodyStrong`, `bodySmall`, `code`, `status`, `mapLabel` and `badge`.
+
+## Changes in 0.2.0
+
+Overview's current UI wins. Values that moved, and why:
+
+| Token | Was | Now | Source |
+|---|---|---|---|
+| `size.tabBar` | 32px | 34px | Overview `.tabs` |
+| `size.controlLg` | 32px | 30px | Overview field and add button |
+| `type.display` | 600, -0.2px | 500, -0.1px | Overview `.today h2`, `.set-h h2` (500, -0.005em) |
+| `shadow.popover`, `shadow.dialog` (Signal) | 0 8 24 -8 and 0 24 60 -24 at 50% | 0 10 28 at 55% | Overview `.pop`, `.dlg` |
+| `overlay.scrim` (Signal) | base.side at 72% | black at 45% | Overview `.dlg-back` |
+
+New tokens: `size.iconXs`, `controlXs`, `dotLg`, `switchW/H/Knob`, `groupHead`, `emptyMinH`, `labelSm/Md`, `popoverMinW/MaxW`; `space.14`, `space.20`; `radius.box` (4px), `radius.dialog` (8px); `borderWidth.control` (1.5px); `type.itemTitle` (13.5px), `caption` (12px), `figure` (15px mono); `duration.disclosure`, `flash`, `pulse`; `easing.settle`. Fog keeps its own popover, dialog and scrim values.
+
+`.sg-tabs` is now equal cells, `.sg-section-head` is left-aligned with a `__count`, `.sg-statusbar` items are padded 22px buttons, and `.sg-input` is 30px. The shell keeps the 340px `size.rail` token; Overview's own rail is `minmax(400px, 32%)`.
 
 ## Contrast (0.1.1)
 
@@ -164,5 +197,5 @@ Checked in both themes on 2026-11-05:
 - **Components that are not in core:**
   - Overview-only, not requested: edge marker, minimap, readout, brief item, live-demo switch. Their tokens are in the Overview extension where they exist.
   - Hangar specifies inputs, menus, dialogs, the command palette and others in `ui/UI.md`, but there is no built reference for them yet, so none were added.
-- **The running spinner is static here.** Hangar specifies a braille spinner (⠋…⠏ at 80ms) that falls back to a static ⠿. Overview's build draws the static six-dot glyph, which is what ships.
+- **The running glyph animates.** Overview lights the six dots in turn over 1200ms (`.sg-icon.sg-tone-run`), static under reduced motion. Hangar's braille spinner (⠋…⠏ at 80ms) is not used.
 - **Fonts are not bundled.** Apps load JetBrains Mono and Instrument Sans themselves. Hangar's "Hangar Symbols" fallback font belongs in its extension.

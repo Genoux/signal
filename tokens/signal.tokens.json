@@ -1144,16 +1144,16 @@
         "$value": {
           "colorSpace": "srgb",
           "components": [
-            0.102,
-            0.106,
-            0.11
+            0,
+            0,
+            0
           ],
-          "hex": "#1a1b1c",
-          "alpha": 0.72
+          "hex": "#000000",
+          "alpha": 0.45
         },
         "$description": "Behind dialogs.",
         "$extensions": {
-          "dev.signal.derive": "Signal: alpha(base.side, 0.72); Fog: alpha(base.fg, 0.28)",
+          "dev.signal.derive": "Signal: black at 0.45 (Overview .dlg-back); Fog: alpha(base.fg, 0.28)",
           "dev.signal.modes": {
             "fog": {
               "colorSpace": "srgb",
@@ -1255,16 +1255,16 @@
           "value": 20,
           "unit": "px"
         },
-        "fontWeight": "{font.weight.semibold}",
+        "fontWeight": "{font.weight.medium}",
         "letterSpacing": {
-          "value": -0.2,
+          "value": -0.1,
           "unit": "px"
         },
         "lineHeight": 1.4
       },
-      "$description": "Onboarding headline. Rare.",
+      "$description": "Panel and page title.",
       "$extensions": {
-        "dev.signal.source": "Hangar type.sansLg; Overview has no display role."
+        "dev.signal.source": "Overview Today and settings headings (500, -0.005em); Hangar type.sansLg was 600."
       }
     },
     "headline": {
@@ -1301,6 +1301,22 @@
         "lineHeight": 1.45
       },
       "$description": "Card title."
+    },
+    "itemTitle": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 13.5,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.medium}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.45
+      },
+      "$description": "Title of a row in a grouped list."
     },
     "body": {
       "$value": {
@@ -1352,6 +1368,22 @@
         "lineHeight": 1.45
       },
       "$description": "Explanations under a title."
+    },
+    "caption": {
+      "$value": {
+        "fontFamily": "{font.family.sans}",
+        "fontSize": {
+          "value": 12,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.regular}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.5
+      },
+      "$description": "Footnotes and key lists inside popovers and panels."
     },
     "terminal": {
       "$value": {
@@ -1422,6 +1454,25 @@
         "lineHeight": 1.45
       },
       "$description": "Status bar.",
+      "$extensions": {
+        "dev.signal.fontVariantNumeric": "tabular-nums"
+      }
+    },
+    "figure": {
+      "$value": {
+        "fontFamily": "{font.family.mono}",
+        "fontSize": {
+          "value": 15,
+          "unit": "px"
+        },
+        "fontWeight": "{font.weight.medium}",
+        "letterSpacing": {
+          "value": 0,
+          "unit": "px"
+        },
+        "lineHeight": 1.1
+      },
+      "$description": "Count in a stat cell.",
       "$extensions": {
         "dev.signal.fontVariantNumeric": "tabular-nums"
       }
@@ -1550,12 +1601,26 @@
       },
       "$description": "Card padding (inline), bar insets."
     },
+    "14": {
+      "$value": {
+        "value": 14,
+        "unit": "px"
+      },
+      "$description": "Row inset in a grouped list, panel padding."
+    },
     "16": {
       "$value": {
         "value": 16,
         "unit": "px"
       },
       "$description": "Between list sections."
+    },
+    "20": {
+      "$value": {
+        "value": 20,
+        "unit": "px"
+      },
+      "$description": "Dialog padding."
     },
     "24": {
       "$value": {
@@ -1593,14 +1658,21 @@
         "value": 3,
         "unit": "px"
       },
-      "$description": "Tags, keycaps, map labels."
+      "$description": "Tags, keycaps."
+    },
+    "box": {
+      "$value": {
+        "value": 4,
+        "unit": "px"
+      },
+      "$description": "Checkbox, small square buttons."
     },
     "md": {
       "$value": {
         "value": 5,
         "unit": "px"
       },
-      "$description": "Controls, rows, tooltips, callouts."
+      "$description": "Controls, rows, tooltips, map labels, callouts."
     },
     "lg": {
       "$value": {
@@ -1608,6 +1680,13 @@
         "unit": "px"
       },
       "$description": "Cards, toasts."
+    },
+    "dialog": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Dialogs."
     },
     "window": {
       "$value": {
@@ -1632,6 +1711,13 @@
         "unit": "px"
       },
       "$description": "Every border."
+    },
+    "control": {
+      "$value": {
+        "value": 1.5,
+        "unit": "px"
+      },
+      "$description": "Checkbox outline."
     },
     "thick": {
       "$value": {
@@ -1663,12 +1749,26 @@
         "unit": "px"
       }
     },
+    "iconXs": {
+      "$value": {
+        "value": 11,
+        "unit": "px"
+      },
+      "$description": "Glyph inside a dense row or a small icon button."
+    },
     "controlSm": {
       "$value": {
         "value": 24,
         "unit": "px"
       },
       "$description": "Borderless title-bar button, edge chips."
+    },
+    "controlXs": {
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$description": "Status bar item, reveal button on a row."
     },
     "button": {
       "$value": {
@@ -1686,9 +1786,10 @@
     },
     "controlLg": {
       "$value": {
-        "value": 32,
+        "value": 30,
         "unit": "px"
-      }
+      },
+      "$description": "Form field and large button."
     },
     "kbd": {
       "$value": {
@@ -1716,13 +1817,6 @@
         "unit": "px"
       }
     },
-    "mapLabel": {
-      "$value": {
-        "value": 18,
-        "unit": "px"
-      },
-      "$description": "Map label height."
-    },
     "callout": {
       "$value": {
         "value": 20,
@@ -1735,7 +1829,35 @@
         "value": 6,
         "unit": "px"
       },
-      "$description": "Connected-host dot."
+      "$description": "Connected-host dot in the status bar."
+    },
+    "dotLg": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Connection dot in a list."
+    },
+    "switchW": {
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      },
+      "$description": "Switch track width."
+    },
+    "switchH": {
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      },
+      "$description": "Switch track height."
+    },
+    "switchKnob": {
+      "$value": {
+        "value": 8,
+        "unit": "px"
+      },
+      "$description": "Switch knob."
     },
     "focusOffset": {
       "$value": {
@@ -1768,9 +1890,37 @@
         "unit": "px"
       }
     },
+    "groupHead": {
+      "$value": {
+        "value": 40,
+        "unit": "px"
+      },
+      "$description": "Head of a grouped list."
+    },
+    "emptyMinH": {
+      "$value": {
+        "value": 84,
+        "unit": "px"
+      },
+      "$description": "Empty-state frame."
+    },
+    "labelSm": {
+      "$value": {
+        "value": 52,
+        "unit": "px"
+      },
+      "$description": "Label column of a detail line."
+    },
+    "labelMd": {
+      "$value": {
+        "value": 84,
+        "unit": "px"
+      },
+      "$description": "Label column of a key-value list."
+    },
     "tabBar": {
       "$value": {
-        "value": 32,
+        "value": 34,
         "unit": "px"
       }
     },
@@ -1822,6 +1972,20 @@
         "value": 280,
         "unit": "px"
       }
+    },
+    "popoverMinW": {
+      "$value": {
+        "value": 240,
+        "unit": "px"
+      },
+      "$description": "Popover minimum width."
+    },
+    "popoverMaxW": {
+      "$value": {
+        "value": 320,
+        "unit": "px"
+      },
+      "$description": "Popover maximum width."
     },
     "toastW": {
       "$value": {
@@ -1877,12 +2041,33 @@
       },
       "$description": "Switches, tab underline, popovers in."
     },
+    "disclosure": {
+      "$value": {
+        "value": 120,
+        "unit": "ms"
+      },
+      "$description": "Chevron turn on collapse."
+    },
     "slow": {
       "$value": {
         "value": 220,
         "unit": "ms"
       },
       "$description": "Toasts and dialogs in and out."
+    },
+    "flash": {
+      "$value": {
+        "value": 900,
+        "unit": "ms"
+      },
+      "$description": "Accent wash that marks where a map click landed."
+    },
+    "pulse": {
+      "$value": {
+        "value": 1200,
+        "unit": "ms"
+      },
+      "$description": "One cycle of the running dots and of a connecting dot."
     },
     "spinnerFrame": {
       "$value": {
@@ -1930,6 +2115,15 @@
         1
       ],
       "$description": "Exit."
+    },
+    "settle": {
+      "$value": [
+        0.16,
+        1,
+        0.3,
+        1
+      ],
+      "$description": "Wash that eases out and rests."
     },
     "linear": {
       "$value": [
@@ -2141,26 +2335,26 @@
             0
           ],
           "hex": "#000000",
-          "alpha": 0.5
+          "alpha": 0.55
         },
         "offsetX": {
           "value": 0,
           "unit": "px"
         },
         "offsetY": {
-          "value": 8,
+          "value": 10,
           "unit": "px"
         },
         "blur": {
-          "value": 24,
+          "value": 28,
           "unit": "px"
         },
         "spread": {
-          "value": -8,
+          "value": 0,
           "unit": "px"
         }
       },
-      "$description": "Menus, popovers.",
+      "$description": "Menus, popovers, panels.",
       "$extensions": {
         "dev.signal.modes": {
           "fog": [
@@ -2221,7 +2415,8 @@
               }
             }
           ]
-        }
+        },
+        "dev.signal.source": "Overview .pop and .dlg: 0 10 28 at 55%."
       }
     },
     "dialog": {
@@ -2234,22 +2429,22 @@
             0
           ],
           "hex": "#000000",
-          "alpha": 0.5
+          "alpha": 0.55
         },
         "offsetX": {
           "value": 0,
           "unit": "px"
         },
         "offsetY": {
-          "value": 24,
+          "value": 10,
           "unit": "px"
         },
         "blur": {
-          "value": 60,
+          "value": 28,
           "unit": "px"
         },
         "spread": {
-          "value": -24,
+          "value": 0,
           "unit": "px"
         }
       },
@@ -2314,7 +2509,8 @@
               }
             }
           ]
-        }
+        },
+        "dev.signal.source": "Overview .pop and .dlg: 0 10 28 at 55%."
       }
     }
   },

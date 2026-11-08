@@ -1,4 +1,4 @@
-/* Signal 0.1.2: tokens and base styles.
+/* Signal: tokens and base styles.
    Dark theme "signal" is the default. Set data-theme="fog" on <html> (or any subtree) for the light theme.
    The block between the @sg-tokens markers is generated from tokens/signal.tokens.json by
    scripts/build.mjs; edit the JSON and rebuild, never the block. Everything after it is hand-written. */
@@ -70,14 +70,14 @@
   --sg-diff-del-bg: rgb(242 107 89 / 0.06);
   --sg-diff-del-emph: rgb(242 107 89 / 0.12);
   --sg-diff-gutter: #9b9c9e;
-  --sg-overlay-scrim: rgb(26 27 28 / 0.72);
+  --sg-overlay-scrim: rgb(0 0 0 / 0.45);
   --sg-overlay-label: rgb(26 27 28 / 0.86);
   --sg-scrollbar-thumb: #424345;
   --sg-scrollbar-thumb-hover: #727375;
   --sg-shadow-tooltip: 0px 6px 18px 0px rgb(0 0 0 / 0.5);
   --sg-shadow-toast: 0px 8px 24px 0px rgb(0 0 0 / 0.5);
-  --sg-shadow-popover: 0px 8px 24px -8px rgb(0 0 0 / 0.5);
-  --sg-shadow-dialog: 0px 24px 60px -24px rgb(0 0 0 / 0.5);
+  --sg-shadow-popover: 0px 10px 28px 0px rgb(0 0 0 / 0.55);
+  --sg-shadow-dialog: 0px 10px 28px 0px rgb(0 0 0 / 0.55);
 }
 
 [data-theme="fog"] {
@@ -159,11 +159,11 @@
   --sg-font-weight-regular: 400;
   --sg-font-weight-medium: 500;
   --sg-font-weight-semibold: 600;
-  --sg-type-display: 600 20px/1.4 var(--sg-font-sans);
+  --sg-type-display: 500 20px/1.4 var(--sg-font-sans);
   --sg-type-display-size: 20px;
-  --sg-type-display-weight: 600;
+  --sg-type-display-weight: 500;
   --sg-type-display-line-height: 1.4;
-  --sg-type-display-tracking: -0.2px;
+  --sg-type-display-tracking: -0.1px;
   --sg-type-headline: 500 15px/1.45 var(--sg-font-sans);
   --sg-type-headline-size: 15px;
   --sg-type-headline-weight: 500;
@@ -172,6 +172,10 @@
   --sg-type-title-size: 14px;
   --sg-type-title-weight: 500;
   --sg-type-title-line-height: 1.45;
+  --sg-type-item-title: 500 13.5px/1.45 var(--sg-font-sans);
+  --sg-type-item-title-size: 13.5px;
+  --sg-type-item-title-weight: 500;
+  --sg-type-item-title-line-height: 1.45;
   --sg-type-body: 400 13px/1.45 var(--sg-font-sans);
   --sg-type-body-size: 13px;
   --sg-type-body-weight: 400;
@@ -184,6 +188,10 @@
   --sg-type-body-small-size: 12.5px;
   --sg-type-body-small-weight: 400;
   --sg-type-body-small-line-height: 1.45;
+  --sg-type-caption: 400 12px/1.5 var(--sg-font-sans);
+  --sg-type-caption-size: 12px;
+  --sg-type-caption-weight: 400;
+  --sg-type-caption-line-height: 1.5;
   --sg-type-terminal: 400 13px/1.5385 var(--sg-font-mono);
   --sg-type-terminal-size: 13px;
   --sg-type-terminal-weight: 400;
@@ -200,6 +208,10 @@
   --sg-type-status-size: 11.5px;
   --sg-type-status-weight: 400;
   --sg-type-status-line-height: 1.45;
+  --sg-type-figure: 500 15px/1.1 var(--sg-font-mono);
+  --sg-type-figure-size: 15px;
+  --sg-type-figure-weight: 500;
+  --sg-type-figure-line-height: 1.1;
   --sg-type-map-label: 500 11.5px/1.45 var(--sg-font-mono);
   --sg-type-map-label-size: 11.5px;
   --sg-type-map-label-weight: 500;
@@ -224,38 +236,52 @@
   --sg-space-8: 8px;
   --sg-space-10: 10px;
   --sg-space-12: 12px;
+  --sg-space-14: 14px;
   --sg-space-16: 16px;
+  --sg-space-20: 20px;
   --sg-space-24: 24px;
   --sg-space-32: 32px;
   --sg-space-48: 48px;
   --sg-radius-hair: 2px;
   --sg-radius-sm: 3px;
+  --sg-radius-box: 4px;
   --sg-radius-md: 5px;
   --sg-radius-lg: 6px;
+  --sg-radius-dialog: 8px;
   --sg-radius-window: 10px;
   --sg-radius-full: 9999px;
   --sg-border-width-hairline: 1px;
+  --sg-border-width-control: 1.5px;
   --sg-border-width-thick: 2px;
   --sg-size-icon-sm: 12px;
   --sg-size-icon-md: 14px;
   --sg-size-icon-lg: 16px;
+  --sg-size-icon-xs: 11px;
   --sg-size-control-sm: 24px;
+  --sg-size-control-xs: 22px;
   --sg-size-button: 26px;
   --sg-size-control-md: 28px;
-  --sg-size-control-lg: 32px;
+  --sg-size-control-lg: 30px;
   --sg-size-kbd: 18px;
   --sg-size-kbd-line: 16px;
   --sg-size-badge-w: 15px;
   --sg-size-badge-h: 12px;
-  --sg-size-map-label: 18px;
   --sg-size-callout: 20px;
   --sg-size-dot: 6px;
+  --sg-size-dot-lg: 8px;
+  --sg-size-switch-w: 22px;
+  --sg-size-switch-h: 12px;
+  --sg-size-switch-knob: 8px;
   --sg-size-focus-offset: 1px;
   --sg-size-row: 24px;
   --sg-size-row-table: 32px;
   --sg-size-title-bar: 40px;
   --sg-size-status-bar: 24px;
-  --sg-size-tab-bar: 32px;
+  --sg-size-group-head: 40px;
+  --sg-size-empty-min-h: 84px;
+  --sg-size-label-sm: 52px;
+  --sg-size-label-md: 84px;
+  --sg-size-tab-bar: 34px;
   --sg-size-pane-header: 32px;
   --sg-size-rail: 340px;
   --sg-size-rail-min: 240px;
@@ -264,6 +290,8 @@
   --sg-size-sidebar-min: 200px;
   --sg-size-sidebar-max: 360px;
   --sg-size-tooltip-max-w: 280px;
+  --sg-size-popover-min-w: 240px;
+  --sg-size-popover-max-w: 320px;
   --sg-size-toast-w: 360px;
   --sg-size-palette-w: 640px;
   --sg-size-dialog-sm: 400px;
@@ -272,13 +300,17 @@
   --sg-duration-instant: 0ms;
   --sg-duration-fast: 80ms;
   --sg-duration-base: 140ms;
+  --sg-duration-disclosure: 120ms;
   --sg-duration-slow: 220ms;
+  --sg-duration-flash: 900ms;
+  --sg-duration-pulse: 1200ms;
   --sg-duration-spinner-frame: 80ms;
   --sg-duration-tooltip-delay: 500ms;
   --sg-duration-caret-blink: 1100ms;
   --sg-duration-toast-min: 3200ms;
   --sg-easing-standard: cubic-bezier(0.2, 0, 0, 1);
   --sg-easing-exit: cubic-bezier(0.4, 0, 1, 1);
+  --sg-easing-settle: cubic-bezier(0.16, 1, 0.3, 1);
   --sg-easing-linear: cubic-bezier(0, 0, 1, 1);
   --sg-z-base: 0;
   --sg-z-sticky: 10;

@@ -73,6 +73,10 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
 .glyphs b { font: var(--sg-type-control); color: var(--sg-text-primary); }
 .map-demo { position: relative; display: grid; gap: var(--sg-space-16); justify-items: start; }
 .note { margin: 0; font: var(--sg-type-meta); color: var(--sg-text-subtle); }
+.grid-2 { display: grid; gap: var(--sg-space-16); min-width: 0; }
+.static { position: static; transform: none; }
+.pop-stage { display: grid; gap: var(--sg-space-12); justify-items: start; }
+.size-note { font: var(--sg-type-meta); color: var(--sg-text-subtle); }
 .toast-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sg-space-12); }
 
 @media (max-width: 720px) {
@@ -90,7 +94,7 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
     <svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 3.5 6 6 1 3.5Z" fill="none" stroke="currentColor"/><path d="M1 6.5 6 9 11 6.5" fill="none" stroke="var(--sg-text-disabled)"/></svg>
     signal
   </div>
-  <div class="ref-crumb"><b>reference</b> · @barrymind/signal 0.1.0</div>
+  <div class="ref-crumb"><b>reference</b> · @barrymind/signal</div>
   <div class="ref-right">
     <span class="sg-tag">local</span>
     <button class="sg-btn" id="theme" type="button" aria-label="Switch theme"><kbd>t</kbd><span id="theme-label">theme · signal</span></button>
@@ -105,12 +109,15 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
   <div class="specimens" style="margin-top: var(--sg-space-16)">
 
     <section class="specimen">
-      <header><b>button</b><span>.sg-btn · --primary · --ghost</span></header>
+      <header><b>button</b><span>.sg-btn · --primary · --ghost · --lg · --icon · .is-armed</span></header>
       <div class="stage">
         <button class="sg-btn sg-btn--primary" type="button"><kbd>Enter</kbd>open in orca</button>
         <button class="sg-btn" type="button"><kbd>l</kbd>locate</button>
         <button class="sg-btn" type="button">cancel</button>
-        <button class="sg-btn sg-btn--ghost" type="button">live demo</button>
+        <button class="sg-btn sg-btn--ghost" type="button" aria-pressed="true" id="demo-switch">live demo <span class="sg-switch" aria-hidden="true"></span></button>
+        <button class="sg-btn sg-btn--ghost sg-btn--icon" type="button" aria-label="Settings"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M2 3.5h8M2 8.5h8" stroke="currentColor"/></svg></button>
+        <button class="sg-btn sg-btn--lg" type="button">add</button>
+        <button class="sg-btn is-armed" type="button">remove all</button>
         <button class="sg-btn" type="button" disabled><kbd>r</kbd>retry</button>
       </div>
     </section>
@@ -121,16 +128,41 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
         <kbd>Enter</kbd><kbd>Tab</kbd><kbd>l</kbd><kbd>f</kbd>
         <span class="sg-tag">sample data</span>
         <span class="sg-badge">1</span><span class="sg-badge">12</span>
+        <button class="sg-tag sg-tag--button" type="button">esc</button>
       </div>
     </section>
 
     <section class="specimen">
-      <header><b>tabs</b><span>.sg-tabs · .sg-tab</span></header>
+      <header><b>chip, checkbox, icon button, dot</b><span>.sg-chip · .sg-checkbox · .sg-icon-btn · .sg-dot</span></header>
+      <div class="stage">
+        <button class="sg-chip" type="button" aria-pressed="true"><svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg><b>2</b> waiting</button>
+        <button class="sg-chip" type="button"><svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg><b>4</b> running</button>
+        <button class="sg-chip is-zero" type="button"><svg class="sg-icon sg-tone-err" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.5"/></svg><b>0</b> failed</button>
+        <span class="sg-checkbox" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="var(--sg-text-on-accent)" stroke-width="1.8"/></svg></span>
+        <span class="sg-checkbox is-checked" aria-hidden="true"><svg viewBox="0 0 12 12"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="var(--sg-text-on-accent)" stroke-width="1.8"/></svg></span>
+        <button class="sg-icon-btn" type="button" aria-label="Close"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.3"/></svg></button>
+        <button class="sg-icon-btn sg-icon-btn--bordered" type="button" aria-label="Go to session"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button>
+        <span class="sg-dot sg-dot--done" title="connected"></span><span class="sg-dot sg-dot--err" title="offline"></span><span class="sg-dot sg-dot--pulse" title="connecting"></span>
+      </div>
+    </section>
+
+    <section class="specimen">
+      <header><b>input, link, empty state</b><span>.sg-input · --edit · .sg-link · .sg-empty</span></header>
+      <div class="stage col">
+        <input class="sg-input" type="text" placeholder="add a task" aria-label="Add a task">
+        <input class="sg-input sg-input--edit" type="text" value="arch-workstation" aria-label="Rename">
+        <p class="note"><button class="sg-link sg-link--underlined" type="button">show archived</button> · <button class="sg-link" type="button">open folder</button> · <button class="sg-link is-armed" type="button">clear all</button></p>
+        <div class="sg-empty">nothing needs you.<br>agents that ask for a decision land here.</div>
+      </div>
+    </section>
+
+    <section class="specimen">
+      <header><b>tabs</b><span>.sg-tabs · .sg-tab · __count</span></header>
       <div class="stage flush raised">
         <div class="sg-tabs" role="tablist" id="tabs">
-          <button class="sg-tab" role="tab" type="button" aria-selected="true">now</button>
-          <button class="sg-tab" role="tab" type="button" aria-selected="false">morning brief</button>
-          <button class="sg-tab" role="tab" type="button" aria-selected="false">history</button>
+          <button class="sg-tab" role="tab" type="button" aria-selected="true">today</button>
+          <button class="sg-tab" role="tab" type="button" aria-selected="false">projects</button>
+          <button class="sg-tab" role="tab" type="button" aria-selected="false">tasks <span class="sg-tab__count">3</span></button>
         </div>
       </div>
     </section>
@@ -151,7 +183,7 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
       <header><b>rail: section head, attention card, list row</b><span>.sg-section-head · .sg-attn · .sg-row</span></header>
       <div class="stage flush rail">
         <div class="rail-body">
-          <div class="sg-section-head"><span>needs you · 2</span></div>
+          <div class="sg-section-head sg-section-head--wait"><span>needs you</span><span class="sg-section-head__count">2</span></div>
           <div class="sg-attn" tabindex="0">
             <div class="sg-attn__title">Fix sync conflict on reconnect</div>
             <div class="sg-attn__meta">claude · macbook:gramly</div>
@@ -166,13 +198,13 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
             <div class="sg-attn__question">Electron or Tauri for P0? Comparison is in the session.</div>
             <div class="sg-attn__actions"><button class="sg-btn sg-btn--primary" type="button"><kbd>Enter</kbd>open in orca</button><button class="sg-btn" type="button"><kbd>l</kbd>locate</button></div>
           </div>
-          <div class="sg-section-head"><span>failed · 1</span></div>
+          <div class="sg-section-head sg-section-head--err"><span>failed</span><span class="sg-section-head__count">1</span></div>
           <div class="sg-row sg-row--err" tabindex="0">
             <svg class="sg-icon sg-tone-err" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.5"/></svg>
             <span class="sg-row__title">Timeline view tests</span><span class="sg-row__age">9m</span>
             <span class="sg-row__meta">flow · pnpm test · exit 1 · 3 failing in Timeline.spec</span>
           </div>
-          <div class="sg-section-head"><span>running · 2</span></div>
+          <div class="sg-section-head"><span>running</span><span class="sg-section-head__count">2</span></div>
           <div class="sg-row" tabindex="0">
             <svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg>
             <span class="sg-row__title">Rewrite suggestion ranking</span><span class="sg-row__age">12m</span>
@@ -183,18 +215,140 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
             <span class="sg-row__title">Isometric map prototype</span><span class="sg-row__age">6m</span>
             <span class="sg-row__meta">overview · drawing the plane and the rail</span>
           </div>
-          <div class="sg-section-head"><span>done · 1</span></div>
+          <div class="sg-section-head sg-section-head--done"><span>done</span><span class="sg-section-head__count">1</span></div>
           <div class="sg-row" tabindex="0">
             <svg class="sg-icon sg-tone-done" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
             <span class="sg-row__title">Landing page copy pass</span><span class="sg-row__age">41m</span>
             <span class="sg-row__meta">culture · ready to review · 3 files</span>
           </div>
-          <div class="sg-section-head"><span>asleep · 1</span></div>
+          <div class="sg-section-head"><span>asleep</span><span class="sg-section-head__count">1</span></div>
           <div class="sg-row" tabindex="0">
             <svg class="sg-icon sg-tone-idle" viewBox="0 0 12 12" aria-hidden="true"><circle cx="6" cy="6" r="3.6" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
             <span class="sg-row__title">Resume or archive</span><span class="sg-row__age">2d</span>
             <span class="sg-row__meta">live-cam · quiet since tuesday</span>
           </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="specimen">
+      <header><b>stat strip, grouped list</b><span>.sg-stats · .sg-group · .sg-row</span></header>
+      <div class="stage flush rail">
+        <div class="rail-body">
+          <div class="sg-stats">
+            <button class="sg-stat sg-stat--wait" type="button"><span class="sg-stat__value">2</span><span class="sg-stat__label">needs you</span></button>
+            <button class="sg-stat" type="button"><span class="sg-stat__value">4</span><span class="sg-stat__label">running</span></button>
+            <button class="sg-stat" type="button"><span class="sg-stat__value">2</span><span class="sg-stat__label">done</span></button>
+            <button class="sg-stat is-zero" type="button"><span class="sg-stat__value">0</span><span class="sg-stat__label">failed</span></button>
+          </div>
+          <div class="sg-group sg-group--wait">
+            <div class="sg-group__head">
+              <button class="sg-group__toggle" type="button" aria-expanded="true"><svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg><span>needs you</span><span class="sg-group__count">2</span></button>
+              <button class="sg-group__action" type="button">close all</button>
+              <svg class="sg-group__chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div class="sg-group__body">
+              <div class="sg-row is-open" tabindex="0">
+                <svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>
+                <span class="sg-row__title">Fix sync conflict on reconnect</span>
+                <span class="sg-row__age"><span class="sg-row__age-value">18m</span><button class="sg-icon-btn sg-icon-btn--bordered sg-row__reveal" type="button" aria-label="Go to session"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button></span>
+                <span class="sg-row__summary"><b>needs</b>approval to run pnpm db:migrate</span>
+                <div class="sg-row__details">
+                  <div class="sg-detail"><span class="sg-detail__label">where</span><span>macbook · gramly</span></div>
+                  <div class="sg-detail"><span class="sg-detail__label">folder</span><button class="sg-link" type="button">~/code/gramly</button></div>
+                  <div class="sg-row__actions"><button class="sg-btn sg-btn--primary" type="button"><kbd>Enter</kbd>open in orca</button></div>
+                </div>
+              </div>
+              <div class="sg-row" tabindex="0">
+                <svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>
+                <span class="sg-row__title">Pick the app shell</span>
+                <span class="sg-row__age"><span class="sg-row__age-value">4m</span><button class="sg-icon-btn sg-icon-btn--bordered sg-row__reveal" type="button" aria-label="Go to session"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M3.5 8.5 8.5 3.5M4.5 3.5h4v4" fill="none" stroke="currentColor" stroke-width="1.3"/></svg></button></span>
+                <span class="sg-row__meta">claude · arch-workstation:hangar-roadmap</span>
+              </div>
+            </div>
+          </div>
+          <div class="sg-group">
+            <div class="sg-group__head">
+              <button class="sg-group__toggle" type="button" aria-expanded="true"><svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg><span>running</span><span class="sg-group__count">1</span></button>
+              <svg class="sg-group__chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div class="sg-group__body">
+              <div class="sg-row" tabindex="0">
+                <svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg>
+                <span class="sg-row__title">Rewrite suggestion ranking</span><span class="sg-row__age">12m</span>
+                <div class="sg-summary">
+                  <div class="sg-summary__line is-need"><b>needs</b>nothing yet</div>
+                  <div class="sg-summary__line"><b>doing</b>4 of 7 call sites moved to rank()</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="sg-group is-collapsed">
+            <div class="sg-group__head">
+              <button class="sg-group__toggle" type="button" aria-expanded="false"><svg class="sg-icon sg-tone-done" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg><span>done</span><span class="sg-group__count">1</span></button>
+              <svg class="sg-group__chevron" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.3"/></svg>
+            </div>
+            <div class="sg-group__body"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="specimen">
+      <header><b>tasks</b><span>.sg-row--task · .sg-checkbox · .sg-row__reveal</span></header>
+      <div class="stage flush rail">
+        <div class="rail-body">
+          <div class="sg-group">
+            <div class="sg-group__body">
+              <div class="sg-row sg-row--task" tabindex="0">
+                <span class="sg-checkbox"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="var(--sg-text-on-accent)" stroke-width="1.8"/></svg></span>
+                <span class="sg-row__title sg-row__title--clamp">Review the migration before it runs on production</span>
+                <span class="sg-row__age"><span class="sg-row__age-value">2h</span><button class="sg-icon-btn sg-row__reveal" type="button" aria-label="Remove task"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.3"/></svg></button></span>
+              </div>
+              <div class="sg-row sg-row--task is-done" tabindex="0">
+                <span class="sg-checkbox"><svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="var(--sg-text-on-accent)" stroke-width="1.8"/></svg></span>
+                <span class="sg-row__title">Send the landing page copy</span>
+                <span class="sg-row__age"><span class="sg-row__age-value">1d</span><button class="sg-icon-btn sg-row__reveal" type="button" aria-label="Remove task"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.3"/></svg></button></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="specimen">
+      <header><b>popover, card, key-value</b><span>.sg-popover · .sg-card · .sg-kv</span></header>
+      <div class="stage raised">
+        <div class="pop-stage">
+          <div class="sg-popover">
+            <div class="sg-popover__title">needs you · 2</div>
+            <div class="sg-row sg-row--menu" tabindex="0">
+              <svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>
+              <span class="sg-row__title">Fix sync conflict</span><span class="sg-row__age">18m</span>
+              <span class="sg-row__meta">claude · macbook:gramly</span>
+            </div>
+            <div class="sg-popover__rule"></div>
+            <div class="sg-popover__legend"><svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>needs you</div>
+            <div class="sg-popover__keys"><kbd>Tab</kbd><span>next waiting</span><kbd>Enter</kbd><span>open it</span></div>
+          </div>
+          <div class="sg-card">
+            <span class="sg-card__index">1</span><span class="sg-card__title">Approve the migration</span>
+            <span class="sg-card__body"><span class="sg-card__label">gramly</span>It needs your decision before it can continue.</span>
+            <div class="sg-card__actions"><button class="sg-btn" type="button">open</button></div>
+          </div>
+          <div class="sg-kv"><span class="sg-kv__label">host</span><b class="sg-kv__value">macbook</b><span class="sg-kv__label">latency</span><b class="sg-kv__value">14 ms</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="specimen">
+      <header><b>dialog</b><span>.sg-dialog · .sg-backdrop</span></header>
+      <div class="stage raised">
+        <div class="sg-dialog static" role="dialog" aria-label="Add a machine">
+          <h4 class="sg-dialog__title" style="margin-top: 0">add a machine</h4>
+          <p class="sg-lead">Overview reaches a machine over ssh. Enter its address.</p>
+          <input class="sg-input" type="text" placeholder="user@host" aria-label="Address">
         </div>
       </div>
     </section>
@@ -214,9 +368,10 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
       </section>
 
       <section class="specimen">
-        <header><b>tooltip</b><span>.sg-tooltip</span></header>
+        <header><b>tooltip</b><span>.sg-tooltip · __kicker</span></header>
         <div class="stage">
           <div class="sg-tooltip">
+            <div class="sg-tooltip__kicker">gramly</div>
             <div class="sg-tooltip__title">Fix sync conflict on reconnect</div>
             <div class="sg-tooltip__meta"><svg class="sg-icon sg-tone-wait" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>needs you · 18m · claude on macbook</div>
             <div class="sg-tooltip__code">$ pnpm db:migrate</div>
@@ -245,20 +400,29 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
           </div>
         </div>
       </section>
+
+      <section class="specimen">
+        <header><b>Overview HUD</b><span>.sg-minimap · .sg-edge-marker</span></header>
+        <div class="stage ground">
+          <div class="sg-minimap"><div class="sg-minimap__head"><span>minimap</span><span>5 machines</span></div><canvas width="352" height="216"></canvas></div>
+          <span class="sg-edge-marker" style="position: static; transform: none"><span>2 waiting</span></span>
+          <span class="sg-edge-marker sg-edge-marker--err" style="position: static; transform: none"><span>1 failed</span></span>
+        </div>
+      </section>
     </div>
 
     <section class="specimen wide">
-      <header><b>status bar</b><span>.sg-statusbar · .sg-status-item · .sg-status-host</span></header>
+      <header><b>status bar</b><span>.sg-statusbar · .sg-status-item · __spacer · .sg-status-host</span></header>
       <div class="stage flush">
         <footer class="sg-statusbar" style="border-top: 0">
-          <span style="color: var(--sg-text-primary)">overview</span>
-          <span class="sg-status-item sg-status-item--wait"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>2 waiting</span>
-          <span class="sg-status-item"><svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg>4 running</span>
-          <span class="sg-status-item sg-status-item--done"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>2 done</span>
-          <span class="sg-status-item sg-status-item--err"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.5"/></svg>1 failed</span>
-          <span class="sg-statusbar__keys">drag pan · scroll zoom · Tab next waiting · Enter open · f fit</span>
-          <span class="sg-status-host">macbook</span>
-          <span class="sg-status-host">arch-workstation 14 ms</span>
+          <button class="sg-status-item sg-status-item--brand" type="button">overview</button>
+          <button class="sg-status-item sg-status-item--wait" type="button"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1 11 6 6 11 1 6Z" fill="currentColor"/></svg>2 waiting</button>
+          <button class="sg-status-item" type="button" aria-expanded="true"><svg class="sg-icon sg-tone-run" viewBox="0 0 12 12" aria-hidden="true"><g fill="currentColor"><circle cx="4" cy="2.5" r="1"/><circle cx="8" cy="2.5" r="1"/><circle cx="4" cy="6" r="1"/><circle cx="8" cy="6" r="1"/><circle cx="4" cy="9.5" r="1"/><circle cx="8" cy="9.5" r="1"/></g></svg>4 running</button>
+          <button class="sg-status-item sg-status-item--done" type="button"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.2 6.4 4.8 9 9.8 3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>2 done</button>
+          <button class="sg-status-item sg-status-item--err" type="button"><svg class="sg-icon" viewBox="0 0 12 12" aria-hidden="true"><path d="M3 3l6 6M9 3 3 9" stroke="currentColor" stroke-width="1.5"/></svg>1 failed</button>
+          <span class="sg-statusbar__spacer"></span>
+          <button class="sg-status-item sg-status-host" type="button">macbook</button>
+          <button class="sg-status-item sg-status-host" type="button">arch-workstation 14 ms</button>
         </footer>
       </div>
     </section>
@@ -286,6 +450,8 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
       <div class="shadow-grid" id="shadow"></div>
       <div class="sg-section-head"><span>motion · <span id="motion-count"></span></span></div>
       <div id="motion"></div>
+      <div class="sg-section-head"><span>size · <span id="size-count"></span></span></div>
+      <div id="size"></div>
     </div>
   </div>
 
@@ -293,7 +459,7 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
 
 <!-- @sg-manifest:start -->
 <script type="application/json" id="sg-manifest">
-{"colors":[{"name":"--sg-base-bg","path":"color.base.bg","desc":"Page, title bar, status bar.","group":"base","alias":null},{"name":"--sg-base-panel","path":"color.base.panel","desc":"Rails, panels, tooltips, toasts.","group":"base","alias":null},{"name":"--sg-base-side","path":"color.base.side","desc":"Wells: inset controls, keycaps, sidebar.","group":"base","alias":null},{"name":"--sg-base-line","path":"color.base.line","desc":"Hairline dividers.","group":"base","alias":null},{"name":"--sg-base-line2","path":"color.base.line2","desc":"Control borders.","group":"base","alias":null},{"name":"--sg-base-sel","path":"color.base.sel","desc":"Selected row fill.","group":"base","alias":null},{"name":"--sg-base-fg","path":"color.base.fg","desc":"Ink: primary text.","group":"base","alias":null},{"name":"--sg-base-dim","path":"color.base.dim","desc":"Secondary text.","group":"base","alias":null},{"name":"--sg-base-faint","path":"color.base.faint","desc":"Decorative glyphs only; never readable text.","group":"base","alias":null},{"name":"--sg-base-accent","path":"color.base.accent","desc":"Periwinkle (Signal) / iris (Fog): the owner's hand.","group":"base","alias":null},{"name":"--sg-base-green","path":"color.base.green","desc":"Done.","group":"base","alias":null},{"name":"--sg-base-yellow","path":"color.base.yellow","desc":"Needs you. The loudest colour.","group":"base","alias":null},{"name":"--sg-base-red","path":"color.base.red","desc":"Failed.","group":"base","alias":null},{"name":"--sg-base-blue","path":"color.base.blue","desc":"Running. The faintest status.","group":"base","alias":null},{"name":"--sg-surface-base","path":"color.surface.base","desc":"Content and page background.","group":"surface","alias":"color.base.bg"},{"name":"--sg-surface-raised","path":"color.surface.raised","desc":"Rails, panels.","group":"surface","alias":"color.base.panel"},{"name":"--sg-surface-sunken","path":"color.surface.sunken","desc":"Wells and inset controls.","group":"surface","alias":"color.base.side"},{"name":"--sg-surface-overlay","path":"color.surface.overlay","desc":"Tooltips, toasts, menus, callouts.","group":"surface","alias":"color.base.panel"},{"name":"--sg-surface-selected","path":"color.surface.selected","desc":"Selected row.","group":"surface","alias":"color.base.sel"},{"name":"--sg-state-hover","path":"color.state.hover","desc":"Row hover wash.","group":"state","alias":null},{"name":"--sg-state-hover-control","path":"color.state.hoverControl","desc":"Hover wash on borderless controls (title-bar button, segmented cells).","group":"state","alias":null},{"name":"--sg-state-pressed","path":"color.state.pressed","desc":"Pressed wash.","group":"state","alias":null},{"name":"--sg-text-primary","path":"color.text.primary","desc":"Body text.","group":"text","alias":"color.base.fg"},{"name":"--sg-text-secondary","path":"color.text.secondary","desc":"Metadata, control labels.","group":"text","alias":"color.base.dim"},{"name":"--sg-text-subtle","path":"color.text.subtle","desc":"Section heads, ages, paths, placeholders (>= 4.55:1 on every surface).","group":"text","alias":null},{"name":"--sg-text-disabled","path":"color.text.disabled","desc":"Disabled controls, the \"$\" prompt, ambient marks.","group":"text","alias":"color.base.faint"},{"name":"--sg-text-link","path":"color.text.link","desc":"","group":"text","alias":"color.base.accent"},{"name":"--sg-text-on-accent","path":"color.text.onAccent","desc":"Text on a solid status or accent fill (count badge).","group":"text","alias":"color.base.side"},{"name":"--sg-border-subtle","path":"color.border.subtle","desc":"Hairline dividers, tags.","group":"border","alias":"color.base.line"},{"name":"--sg-border-default","path":"color.border.default","desc":"Control borders, keycaps.","group":"border","alias":"color.base.line2"},{"name":"--sg-border-strong","path":"color.border.strong","desc":"Control border on hover.","group":"border","alias":null},{"name":"--sg-border-focus","path":"color.border.focus","desc":"Focus ring.","group":"border","alias":"color.base.accent"},{"name":"--sg-border-control","path":"color.border.control","desc":"Outline of inputs and other controls whose edge identifies them. Meets 3:1 against every surface in both themes (WCAG 1.4.11). Buttons keep border.default because their label identifies them.","group":"border","alias":"color.border.strong"},{"name":"--sg-accent-fg","path":"color.accent.fg","desc":"Accent text and marks.","group":"accent","alias":"color.base.accent"},{"name":"--sg-accent-solid","path":"color.accent.solid","desc":"Accent fills (checked controls, caret).","group":"accent","alias":"color.base.accent"},{"name":"--sg-accent-bg","path":"color.accent.bg","desc":"Primary button fill.","group":"accent","alias":null},{"name":"--sg-accent-bg-hover","path":"color.accent.bgHover","desc":"Primary button fill on hover.","group":"accent","alias":null},{"name":"--sg-accent-bg-pressed","path":"color.accent.bgPressed","desc":"Primary button fill when pressed.","group":"accent","alias":null},{"name":"--sg-accent-border","path":"color.accent.border","desc":"Primary button border; selected row inset ring.","group":"accent","alias":null},{"name":"--sg-selection-bg","path":"color.selection.bg","desc":"Text selection.","group":"selection","alias":null},{"name":"--sg-selection-bg-inactive","path":"color.selection.bgInactive","desc":"Text selection in an unfocused region.","group":"selection","alias":null},{"name":"--sg-status-run-fg","path":"color.status.run.fg","desc":"Running. Glyph and label.","group":"status","alias":"color.base.blue"},{"name":"--sg-status-run-bg","path":"color.status.run.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-run-border","path":"color.status.run.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-wait-fg","path":"color.status.wait.fg","desc":"Needs you. Glyph and label.","group":"status","alias":"color.base.yellow"},{"name":"--sg-status-wait-bg","path":"color.status.wait.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-wait-border","path":"color.status.wait.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-done-fg","path":"color.status.done.fg","desc":"Done. Glyph and label.","group":"status","alias":"color.base.green"},{"name":"--sg-status-done-bg","path":"color.status.done.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-done-border","path":"color.status.done.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-err-fg","path":"color.status.err.fg","desc":"Failed. Glyph and label.","group":"status","alias":"color.base.red"},{"name":"--sg-status-err-bg","path":"color.status.err.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-err-border","path":"color.status.err.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-idle-fg","path":"color.status.idle.fg","desc":"Idle, asleep, stopped, offline.","group":"status","alias":"color.text.subtle"},{"name":"--sg-diff-add-fg","path":"color.diff.add.fg","desc":"","group":"diff","alias":"color.base.green"},{"name":"--sg-diff-add-bg","path":"color.diff.add.bg","desc":"","group":"diff","alias":null},{"name":"--sg-diff-add-emph","path":"color.diff.add.emph","desc":"","group":"diff","alias":null},{"name":"--sg-diff-del-fg","path":"color.diff.del.fg","desc":"","group":"diff","alias":"color.base.red"},{"name":"--sg-diff-del-bg","path":"color.diff.del.bg","desc":"","group":"diff","alias":null},{"name":"--sg-diff-del-emph","path":"color.diff.del.emph","desc":"","group":"diff","alias":null},{"name":"--sg-diff-gutter","path":"color.diff.gutter","desc":"","group":"diff","alias":"color.text.subtle"},{"name":"--sg-overlay-scrim","path":"color.overlay.scrim","desc":"Behind dialogs.","group":"overlay","alias":null},{"name":"--sg-overlay-label","path":"color.overlay.label","desc":"Backing of labels drawn over content (map labels).","group":"overlay","alias":null},{"name":"--sg-scrollbar-thumb","path":"color.scrollbar.thumb","desc":"","group":"scrollbar","alias":"color.base.line2"},{"name":"--sg-scrollbar-thumb-hover","path":"color.scrollbar.thumbHover","desc":"","group":"scrollbar","alias":"color.base.faint"}],"type":[{"name":"--sg-type-display","path":"type.display","desc":"Onboarding headline. Rare.","spec":"sans 600 · 20/1.4","upper":false,"tnum":false},{"name":"--sg-type-headline","path":"type.headline","desc":"Largest type in an app view (brief title, dialog title).","spec":"sans 500 · 15/1.45","upper":false,"tnum":false},{"name":"--sg-type-title","path":"type.title","desc":"Card title.","spec":"sans 500 · 14/1.45","upper":false,"tnum":false},{"name":"--sg-type-body","path":"type.body","desc":"Row titles, questions, toasts.","spec":"sans 400 · 13/1.45","upper":false,"tnum":false},{"name":"--sg-type-body-strong","path":"type.bodyStrong","desc":"Tooltip and item titles.","spec":"sans 500 · 13/1.45","upper":false,"tnum":false},{"name":"--sg-type-body-small","path":"type.bodySmall","desc":"Explanations under a title.","spec":"sans 400 · 12.5/1.45","upper":false,"tnum":false},{"name":"--sg-type-terminal","path":"type.terminal","desc":"Terminal, palette input.","spec":"mono 400 · 13/1.5385","upper":false,"tnum":false},{"name":"--sg-type-code","path":"type.code","desc":"A command shown for approval.","spec":"mono 400 · 12.5/1.45","upper":false,"tnum":false},{"name":"--sg-type-control","path":"type.control","desc":"Buttons, tabs, breadcrumbs, segmented controls.","spec":"mono 400 · 12/1.45","upper":false,"tnum":false},{"name":"--sg-type-status","path":"type.status","desc":"Status bar.","spec":"mono 400 · 11.5/1.45 · tnum","upper":false,"tnum":true},{"name":"--sg-type-map-label","path":"type.mapLabel","desc":"Labels drawn over content: map labels.","spec":"mono 500 · 11.5/1.45","upper":false,"tnum":false},{"name":"--sg-type-meta","path":"type.meta","desc":"Ages, agent and host lines, row summaries, keycaps, tags.","spec":"mono 400 · 11/1.45 · tnum","upper":false,"tnum":true},{"name":"--sg-type-section","path":"type.section","desc":"List section heads, always with a count.","spec":"mono 400 · 11/1.45 · uppercase · +0.06em","upper":true,"tnum":false},{"name":"--sg-type-badge","path":"type.badge","desc":"Count badge.","spec":"mono 500 · 10.5/1 · tnum","upper":false,"tnum":true}],"space":[{"name":"--sg-space-0","path":"space.0","desc":""},{"name":"--sg-space-2","path":"space.2","desc":""},{"name":"--sg-space-4","path":"space.4","desc":""},{"name":"--sg-space-6","path":"space.6","desc":"Gaps between related items."},{"name":"--sg-space-8","path":"space.8","desc":"Between siblings."},{"name":"--sg-space-10","path":"space.10","desc":"Card padding (block)."},{"name":"--sg-space-12","path":"space.12","desc":"Card padding (inline), bar insets."},{"name":"--sg-space-16","path":"space.16","desc":"Between list sections."},{"name":"--sg-space-24","path":"space.24","desc":""},{"name":"--sg-space-32","path":"space.32","desc":""},{"name":"--sg-space-48","path":"space.48","desc":""}],"radius":[{"name":"--sg-radius-hair","path":"radius.hair","desc":"Count badge."},{"name":"--sg-radius-sm","path":"radius.sm","desc":"Tags, keycaps, map labels."},{"name":"--sg-radius-md","path":"radius.md","desc":"Controls, rows, tooltips, callouts."},{"name":"--sg-radius-lg","path":"radius.lg","desc":"Cards, toasts."},{"name":"--sg-radius-window","path":"radius.window","desc":"Window corners."},{"name":"--sg-radius-full","path":"radius.full","desc":"Pills (switch track)."}],"shadow":[{"name":"--sg-shadow-tooltip","path":"shadow.tooltip","desc":"Tooltip."},{"name":"--sg-shadow-toast","path":"shadow.toast","desc":"Toast."},{"name":"--sg-shadow-popover","path":"shadow.popover","desc":"Menus, popovers."},{"name":"--sg-shadow-dialog","path":"shadow.dialog","desc":"Dialogs."}],"duration":[{"name":"--sg-duration-instant","path":"duration.instant","desc":"Selection, focus, status and theme changes."},{"name":"--sg-duration-fast","path":"duration.fast","desc":"Hover and press colour changes."},{"name":"--sg-duration-base","path":"duration.base","desc":"Switches, tab underline, popovers in."},{"name":"--sg-duration-slow","path":"duration.slow","desc":"Toasts and dialogs in and out."},{"name":"--sg-duration-spinner-frame","path":"duration.spinnerFrame","desc":"Braille spinner frame."},{"name":"--sg-duration-tooltip-delay","path":"duration.tooltipDelay","desc":""},{"name":"--sg-duration-caret-blink","path":"duration.caretBlink","desc":""},{"name":"--sg-duration-toast-min","path":"duration.toastMin","desc":"How long a toast stays. Overview 3200; Hangar 5000."},{"name":"--sg-easing-standard","path":"easing.standard","desc":"Enter."},{"name":"--sg-easing-exit","path":"easing.exit","desc":"Exit."},{"name":"--sg-easing-linear","path":"easing.linear","desc":""}]}
+{"colors":[{"name":"--sg-base-bg","path":"color.base.bg","desc":"Page, title bar, status bar.","group":"base","alias":null},{"name":"--sg-base-panel","path":"color.base.panel","desc":"Rails, panels, tooltips, toasts.","group":"base","alias":null},{"name":"--sg-base-side","path":"color.base.side","desc":"Wells: inset controls, keycaps, sidebar.","group":"base","alias":null},{"name":"--sg-base-line","path":"color.base.line","desc":"Hairline dividers.","group":"base","alias":null},{"name":"--sg-base-line2","path":"color.base.line2","desc":"Control borders.","group":"base","alias":null},{"name":"--sg-base-sel","path":"color.base.sel","desc":"Selected row fill.","group":"base","alias":null},{"name":"--sg-base-fg","path":"color.base.fg","desc":"Ink: primary text.","group":"base","alias":null},{"name":"--sg-base-dim","path":"color.base.dim","desc":"Secondary text.","group":"base","alias":null},{"name":"--sg-base-faint","path":"color.base.faint","desc":"Decorative glyphs only; never readable text.","group":"base","alias":null},{"name":"--sg-base-accent","path":"color.base.accent","desc":"Periwinkle (Signal) / iris (Fog): the owner's hand.","group":"base","alias":null},{"name":"--sg-base-green","path":"color.base.green","desc":"Done.","group":"base","alias":null},{"name":"--sg-base-yellow","path":"color.base.yellow","desc":"Needs you. The loudest colour.","group":"base","alias":null},{"name":"--sg-base-red","path":"color.base.red","desc":"Failed.","group":"base","alias":null},{"name":"--sg-base-blue","path":"color.base.blue","desc":"Running. The faintest status.","group":"base","alias":null},{"name":"--sg-surface-base","path":"color.surface.base","desc":"Content and page background.","group":"surface","alias":"color.base.bg"},{"name":"--sg-surface-raised","path":"color.surface.raised","desc":"Rails, panels.","group":"surface","alias":"color.base.panel"},{"name":"--sg-surface-sunken","path":"color.surface.sunken","desc":"Wells and inset controls.","group":"surface","alias":"color.base.side"},{"name":"--sg-surface-overlay","path":"color.surface.overlay","desc":"Tooltips, toasts, menus, callouts.","group":"surface","alias":"color.base.panel"},{"name":"--sg-surface-selected","path":"color.surface.selected","desc":"Selected row.","group":"surface","alias":"color.base.sel"},{"name":"--sg-state-hover","path":"color.state.hover","desc":"Row hover wash.","group":"state","alias":null},{"name":"--sg-state-hover-control","path":"color.state.hoverControl","desc":"Hover wash on borderless controls (title-bar button, segmented cells).","group":"state","alias":null},{"name":"--sg-state-pressed","path":"color.state.pressed","desc":"Pressed wash.","group":"state","alias":null},{"name":"--sg-text-primary","path":"color.text.primary","desc":"Body text.","group":"text","alias":"color.base.fg"},{"name":"--sg-text-secondary","path":"color.text.secondary","desc":"Metadata, control labels.","group":"text","alias":"color.base.dim"},{"name":"--sg-text-subtle","path":"color.text.subtle","desc":"Section heads, ages, paths, placeholders (>= 4.55:1 on every surface).","group":"text","alias":null},{"name":"--sg-text-disabled","path":"color.text.disabled","desc":"Disabled controls, the \"$\" prompt, ambient marks.","group":"text","alias":"color.base.faint"},{"name":"--sg-text-link","path":"color.text.link","desc":"","group":"text","alias":"color.base.accent"},{"name":"--sg-text-on-accent","path":"color.text.onAccent","desc":"Text on a solid status or accent fill (count badge).","group":"text","alias":"color.base.side"},{"name":"--sg-border-subtle","path":"color.border.subtle","desc":"Hairline dividers, tags.","group":"border","alias":"color.base.line"},{"name":"--sg-border-default","path":"color.border.default","desc":"Control borders, keycaps.","group":"border","alias":"color.base.line2"},{"name":"--sg-border-strong","path":"color.border.strong","desc":"Control border on hover.","group":"border","alias":null},{"name":"--sg-border-focus","path":"color.border.focus","desc":"Focus ring.","group":"border","alias":"color.base.accent"},{"name":"--sg-border-control","path":"color.border.control","desc":"Outline of inputs and other controls whose edge identifies them. Meets 3:1 against every surface in both themes (WCAG 1.4.11). Buttons keep border.default because their label identifies them.","group":"border","alias":"color.border.strong"},{"name":"--sg-accent-fg","path":"color.accent.fg","desc":"Accent text and marks.","group":"accent","alias":"color.base.accent"},{"name":"--sg-accent-solid","path":"color.accent.solid","desc":"Accent fills (checked controls, caret).","group":"accent","alias":"color.base.accent"},{"name":"--sg-accent-bg","path":"color.accent.bg","desc":"Primary button fill.","group":"accent","alias":null},{"name":"--sg-accent-bg-hover","path":"color.accent.bgHover","desc":"Primary button fill on hover.","group":"accent","alias":null},{"name":"--sg-accent-bg-pressed","path":"color.accent.bgPressed","desc":"Primary button fill when pressed.","group":"accent","alias":null},{"name":"--sg-accent-border","path":"color.accent.border","desc":"Primary button border; selected row inset ring.","group":"accent","alias":null},{"name":"--sg-selection-bg","path":"color.selection.bg","desc":"Text selection.","group":"selection","alias":null},{"name":"--sg-selection-bg-inactive","path":"color.selection.bgInactive","desc":"Text selection in an unfocused region.","group":"selection","alias":null},{"name":"--sg-status-run-fg","path":"color.status.run.fg","desc":"Running. Glyph and label.","group":"status","alias":"color.base.blue"},{"name":"--sg-status-run-bg","path":"color.status.run.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-run-border","path":"color.status.run.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-wait-fg","path":"color.status.wait.fg","desc":"Needs you. Glyph and label.","group":"status","alias":"color.base.yellow"},{"name":"--sg-status-wait-bg","path":"color.status.wait.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-wait-border","path":"color.status.wait.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-done-fg","path":"color.status.done.fg","desc":"Done. Glyph and label.","group":"status","alias":"color.base.green"},{"name":"--sg-status-done-bg","path":"color.status.done.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-done-border","path":"color.status.done.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-err-fg","path":"color.status.err.fg","desc":"Failed. Glyph and label.","group":"status","alias":"color.base.red"},{"name":"--sg-status-err-bg","path":"color.status.err.bg","desc":"Tinted container fill (attention card).","group":"status","alias":null},{"name":"--sg-status-err-border","path":"color.status.err.border","desc":"Tinted container border.","group":"status","alias":null},{"name":"--sg-status-idle-fg","path":"color.status.idle.fg","desc":"Idle, asleep, stopped, offline.","group":"status","alias":"color.text.subtle"},{"name":"--sg-diff-add-fg","path":"color.diff.add.fg","desc":"","group":"diff","alias":"color.base.green"},{"name":"--sg-diff-add-bg","path":"color.diff.add.bg","desc":"","group":"diff","alias":null},{"name":"--sg-diff-add-emph","path":"color.diff.add.emph","desc":"","group":"diff","alias":null},{"name":"--sg-diff-del-fg","path":"color.diff.del.fg","desc":"","group":"diff","alias":"color.base.red"},{"name":"--sg-diff-del-bg","path":"color.diff.del.bg","desc":"","group":"diff","alias":null},{"name":"--sg-diff-del-emph","path":"color.diff.del.emph","desc":"","group":"diff","alias":null},{"name":"--sg-diff-gutter","path":"color.diff.gutter","desc":"","group":"diff","alias":"color.text.subtle"},{"name":"--sg-overlay-scrim","path":"color.overlay.scrim","desc":"Behind dialogs.","group":"overlay","alias":null},{"name":"--sg-overlay-label","path":"color.overlay.label","desc":"Backing of labels drawn over content (map labels).","group":"overlay","alias":null},{"name":"--sg-scrollbar-thumb","path":"color.scrollbar.thumb","desc":"","group":"scrollbar","alias":"color.base.line2"},{"name":"--sg-scrollbar-thumb-hover","path":"color.scrollbar.thumbHover","desc":"","group":"scrollbar","alias":"color.base.faint"}],"type":[{"name":"--sg-type-display","path":"type.display","desc":"Panel and page title.","spec":"sans 500 · 20/1.4","upper":false,"tnum":false},{"name":"--sg-type-headline","path":"type.headline","desc":"Largest type in an app view (brief title, dialog title).","spec":"sans 500 · 15/1.45","upper":false,"tnum":false},{"name":"--sg-type-title","path":"type.title","desc":"Card title.","spec":"sans 500 · 14/1.45","upper":false,"tnum":false},{"name":"--sg-type-item-title","path":"type.itemTitle","desc":"Title of a row in a grouped list.","spec":"sans 500 · 13.5/1.45","upper":false,"tnum":false},{"name":"--sg-type-body","path":"type.body","desc":"Row titles, questions, toasts.","spec":"sans 400 · 13/1.45","upper":false,"tnum":false},{"name":"--sg-type-body-strong","path":"type.bodyStrong","desc":"Tooltip and item titles.","spec":"sans 500 · 13/1.45","upper":false,"tnum":false},{"name":"--sg-type-body-small","path":"type.bodySmall","desc":"Explanations under a title.","spec":"sans 400 · 12.5/1.45","upper":false,"tnum":false},{"name":"--sg-type-caption","path":"type.caption","desc":"Footnotes and key lists inside popovers and panels.","spec":"sans 400 · 12/1.5","upper":false,"tnum":false},{"name":"--sg-type-terminal","path":"type.terminal","desc":"Terminal, palette input.","spec":"mono 400 · 13/1.5385","upper":false,"tnum":false},{"name":"--sg-type-code","path":"type.code","desc":"A command shown for approval.","spec":"mono 400 · 12.5/1.45","upper":false,"tnum":false},{"name":"--sg-type-control","path":"type.control","desc":"Buttons, tabs, breadcrumbs, segmented controls.","spec":"mono 400 · 12/1.45","upper":false,"tnum":false},{"name":"--sg-type-status","path":"type.status","desc":"Status bar.","spec":"mono 400 · 11.5/1.45 · tnum","upper":false,"tnum":true},{"name":"--sg-type-figure","path":"type.figure","desc":"Count in a stat cell.","spec":"mono 500 · 15/1.1 · tnum","upper":false,"tnum":true},{"name":"--sg-type-map-label","path":"type.mapLabel","desc":"Labels drawn over content: map labels.","spec":"mono 500 · 11.5/1.45","upper":false,"tnum":false},{"name":"--sg-type-meta","path":"type.meta","desc":"Ages, agent and host lines, row summaries, keycaps, tags.","spec":"mono 400 · 11/1.45 · tnum","upper":false,"tnum":true},{"name":"--sg-type-section","path":"type.section","desc":"List section heads, always with a count.","spec":"mono 400 · 11/1.45 · uppercase · +0.06em","upper":true,"tnum":false},{"name":"--sg-type-badge","path":"type.badge","desc":"Count badge.","spec":"mono 500 · 10.5/1 · tnum","upper":false,"tnum":true}],"space":[{"name":"--sg-space-0","path":"space.0","desc":""},{"name":"--sg-space-2","path":"space.2","desc":""},{"name":"--sg-space-4","path":"space.4","desc":""},{"name":"--sg-space-6","path":"space.6","desc":"Gaps between related items."},{"name":"--sg-space-8","path":"space.8","desc":"Between siblings."},{"name":"--sg-space-10","path":"space.10","desc":"Card padding (block)."},{"name":"--sg-space-12","path":"space.12","desc":"Card padding (inline), bar insets."},{"name":"--sg-space-14","path":"space.14","desc":"Row inset in a grouped list, panel padding."},{"name":"--sg-space-16","path":"space.16","desc":"Between list sections."},{"name":"--sg-space-20","path":"space.20","desc":"Dialog padding."},{"name":"--sg-space-24","path":"space.24","desc":""},{"name":"--sg-space-32","path":"space.32","desc":""},{"name":"--sg-space-48","path":"space.48","desc":""}],"radius":[{"name":"--sg-radius-hair","path":"radius.hair","desc":"Count badge."},{"name":"--sg-radius-sm","path":"radius.sm","desc":"Tags, keycaps."},{"name":"--sg-radius-box","path":"radius.box","desc":"Checkbox, small square buttons."},{"name":"--sg-radius-md","path":"radius.md","desc":"Controls, rows, tooltips, map labels, callouts."},{"name":"--sg-radius-lg","path":"radius.lg","desc":"Cards, toasts."},{"name":"--sg-radius-dialog","path":"radius.dialog","desc":"Dialogs."},{"name":"--sg-radius-window","path":"radius.window","desc":"Window corners."},{"name":"--sg-radius-full","path":"radius.full","desc":"Pills (switch track)."}],"size":[{"name":"--sg-size-icon-sm","path":"size.iconSm","desc":"Status glyphs."},{"name":"--sg-size-icon-md","path":"size.iconMd","desc":"Row icon column."},{"name":"--sg-size-icon-lg","path":"size.iconLg","desc":""},{"name":"--sg-size-icon-xs","path":"size.iconXs","desc":"Glyph inside a dense row or a small icon button."},{"name":"--sg-size-control-sm","path":"size.controlSm","desc":"Borderless title-bar button, edge chips."},{"name":"--sg-size-control-xs","path":"size.controlXs","desc":"Status bar item, reveal button on a row."},{"name":"--sg-size-button","path":"size.button","desc":"Bordered button."},{"name":"--sg-size-control-md","path":"size.controlMd","desc":"Segmented cell."},{"name":"--sg-size-control-lg","path":"size.controlLg","desc":"Form field and large button."},{"name":"--sg-size-kbd","path":"size.kbd","desc":"Keycap minimum width."},{"name":"--sg-size-kbd-line","path":"size.kbdLine","desc":"Keycap line height."},{"name":"--sg-size-badge-w","path":"size.badgeW","desc":""},{"name":"--sg-size-badge-h","path":"size.badgeH","desc":""},{"name":"--sg-size-callout","path":"size.callout","desc":"Callout height."},{"name":"--sg-size-dot","path":"size.dot","desc":"Connected-host dot in the status bar."},{"name":"--sg-size-dot-lg","path":"size.dotLg","desc":"Connection dot in a list."},{"name":"--sg-size-switch-w","path":"size.switchW","desc":"Switch track width."},{"name":"--sg-size-switch-h","path":"size.switchH","desc":"Switch track height."},{"name":"--sg-size-switch-knob","path":"size.switchKnob","desc":"Switch knob."},{"name":"--sg-size-focus-offset","path":"size.focusOffset","desc":"Focus ring offset."},{"name":"--sg-size-row","path":"size.row","desc":""},{"name":"--sg-size-row-table","path":"size.rowTable","desc":""},{"name":"--sg-size-title-bar","path":"size.titleBar","desc":""},{"name":"--sg-size-status-bar","path":"size.statusBar","desc":""},{"name":"--sg-size-group-head","path":"size.groupHead","desc":"Head of a grouped list."},{"name":"--sg-size-empty-min-h","path":"size.emptyMinH","desc":"Empty-state frame."},{"name":"--sg-size-label-sm","path":"size.labelSm","desc":"Label column of a detail line."},{"name":"--sg-size-label-md","path":"size.labelMd","desc":"Label column of a key-value list."},{"name":"--sg-size-tab-bar","path":"size.tabBar","desc":""},{"name":"--sg-size-pane-header","path":"size.paneHeader","desc":""},{"name":"--sg-size-rail","path":"size.rail","desc":"Right rail. Overview 340; Hangar 280."},{"name":"--sg-size-rail-min","path":"size.railMin","desc":""},{"name":"--sg-size-rail-max","path":"size.railMax","desc":""},{"name":"--sg-size-sidebar","path":"size.sidebar","desc":""},{"name":"--sg-size-sidebar-min","path":"size.sidebarMin","desc":""},{"name":"--sg-size-sidebar-max","path":"size.sidebarMax","desc":""},{"name":"--sg-size-tooltip-max-w","path":"size.tooltipMaxW","desc":""},{"name":"--sg-size-popover-min-w","path":"size.popoverMinW","desc":"Popover minimum width."},{"name":"--sg-size-popover-max-w","path":"size.popoverMaxW","desc":"Popover maximum width."},{"name":"--sg-size-toast-w","path":"size.toastW","desc":""},{"name":"--sg-size-palette-w","path":"size.paletteW","desc":""},{"name":"--sg-size-dialog-sm","path":"size.dialogSm","desc":""},{"name":"--sg-size-dialog-md","path":"size.dialogMd","desc":""},{"name":"--sg-size-dialog-lg","path":"size.dialogLg","desc":""}],"shadow":[{"name":"--sg-shadow-tooltip","path":"shadow.tooltip","desc":"Tooltip."},{"name":"--sg-shadow-toast","path":"shadow.toast","desc":"Toast."},{"name":"--sg-shadow-popover","path":"shadow.popover","desc":"Menus, popovers, panels."},{"name":"--sg-shadow-dialog","path":"shadow.dialog","desc":"Dialogs."}],"duration":[{"name":"--sg-duration-instant","path":"duration.instant","desc":"Selection, focus, status and theme changes."},{"name":"--sg-duration-fast","path":"duration.fast","desc":"Hover and press colour changes."},{"name":"--sg-duration-base","path":"duration.base","desc":"Switches, tab underline, popovers in."},{"name":"--sg-duration-disclosure","path":"duration.disclosure","desc":"Chevron turn on collapse."},{"name":"--sg-duration-slow","path":"duration.slow","desc":"Toasts and dialogs in and out."},{"name":"--sg-duration-flash","path":"duration.flash","desc":"Accent wash that marks where a map click landed."},{"name":"--sg-duration-pulse","path":"duration.pulse","desc":"One cycle of the running dots and of a connecting dot."},{"name":"--sg-duration-spinner-frame","path":"duration.spinnerFrame","desc":"Braille spinner frame."},{"name":"--sg-duration-tooltip-delay","path":"duration.tooltipDelay","desc":""},{"name":"--sg-duration-caret-blink","path":"duration.caretBlink","desc":""},{"name":"--sg-duration-toast-min","path":"duration.toastMin","desc":"How long a toast stays. Overview 3200; Hangar 5000."},{"name":"--sg-easing-standard","path":"easing.standard","desc":"Enter."},{"name":"--sg-easing-exit","path":"easing.exit","desc":"Exit."},{"name":"--sg-easing-settle","path":"easing.settle","desc":"Wash that eases out and rests."},{"name":"--sg-easing-linear","path":"easing.linear","desc":""}]}
 </script>
 <!-- @sg-manifest:end -->
 
@@ -342,8 +508,11 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
     display: 'Three things need you',
     headline: 'Three things first',
     title: 'Fix sync conflict on reconnect',
+    itemTitle: 'Rewrite suggestion ranking',
     body: 'Electron or Tauri for P0? Comparison is in the session.',
     bodyStrong: 'Landing page copy pass',
+    caption: 'Drag to pan, scroll to zoom, Tab to visit what needs you.',
+    figure: '12',
     bodySmall: 'Two agents are waiting on a decision you deferred yesterday.',
     terminal: '$ pnpm test --filter flow',
     code: '$ pnpm db:migrate',
@@ -412,6 +581,16 @@ h2 + p { margin: var(--sg-space-2) var(--sg-space-4) 0; font: var(--sg-type-meta
       mo.appendChild(r);
     });
     document.getElementById('motion-count').textContent = M.duration.length;
+    var sz = document.getElementById('size');
+    M.size.forEach(function (t) {
+      var r = el('div', 'scale-row');
+      r.style.gridTemplateColumns = '200px 60px minmax(0, 1fr)';
+      r.appendChild(el('b', null, t.name));
+      r.appendChild(el('span', null, cs(t.name)));
+      r.appendChild(el('span', 'size-note', t.desc));
+      sz.appendChild(r);
+    });
+    document.getElementById('size-count').textContent = M.size.length;
   }
 
   // ---- theme toggle (remembered per browser; works without storage)

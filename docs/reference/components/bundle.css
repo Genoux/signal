@@ -470,15 +470,15 @@ kbd, .sg-kbd {
   display: inline-flex;
   align-items: center;
   gap: var(--sg-space-6);
-  height: var(--sg-size-map-label);
-  padding: 0 calc(var(--sg-space-4) + var(--sg-border-width-hairline));
+  padding: var(--sg-space-4);
   font: var(--sg-type-map-label);
+  line-height: 1;
   font-weight: var(--sg-font-weight-regular);
   color: var(--sg-text-subtle);
   white-space: nowrap;
   background: var(--sg-overlay-label);
   border: var(--sg-border-width-hairline) solid transparent;
-  border-radius: var(--sg-radius-sm);
+  border-radius: var(--sg-radius-md);
 }
 .sg-map-label > b, .sg-map-label__name { font-weight: var(--sg-font-weight-medium); color: var(--sg-text-primary); }
 .sg-map-label--machine { border-color: var(--sg-border-default); }
