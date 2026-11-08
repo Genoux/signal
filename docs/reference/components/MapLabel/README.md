@@ -16,7 +16,7 @@ An 18px label drawn over content on the label scrim, with the name in ink and th
 
 ## Anatomy
 
-- Height `sg-size-map-label`. Side padding 5px (`sg-space-4` + hairline). Gap `sg-space-6`. Radius `sg-radius-sm`.
+- Even padding `sg-space-4` on all sides, line-height 1; the height follows. Gap `sg-space-6`. Radius `sg-radius-md`, same as the callout.
 - Type `map-label` at `sg-font-weight-regular`, in `sg-text-subtle`. The name is `sg-font-weight-medium` in `sg-text-primary`.
 - Backing `sg-overlay-label`. `sg-text-subtle` on it measures 6.3:1 over the Signal map ground and 5.1:1 over `sg-surface-sunken` in Fog.
 - **Machine:** a `sg-border-default` edge. **Plot:** `meta` size, with a `sg-border-default` edge on hover. **Dragging:** a `sg-border-focus` edge.
