@@ -16,7 +16,7 @@ Read `PRODUCT.md` first.
 
 - `tokens/signal.tokens.json` — the single token source (DTCG).
 - `tokens/extensions/` and `css/extensions/` — per-app extensions, tokens only.
-- `css/signal.css` is generated; `css/components.css` holds the plain-CSS components.
+- `css/signal.css`: the block between the `@sg-tokens` markers is generated, the base styles are hand-written. `css/components.css` holds the plain-CSS components.
 - `scripts/build.mjs` — generates `css/signal.css` and the extension CSS; `--check` fails when generated files drift from the source.
 - `index.html` — live reference of every token and component.
 - `docs/reference/` — token reference and known gaps.
