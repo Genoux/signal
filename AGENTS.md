@@ -27,3 +27,5 @@ Read `PRODUCT.md` first.
 - 2026-11-07: adopted jb-toolkit. `scripts/check` delegates to the existing
   `check` script, which verifies generated files match the tokens; there is no
   formatter, linter or test suite in the project yet.
+
+Every agent follows the shared rules in `.toolkit/RULES.md` (managed by jb-toolkit); deliberate exceptions are in `.jb-exceptions`.
